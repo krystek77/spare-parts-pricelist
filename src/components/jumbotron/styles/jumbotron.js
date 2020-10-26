@@ -39,5 +39,5 @@ export const Image = styled.img`
   max-width: 100%;
 `;
 export const Divider = styled.div`
-  border-bottom: 2px solid ${({ theme }) => theme.colors.dark};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.light};
 `;
