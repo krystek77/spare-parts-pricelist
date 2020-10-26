@@ -6,8 +6,10 @@ export const GlobalStyles = createGlobalStyle`
 *,*::before,*::after {
     box-sizing:border-box;
 }
-    html {
+    html,body {
         font-family:'Oswald',sans-serif;
+        --webkit-font-smooth:antialiased;
+        --moz-osx-font-smooth:grayscale;
         font-size:16px;
         background-color:#191919;
         color:#E2E2E2;
