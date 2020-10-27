@@ -12,6 +12,7 @@ export const Inner = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   @media (min-width: 960px) {
+    padding: 4rem 1.5rem;
     flex-direction: ${({ direction }) => direction};
     justify-content: space-between;
   }
@@ -39,5 +40,5 @@ export const Image = styled.img`
   max-width: 100%;
 `;
 export const Divider = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.light};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;

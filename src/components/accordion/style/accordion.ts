@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
   width: 100%;
   padding: 4rem 1.5rem;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.gray};
 `;
 export const Inner = styled.div`
   max-width: 640px;
