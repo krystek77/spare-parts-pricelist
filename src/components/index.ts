@@ -1,4 +1,5 @@
 import { Jumbotron } from './jumbotron';
 import { Tabs } from './tabs';
 import { Accordion } from './accordion';
-export { Jumbotron, Tabs, Accordion };
+import { CustomButton } from './button';
+export { Jumbotron, Tabs, Accordion, CustomButton };
