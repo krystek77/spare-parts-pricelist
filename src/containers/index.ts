@@ -1,3 +1,4 @@
 import { JumbotronContainer } from './jumbotron';
 import { TabsContainer } from './tabs';
-export { JumbotronContainer, TabsContainer };
+import { AccordionContainer } from './accordion';
+export { JumbotronContainer, TabsContainer, AccordionContainer };
