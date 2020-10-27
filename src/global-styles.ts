@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
         --webkit-font-smooth:antialiased;
         --moz-osx-font-smooth:grayscale;
         font-size:16px;
-        background-color:#191919;
+        background-color:#121212;
         color:#E2E2E2;
         
     }
