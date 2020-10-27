@@ -1,3 +1,4 @@
 import { Jumbotron } from './jumbotron';
 import { Tabs } from './tabs';
-export { Jumbotron, Tabs };
+import { Accordion } from './accordion';
+export { Jumbotron, Tabs, Accordion };
