@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  NavigationContainer,
   AccordionContainer,
   JumbotronContainer,
   TabsContainer,
@@ -10,6 +11,7 @@ interface IHomePage {}
 export const HomePage: React.FC<IHomePage> = () => {
   return (
     <React.Fragment>
+      <NavigationContainer bgColor />
       <TabsContainer />
       <JumbotronContainer />
       <AccordionContainer />
