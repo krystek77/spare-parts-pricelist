@@ -11,7 +11,7 @@ interface IHomePage {}
 export const HomePage: React.FC<IHomePage> = () => {
   return (
     <React.Fragment>
-      <NavigationContainer bgColor />
+      <NavigationContainer />
       <TabsContainer />
       <JumbotronContainer />
       <AccordionContainer />
