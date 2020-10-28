@@ -7,23 +7,23 @@ import {
   UserPage,
   NoMatchPage,
 } from './pages';
-import { ADMIN, HOME, SIGNIN, USER } from './constants/routes';
+import * as ROUTES from './constants/routes';
 
 export function App() {
   return (
     <Router>
       {/** <div className="root"> all components</div> */}
       <Switch>
-        <Route path={SIGNIN}>
+        <Route path={ROUTES.SIGNIN}>
           <SigninPage />
         </Route>
-        <Route path={USER}>
+        <Route path={ROUTES.USER}>
           <UserPage />
         </Route>
-        <Route path={ADMIN}>
+        <Route path={ROUTES.ADMIN}>
           <AdminPage />
         </Route>
-        <Route exact path={HOME}>
+        <Route exact path={ROUTES.HOME}>
           <HomePage />
         </Route>
         <Route>
