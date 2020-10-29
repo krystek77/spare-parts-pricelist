@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../components';
 import { NavigationContainer } from './navigation';
+import { Newsletter } from '../components';
 interface IHeaderContainer {
   bgImage?: boolean;
   src?: string;
@@ -20,6 +21,15 @@ export const HeaderContainer: React.FC<IHeaderContainer> = ({
           <Header.SubTitle>
             Add, delete, edit pricelist category and spare parts
           </Header.SubTitle>
+          <Newsletter>
+            <Newsletter.Input type='text' placeholder='Enter your email' />
+            <Newsletter.Button type='button'>Subscribe</Newsletter.Button>
+            <Newsletter.Break />
+            <Newsletter.Text>
+              We are starting to be up to date. Enter email and subscribe to
+              newsletter
+            </Newsletter.Text>
+          </Newsletter>
         </Header.Content>
       </Header>
     </Header.Container>
