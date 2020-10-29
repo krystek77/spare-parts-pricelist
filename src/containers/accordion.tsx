@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion } from '../components';
 import dataFaqs from '../fixtures/faqs.json';
+import { Newsletter } from '../components';
 
 export const AccordionContainer = () => {
   return (
@@ -17,6 +18,15 @@ export const AccordionContainer = () => {
             </Accordion.List>
           );
         })}
+        <Newsletter>
+          <Newsletter.Text>
+            We are starting to be up to date. Enter email and subscribe to
+            newsletter
+          </Newsletter.Text>
+          <Newsletter.Break />
+          <Newsletter.Input type='text' placeholder='Enter your email' />
+          <Newsletter.Button type='button'>Subscribe</Newsletter.Button>
+        </Newsletter>
       </Accordion>
     </Accordion.Container>
   );
