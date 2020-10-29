@@ -51,5 +51,5 @@ export const SubTitle = styled.p`
   font-size: 1.3rem;
   text-align: center;
   padding: 0.5rem 1rem;
-  background-color: ${(props) => props.theme.colors.primary_darker};
+  /* background-color: ${(props) => props.theme.colors.primary_darker}; */
 `;
