@@ -4,9 +4,11 @@ import { Navigation } from '../components';
 import logo from '../logo.svg';
 interface INavigationContainer {
   bgColor?: boolean;
+  isAuthenticated?: boolean;
 }
 export const NavigationContainer: React.FC<INavigationContainer> = ({
   bgColor = false,
+  isAuthenticated = false,
 }) => {
   return (
     <Navigation.Container bgColor={bgColor}>
@@ -18,9 +20,16 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
           </Navigation.Logo>
         </Navigation.Panel>
         <Navigation.Panel>
-          <Navigation.ButtonLink to={ROUTES.SIGNIN}>
-            sign in
-          </Navigation.ButtonLink>
+          {!isAuthenticated && (
+            <Navigation.ButtonLink to={ROUTES.SIGNIN}>
+              sign in
+            </Navigation.ButtonLink>
+          )}
+          {isAuthenticated && (
+            <Navigation.ButtonLink to={ROUTES.HOME}>
+              log out
+            </Navigation.ButtonLink>
+          )}
         </Navigation.Panel>
       </Navigation>
     </Navigation.Container>

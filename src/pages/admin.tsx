@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavigationContainer } from '../containers';
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
-  return <div>Admin Page</div>;
+  return <NavigationContainer isAuthenticated bgColor />;
 };
