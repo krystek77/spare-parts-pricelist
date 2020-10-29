@@ -3,9 +3,9 @@ import {
   AccordionContainer,
   JumbotronContainer,
   TabsContainer,
+  HeaderContainer,
 } from '../containers';
 
-import { HeaderContainer } from '../containers';
 interface IHomePage {}
 
 export const HomePage: React.FC<IHomePage> = () => {
