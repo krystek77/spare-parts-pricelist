@@ -5,6 +5,7 @@ import { CustomButton } from './button';
 import { Navigation } from './navigation';
 import { Header } from './header';
 import { Newsletter } from './newsletter';
+import { Form } from './signin';
 export {
   Jumbotron,
   Tabs,
@@ -13,4 +14,5 @@ export {
   Navigation,
   Header,
   Newsletter,
+  Form,
 };
