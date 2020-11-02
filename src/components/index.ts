@@ -6,6 +6,8 @@ import { Navigation } from './navigation';
 import { Header } from './header';
 import { Newsletter } from './newsletter';
 import { Form } from './signin';
+import { Sidebar } from './sidebar';
+import { Main } from './main';
 export {
   Jumbotron,
   Tabs,
@@ -15,4 +17,6 @@ export {
   Header,
   Newsletter,
   Form,
+  Sidebar,
+  Main,
 };
