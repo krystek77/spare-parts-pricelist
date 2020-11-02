@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   HomePage,
+  BrowsePage,
   AdminPage,
   SigninPage,
   UserPage,
@@ -22,6 +23,9 @@ export function App() {
         </Route>
         <Route path={ROUTES.ADMIN}>
           <AdminPage />
+        </Route>
+        <Route path={ROUTES.BROWSE}>
+          <BrowsePage />
         </Route>
         <Route exact path={ROUTES.HOME}>
           <HomePage />
