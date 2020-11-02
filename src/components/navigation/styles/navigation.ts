@@ -6,6 +6,10 @@ export const Container = styled.div<{ bgColor?: boolean }>`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   height: ${(props) => (props.bgColor ? '48px' : '88px')};
+  position: ${(props) => (props.bgColor ? 'fixed' : 'static')};
+  top: ${(props) => (props.bgColor ? '0px' : 'auto')};
+  left: ${(props) => (props.bgColor ? '0px' : 'auto')};
+  z-index: ${(props) => (props.bgColor ? '100' : 'auto')};
   background-color: ${(props) =>
     props.bgColor ? props.theme.colors.primary : 'transparent'};
   color: ${(props) => props.theme.colors.light};

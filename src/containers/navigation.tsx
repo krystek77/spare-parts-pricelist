@@ -8,18 +8,21 @@ interface INavigationContainer {
 export const NavigationContainer: React.FC<INavigationContainer> = ({
   children,
   bgColor = false,
+  ...restProps
 }) => {
   return (
-    <Navigation.Container bgColor={bgColor}>
-      <Navigation>
-        <Navigation.Panel>
-          <Navigation.Logo to={ROUTES.HOME}>
-            <Navigation.LogoIcon src={logo} alt={'Application Logo'} />
-            <Navigation.LogoText>Spare Parts</Navigation.LogoText>
-          </Navigation.Logo>
-        </Navigation.Panel>
-        <Navigation.Panel>{children}</Navigation.Panel>
-      </Navigation>
-    </Navigation.Container>
+    <>
+      <Navigation.Container bgColor={bgColor}>
+        <Navigation>
+          <Navigation.Panel>
+            <Navigation.Logo to={ROUTES.HOME}>
+              <Navigation.LogoIcon src={logo} alt={'Application Logo'} />
+              <Navigation.LogoText>Spare Parts</Navigation.LogoText>
+            </Navigation.Logo>
+          </Navigation.Panel>
+          <Navigation.Panel>{children}</Navigation.Panel>
+        </Navigation>
+      </Navigation.Container>
+    </>
   );
 };

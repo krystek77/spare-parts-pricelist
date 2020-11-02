@@ -27,14 +27,9 @@ export const Navigation: React.FC<INavigation> & INavigationComposition = ({
 
 Navigation.Container = function NavigationContainer({
   children,
-  bgColor,
   ...restProps
 }) {
-  return (
-    <Container bgColor={bgColor} {...restProps}>
-      {children}
-    </Container>
-  );
+  return <Container {...restProps}>{children}</Container>;
 };
 Navigation.Panel = function NavigationPanel({ children }) {
   return <Panel>{children}</Panel>;
