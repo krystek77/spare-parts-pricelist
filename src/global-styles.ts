@@ -15,6 +15,9 @@ export const GlobalStyles = createGlobalStyle`
         color:#E2E2E2;
         
     }
+    #root {
+        height:100vh;
+    }
     h1,h2,h3,h4,h5,h6 {
          font-family:'Open Sans',sans-serif;
          line-height:1.3;
