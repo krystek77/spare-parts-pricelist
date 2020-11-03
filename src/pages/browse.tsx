@@ -19,12 +19,8 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        {role === 'admin' && (
-          <Navigation.ButtonLink to={ROUTES.ADMIN}>ADMIN</Navigation.ButtonLink>
-        )}
-        {role === 'user' && (
-          <Navigation.ButtonLink to={ROUTES.USER}>USER</Navigation.ButtonLink>
-        )}
+        <Navigation.ButtonLink to={ROUTES.ADMIN}>ADMIN</Navigation.ButtonLink>
+        <Navigation.ButtonLink to={ROUTES.USER}>USER</Navigation.ButtonLink>
         <Navigation.ButtonLink to={ROUTES.HOME}>sign out</Navigation.ButtonLink>
       </NavigationContainer>
       <SidebarContainer>BROWSE FOR ALL ...</SidebarContainer>
