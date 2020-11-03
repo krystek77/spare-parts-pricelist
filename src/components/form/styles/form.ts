@@ -1,12 +1,14 @@
 import styled from 'styled-components/macro';
 
-export const Container = styled.div`
+export const Container = styled.div<{ bgColor?: boolean }>`
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  background-color: rgba(0, 0, 0, 0.6);
+  ${(props) =>
+    props.bgColor ? 'background-color: rgba(0, 0, 0, 0.6)' : 'transparent'};
 `;
 export const Inner = styled.div`
   width: 100%;
@@ -82,4 +84,15 @@ export const TextSmall = styled.p`
   font-size: 0.8rem;
   font-weight: 200;
   padding: 0.5rem;
+`;
+export const InputsGroup = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const RadioInput = styled.input``;
+export const InputLabel = styled.label`
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0.3rem;
+  cursor: pointer;
 `;

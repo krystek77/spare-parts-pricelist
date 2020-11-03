@@ -10,9 +10,14 @@ import {
   Break,
   SubmitButton,
   TextSmall,
+  InputsGroup,
+  RadioInput,
+  InputLabel,
 } from './styles/form';
 
-interface IForm {}
+interface IForm {
+  bgColor?: boolean;
+}
 interface IFormComposition {
   BaseForm: React.FC<{
     onSubmit: (e: React.SyntheticEvent) => void;
@@ -30,6 +35,16 @@ interface IFormComposition {
   Break: React.FC;
   SubmitButton: React.FC<{ type: 'submit'; disabled?: boolean }>;
   TextSmall: React.FC;
+  InputsGroup: React.FC;
+  RadioInput: React.FC<{
+    type: 'radio';
+    value: string;
+    name: string;
+    checked: boolean;
+    id: string;
+    onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  }>;
+  InputLabel: React.FC<{ htmlFor?: string }>;
 }
 export const Form: React.FC<IForm> & IFormComposition = ({
   children,
@@ -64,4 +79,13 @@ Form.ErrorServer = function FormErrorServer({ children }) {
 };
 Form.Error = function FormError({ children }) {
   return <Error>{children}</Error>;
+};
+Form.InputsGroup = function FormInputsGroup({ children }) {
+  return <InputsGroup>{children}</InputsGroup>;
+};
+Form.RadioInput = function FormRadioInput({ ...restProps }) {
+  return <RadioInput {...restProps} />;
+};
+Form.InputLabel = function FormInputLabel({ children, ...restProps }) {
+  return <InputLabel {...restProps}>{children}</InputLabel>;
 };
