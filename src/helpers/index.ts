@@ -7,6 +7,7 @@ import {
   passwordValidation,
 } from './func';
 import { ROLES } from './enum';
+import { RedirectUser, ProtectedRoute } from './routes';
 
 export {
   checkLength,
@@ -16,4 +17,6 @@ export {
   isEmpty,
   passwordValidation,
   ROLES,
+  RedirectUser,
+  ProtectedRoute,
 };
