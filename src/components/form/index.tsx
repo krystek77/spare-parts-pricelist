@@ -10,7 +10,7 @@ import {
   Break,
   SubmitButton,
   TextSmall,
-} from './styles/signin';
+} from './styles/form';
 
 interface IForm {}
 interface IFormComposition {

@@ -5,7 +5,7 @@ import { CustomButton } from './button';
 import { Navigation } from './navigation';
 import { Header } from './header';
 import { Newsletter } from './newsletter';
-import { Form } from './signin';
+import { Form } from './form';
 import { Sidebar } from './sidebar';
 import { Main } from './main';
 export {
