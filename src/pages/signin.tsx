@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../lib/firebase';
+import { dataValidation } from '../helpers';
 import { HeaderContainer, NavigationContainer } from '../containers';
 import { Form } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -10,39 +11,6 @@ interface IErrors {
   email?: string;
   password?: string;
   server?: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const isEmpty = (str: string): boolean => {
-  if (str.trim() === '') return true;
-  return false;
-};
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const isEmail = (email: string): boolean => {
-  const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return email.match(regExp) !== null ? true : false;
-};
-const checkLength = (str: string, min: number, max: number): boolean => {
-  return min <= str.length && str.length <= max;
-};
-
-function emailValidation(email: string): boolean {
-  let isValid: boolean = true;
-  isValid = !isEmpty(email) && isValid;
-  isValid = isEmail(email) && isValid;
-  return isValid;
-}
-
-function passwordValidation(password: string) {
-  let isValid: boolean = true;
-  isValid = !isEmpty(password) && isValid;
-  isValid = checkLength(password, 6, 10) && isValid;
-  return isValid;
-}
-
-function dataValidation(email: string, password: string) {
-  let isValid: boolean = emailValidation(email) && passwordValidation(password);
-  return isValid;
 }
 
 export const SigninPage: React.FC<ISigninPage> = () => {
