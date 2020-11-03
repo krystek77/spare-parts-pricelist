@@ -22,12 +22,8 @@ const isEmail = (email: string): boolean => {
   const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return email.match(regExp) !== null ? true : false;
 };
-const passwordLength = (
-  password: string,
-  min: number,
-  max: number
-): boolean => {
-  return min <= password.length && password.length <= max;
+const checkLength = (str: string, min: number, max: number): boolean => {
+  return min <= str.length && str.length <= max;
 };
 
 function emailValidation(email: string): boolean {
@@ -40,7 +36,7 @@ function emailValidation(email: string): boolean {
 function passwordValidation(password: string) {
   let isValid: boolean = true;
   isValid = !isEmpty(password) && isValid;
-  isValid = passwordLength(password, 6, 10) && isValid;
+  isValid = checkLength(password, 6, 10) && isValid;
   return isValid;
 }
 
@@ -76,7 +72,7 @@ export const SigninPage: React.FC<ISigninPage> = () => {
   return (
     <HeaderContainer bgImage src='bg_Signin'>
       <NavigationContainer bgColor />
-      <Form>
+      <Form bgColor>
         <Form.Title>Sign in</Form.Title>
         {isError && errors.server && (
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>
