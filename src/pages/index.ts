@@ -4,4 +4,13 @@ import { SigninPage } from './signin';
 import { UserPage } from './user';
 import { BrowsePage } from './browse';
 import { NoMatchPage } from './nomatch';
-export { HomePage, BrowsePage, SigninPage, AdminPage, UserPage, NoMatchPage };
+import { AddUser } from './addUser';
+export {
+  HomePage,
+  BrowsePage,
+  SigninPage,
+  AdminPage,
+  UserPage,
+  AddUser,
+  NoMatchPage,
+};

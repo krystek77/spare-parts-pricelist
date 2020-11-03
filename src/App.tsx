@@ -6,6 +6,7 @@ import {
   AdminPage,
   SigninPage,
   UserPage,
+  AddUser,
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
@@ -21,9 +22,13 @@ export function App() {
         <Route path={ROUTES.USER}>
           <UserPage />
         </Route>
+        <Route path={ROUTES.ADD_USER}>
+          <AddUser />
+        </Route>
         <Route path={ROUTES.ADMIN}>
           <AdminPage />
         </Route>
+
         <Route path={ROUTES.BROWSE}>
           <BrowsePage />
         </Route>
