@@ -10,31 +10,47 @@ import {
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
+import { RedirectUser, ProtectedRoute, ROLES } from './helpers';
+
+const user = { role: 'admin' };
 
 export function App() {
   return (
     <Router>
       {/** <div className="root"> all components</div> */}
       <Switch>
-        <Route path={ROUTES.SIGNIN}>
+        <RedirectUser
+          user={user}
+          loggedPath={ROUTES.BROWSE}
+          path={ROUTES.SIGNIN}
+        >
           <SigninPage />
-        </Route>
-        <Route path={ROUTES.USER}>
-          <UserPage />
-        </Route>
-        <Route path={ROUTES.ADD_USER}>
-          <AddUser />
-        </Route>
-        <Route path={ROUTES.ADMIN}>
-          <AdminPage />
-        </Route>
+        </RedirectUser>
 
-        <Route path={ROUTES.BROWSE}>
-          <BrowsePage />
-        </Route>
-        <Route exact path={ROUTES.HOME}>
+        <ProtectedRoute user={user} role={ROLES.USER} path={ROUTES.USER}>
+          <UserPage />
+        </ProtectedRoute>
+
+        <ProtectedRoute user={user} role={ROLES.ADMIN} path={ROUTES.ADD_USER}>
+          <AddUser />
+        </ProtectedRoute>
+
+        <ProtectedRoute user={user} role={ROLES.ADMIN} path={ROUTES.ADMIN}>
+          <AdminPage />
+        </ProtectedRoute>
+
+        <ProtectedRoute user={user} role={user.role} path={ROUTES.BROWSE}>
+          <BrowsePage role={user.role} />
+        </ProtectedRoute>
+        {/** if user is logged then he can not go to home page, immediately to browse page */}
+        <RedirectUser user={user} path={ROUTES.HOME} loggedPath={ROUTES.BROWSE}>
           <HomePage />
-        </Route>
+        </RedirectUser>
+
+        {/* <Route exact path={ROUTES.HOME}>
+          <HomePage />
+        </Route> */}
+
         <Route>
           <NoMatchPage />
         </Route>
