@@ -10,47 +10,79 @@ import {
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
+import { useAuth } from './hooks';
 import { RedirectUser, ProtectedRoute, ROLES } from './helpers';
 
-const user = { role: 'admin' };
-
 export function App() {
+  const { authUser } = useAuth();
   return (
     <Router>
       {/** <div className="root"> all components</div> */}
       <Switch>
         <RedirectUser
-          user={user}
+          authUser={authUser}
           loggedPath={ROUTES.BROWSE}
           path={ROUTES.SIGNIN}
         >
           <SigninPage />
         </RedirectUser>
-
-        <ProtectedRoute user={user} role={ROLES.USER} path={ROUTES.USER}>
+        {/* <Route path={ROUTES.SIGNIN}>
+          <SigninPage />
+        </Route> */}
+        <ProtectedRoute
+          role={ROLES.USER}
+          authUser={authUser}
+          path={ROUTES.USER}
+        >
           <UserPage />
         </ProtectedRoute>
 
-        <ProtectedRoute user={user} role={ROLES.ADMIN} path={ROUTES.ADD_USER}>
+        {/* <Route path={ROUTES.USER}>
+          <UserPage />
+        </Route> */}
+
+        <ProtectedRoute
+          path={ROUTES.ADD_USER}
+          authUser={authUser}
+          role={ROLES.ADMIN}
+        >
           <AddUser />
         </ProtectedRoute>
 
-        <ProtectedRoute user={user} role={ROLES.ADMIN} path={ROUTES.ADMIN}>
-          <AdminPage />
-        </ProtectedRoute>
-
-        <ProtectedRoute user={user} role={user.role} path={ROUTES.BROWSE}>
-          <BrowsePage role={user.role} />
-        </ProtectedRoute>
-        {/** if user is logged then he can not go to home page, immediately to browse page */}
-        <RedirectUser user={user} path={ROUTES.HOME} loggedPath={ROUTES.BROWSE}>
-          <HomePage />
-        </RedirectUser>
-
-        {/* <Route exact path={ROUTES.HOME}>
-          <HomePage />
+        {/* <Route path={ROUTES.ADD_USER}>
+          <AddUser />
         </Route> */}
 
+        <ProtectedRoute
+          role={ROLES.ADMIN}
+          authUser={authUser}
+          path={ROUTES.ADMIN}
+        >
+          <AdminPage />
+        </ProtectedRoute>
+        {/* <Route path={ROUTES.ADMIN}>
+          <AdminPage />
+        </Route> */}
+        <ProtectedRoute
+          authUser={authUser}
+          role={authUser.role === ROLES.ADMIN ? ROLES.ADMIN : ROLES.USER}
+          path={ROUTES.BROWSE}
+        >
+          <BrowsePage />
+        </ProtectedRoute>
+        {/* <Route path={ROUTES.BROWSE}>
+          <BrowsePage />
+        </Route> */}
+        <RedirectUser
+          authUser={authUser}
+          loggedPath={ROUTES.BROWSE}
+          path={ROUTES.HOME}
+        >
+          <HomePage />
+        </RedirectUser>
+        {/* <Route path={ROUTES.HOME}>
+          <HomePage />
+        </Route> */}
         <Route>
           <NoMatchPage />
         </Route>

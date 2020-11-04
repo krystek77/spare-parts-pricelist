@@ -62,6 +62,29 @@ export const ButtonLink = styled(ReactRouterLink)`
     border: 1px solid ${({ theme }) => theme.colors.secondary_lighter};
   }
 `;
+
+export const SignoutButton = styled.button`
+  border-radius: 0.2rem;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  margin: 0.2rem;
+  text-decoration: none;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary_lighter};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border: 1px solid ${({ theme }) => theme.colors.secondary_lighter};
+  }
+`;
 export const LogoIcon = styled.img`
   width: 24px;
   height: auto;

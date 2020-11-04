@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../hooks';
 import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
@@ -26,6 +27,7 @@ export const AddUser: React.FC<IAddUser> = () => {
   const [errors, setErrors] = React.useState<IErrors>({});
   const [userRole, setUserRole] = React.useState<string>(ROLES.USER);
   const history = useHistory();
+  const { setAuthUser, initialValue } = useAuth();
 
   const validForm =
     dataValidation(email, password) &&
@@ -38,24 +40,19 @@ export const AddUser: React.FC<IAddUser> = () => {
 
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((data) => {
-        const { user } = data;
-        if (user) {
-          const newUser = {
-            userID: user.uid,
-            email: user.email,
-            avatar: 'default_avatar',
-            displayName: nick,
+      .then((authUser) => {
+        if (authUser.user) {
+          const uid = authUser.user.uid;
+          dataBase.collection('users').doc(uid).set({
+            userID: uid,
+            email: email,
             role: userRole,
-          };
-          user.updateProfile({
-            displayName: nick,
-            photoURL: 'default_avatar',
+            nick: nick,
+            avatar: 'default_avatar',
           });
-          return dataBase.collection('users').add(newUser);
         }
       })
-      .then((user) => {
+      .then(() => {
         history.push(ROUTES.BROWSE);
       })
       .catch((error) => setErrors({ ...errors, server: error.message }));
@@ -64,7 +61,23 @@ export const AddUser: React.FC<IAddUser> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.ButtonLink to={ROUTES.HOME}>sign out</Navigation.ButtonLink>
+        <Navigation.SignoutButton
+          type='button'
+          onClick={() => {
+            auth
+              .signOut()
+              .then(() => {
+                localStorage.removeItem('authUser');
+                setAuthUser(initialValue);
+                // history.push(ROUTES.HOME);
+              })
+              .catch((error) => {
+                console.log('Sign out failed');
+              });
+          }}
+        >
+          sign out
+        </Navigation.SignoutButton>
       </NavigationContainer>
       <SidebarContainer>
         SIDEBAR ADMIN ...

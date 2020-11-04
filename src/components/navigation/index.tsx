@@ -7,6 +7,7 @@ import {
   LogoIcon,
   LogoText,
   ButtonLink,
+  SignoutButton,
 } from './styles/navigation';
 
 interface INavigation {}
@@ -17,6 +18,7 @@ interface INavigationComposition {
   LogoIcon: React.FC<{ src: string; alt: string }>;
   LogoText: React.FC;
   ButtonLink: React.FC<{ to: string }>;
+  SignoutButton: React.FC<{ type: 'button'; onClick: () => void }>;
 }
 export const Navigation: React.FC<INavigation> & INavigationComposition = ({
   children,
@@ -49,4 +51,11 @@ Navigation.LogoIcon = function NavigationLogoIcon({ ...restProps }) {
 };
 Navigation.LogoText = function NavigationLogoText({ children }) {
   return <LogoText>{children}</LogoText>;
+};
+Navigation.SignoutButton = function NavigationSignoutButton({
+  children,
+  type,
+  ...restProps
+}) {
+  return <SignoutButton {...restProps}>{children}</SignoutButton>;
 };

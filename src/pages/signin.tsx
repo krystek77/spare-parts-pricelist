@@ -29,7 +29,6 @@ export const SigninPage: React.FC<ISigninPage> = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('Sign in successfully');
         history.push(ROUTES.BROWSE);
       })
       .catch((error) => {

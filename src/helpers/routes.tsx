@@ -3,13 +3,19 @@ import { Route, Redirect } from 'react-router-dom';
 import { SIGNIN } from '../constants/routes';
 
 interface IRedirectUser {
-  user: {} | null;
+  authUser: {
+    role: string;
+    userID: string;
+    email: string;
+    avatar: string;
+    nick: string;
+  };
   loggedPath: string;
   path: string;
   exact?: boolean;
 }
 export const RedirectUser: React.FC<IRedirectUser> = ({
-  user,
+  authUser,
   children,
   loggedPath,
   ...restProps
@@ -18,37 +24,48 @@ export const RedirectUser: React.FC<IRedirectUser> = ({
     <Route
       {...restProps}
       render={(routeProps) =>
-        user ? <Redirect to={{ pathname: loggedPath }} /> : children
+        authUser && authUser.role !== '' ? (
+          <Redirect to={{ pathname: loggedPath }} />
+        ) : (
+          children
+        )
       }
     />
   );
 };
 interface IProtectedRoute {
-  user: { role?: string } | null;
-  role?: string;
+  authUser: {
+    role: string;
+    userID: string;
+    email: string;
+    avatar: string;
+    nick: string;
+  };
   path: string;
   exact?: boolean;
+  role?: string;
 }
 export const ProtectedRoute: React.FC<IProtectedRoute> = ({
-  user,
-  role,
+  authUser,
   children,
+  role = '',
   ...restProps
 }) => {
   return (
     <Route
       {...restProps}
       render={({ location }) => {
-        console.log(location);
-        if (!user) {
+        if (authUser && authUser.role === '') {
           return (
             <Redirect to={{ pathname: SIGNIN, state: { from: location } }} />
           );
         }
-        if (user && user.role === role) {
+        if (authUser && authUser.role === role) {
           return children;
         }
-        return null;
+        return (
+          <Redirect to={{ pathname: SIGNIN, state: { from: location } }} />
+        );
       }}
     />
   );

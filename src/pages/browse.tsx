@@ -1,4 +1,5 @@
 import React from 'react';
+import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -7,28 +8,42 @@ import {
 import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
+import { useAuth } from '../hooks';
 
-interface IBrowsePage {
-  role?: string;
-}
+interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
   children,
-  role = 'user',
   ...restProps
 }) => {
-  // console.log('Browse Page - restProps: ', restProps);
+  const { authUser, setAuthUser, initialValue } = useAuth();
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        {role === ROLES.ADMIN && (
+        {authUser.role === ROLES.ADMIN && (
           <Navigation.ButtonLink to={ROUTES.ADMIN}>ADMIN</Navigation.ButtonLink>
         )}
-        {role === ROLES.USER && (
+        {authUser.role === ROLES.USER && (
           <Navigation.ButtonLink to={ROUTES.USER}>USER</Navigation.ButtonLink>
         )}
-        <Navigation.ButtonLink to={ROUTES.HOME}>sign out</Navigation.ButtonLink>
+        <Navigation.SignoutButton
+          type='button'
+          onClick={() => {
+            auth
+              .signOut()
+              .then(() => {
+                localStorage.removeItem('authUser');
+                setAuthUser(initialValue);
+              })
+              .catch((error) => {
+                console.log('Sign out failed');
+              });
+          }}
+        >
+          sign out
+        </Navigation.SignoutButton>
       </NavigationContainer>
-      <SidebarContainer>BROWSE FOR ALL ...</SidebarContainer>
+      <SidebarContainer>BROWSE FOR ALL...</SidebarContainer>
       <MainContainer>MAIN CONTAINER</MainContainer>
     </React.Fragment>
   );
