@@ -46,6 +46,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <Sidebar.ButtonLink to={ROUTES.BROWSE}>
           Browse PriceLists
         </Sidebar.ButtonLink>
+        <h2>Price Lists</h2>
         {priceLists.length > 0 && (
           <ul>
             {priceLists.map((item) => {

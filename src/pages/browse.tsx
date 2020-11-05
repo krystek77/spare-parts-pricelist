@@ -51,6 +51,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         </Navigation.SignoutButton>
       </NavigationContainer>
       <SidebarContainer>
+        <h2>Price Lists</h2>
         {priceLists.length > 0 && (
           <ul>
             {priceLists.map((item) => {
@@ -87,8 +88,8 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
             {spareParts.map((item) => {
               return (
                 <li key={item.sparePartId}>
-                  <h2>{item.model}</h2>
-                  <h3>
+                  <h3>{item.model}</h3>
+                  <h4>
                     <div>
                       <span>Spare part name</span>
                     </div>
@@ -109,7 +110,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
                       <span>Selling price</span>
                       <span>[ZŁ]</span>
                     </div>
-                  </h3>
+                  </h4>
                   <div>
                     <span>{item.name}</span>
                     <span>{item.from}</span>
