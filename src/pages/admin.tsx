@@ -5,7 +5,7 @@ import {
   NavigationContainer,
   SidebarContainer,
 } from '../containers';
-import { Navigation, Sidebar } from '../components';
+import { Navigation, Sidebar, ListItems } from '../components';
 import * as ROUTES from '../constants/routes';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
@@ -46,36 +46,42 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <Sidebar.ButtonLink to={ROUTES.BROWSE}>
           Browse PriceLists
         </Sidebar.ButtonLink>
-        <h2>Price Lists</h2>
-        {priceLists.length > 0 && (
-          <ul>
-            {priceLists.map((item) => {
-              return (
-                <li key={item.priceListID}>
-                  <button
-                    type='button'
-                    onClick={() => setSelectedPriceLists(item.priceListID)}
-                    onKeyDown={() => setSelectedPriceLists(item.priceListID)}
-                  >
-                    {item.name}
-                    {/** Individual priceList */}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <button
-          type='button'
-          onClick={() => {
-            setSelectedPriceLists('');
-          }}
-          onKeyDown={() => {
-            setSelectedPriceLists('');
-          }}
-        >
-          ALL SPARE PARTS
-        </button>
+        {/** PRICE LISTS */}
+        <ListItems>
+          <ListItems.Title>Price Lists</ListItems.Title>
+          {priceLists.length > 0 && (
+            <ListItems.List>
+              {priceLists.map((item) => {
+                return (
+                  <ListItems.ListItem key={item.priceListID}>
+                    <ListItems.ListItemButton
+                      type='button'
+                      onKeyDown={() => setSelectedPriceLists(item.priceListID)}
+                      onClick={() => setSelectedPriceLists(item.priceListID)}
+                    >
+                      {item.name}
+                    </ListItems.ListItemButton>
+                  </ListItems.ListItem>
+                );
+              })}
+            </ListItems.List>
+          )}
+          <ListItems.ListButtonGroup>
+            <ListItems.ListItemIconButton
+              group
+              type='button'
+              onClick={() => {
+                setSelectedPriceLists('');
+              }}
+              onKeyDown={() => {
+                setSelectedPriceLists('');
+              }}
+            >
+              ALL
+            </ListItems.ListItemIconButton>
+          </ListItems.ListButtonGroup>
+        </ListItems>
+        {/** PRICE LISTS */}
       </SidebarContainer>
       <MainContainer>
         {spareParts.length > 0 && (
