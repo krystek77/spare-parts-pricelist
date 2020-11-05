@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 import { auth } from '../lib/firebase';
 import {
   MainContainer,
@@ -50,7 +51,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/** PRICE LISTS */}
         <ListItemsContainer list={priceLists} handler={setSelectedPriceLists}>
           <ListItems.ListItemIconButton type='button'>
-            ICON
+            <FaTrashAlt />
           </ListItems.ListItemIconButton>
         </ListItemsContainer>
         {/** PRICE LISTS */}
