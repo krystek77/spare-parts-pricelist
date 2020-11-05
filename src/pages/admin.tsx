@@ -7,7 +7,13 @@ import {
   SidebarContainer,
   ListItemsContainer,
 } from '../containers';
-import { Navigation, Sidebar, ListItems, Table } from '../components';
+import {
+  Navigation,
+  Sidebar,
+  ListItems,
+  Table,
+  ContentTitle,
+} from '../components';
 import * as ROUTES from '../constants/routes';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
@@ -63,14 +69,14 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/** PRICE LISTS */}
       </SidebarContainer>
       <MainContainer>
+        {/** CONTENT TITLE */}
+        <ContentTitle>
+          <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
+        </ContentTitle>
+        {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <h3>
-          PRICELIST:{' '}
-          <span>
-            <strong>{namePriceList}</strong>
-          </span>
-        </h3>
-        <Table> 
+        <Table>
           <Table.BaseTable>
             {spareParts.length > 0 && (
               <>
