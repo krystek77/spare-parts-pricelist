@@ -22,6 +22,12 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   } = useSelectedPriceListsContextValue();
   const { spareParts } = useSpareParts(selectedPriceLists, authUser.userID);
 
+  const selectedPriceList = priceLists.find(
+    (item) => item.priceListID === selectedPriceLists
+  );
+  const namePriceList =
+    selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -58,7 +64,13 @@ export const AdminPage: React.FC<IAdminPage> = () => {
       </SidebarContainer>
       <MainContainer>
         {/** DATA OF SPARE PARTS */}
-        <Table>
+        <h3>
+          PRICELIST:{' '}
+          <span>
+            <strong>{namePriceList}</strong>
+          </span>
+        </h3>
+        <Table> 
           <Table.BaseTable>
             {spareParts.length > 0 && (
               <>
