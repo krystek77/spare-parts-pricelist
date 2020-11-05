@@ -8,6 +8,7 @@ import { Newsletter } from './newsletter';
 import { Form } from './form';
 import { Sidebar } from './sidebar';
 import { Main } from './main';
+import { ListItems } from './ListItems';
 export {
   Jumbotron,
   Tabs,
@@ -19,4 +20,5 @@ export {
   Form,
   Sidebar,
   Main,
+  ListItems,
 };
