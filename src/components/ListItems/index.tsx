@@ -23,8 +23,8 @@ interface IListItemsComposition {
   ListItemIconButton: React.FC<{
     group?: boolean;
     type: 'button';
-    onClick: () => void;
-    onKeyDown: () => void;
+    onClick?: () => void;
+    onKeyDown?: () => void;
   }>;
 }
 export const ListItems: React.FC & IListItemsComposition = ({ children }) => {
