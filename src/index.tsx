@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { GlobalStyles } from './global-styles';
 import { App } from './App';
 import { ThemeProvider, theme } from './theme';
+import { SelectedPriceListsContextProvider } from './context';
 
 // function fetchData() {
 //   firebase
@@ -19,7 +20,9 @@ render(
   <React.Fragment>
     <GlobalStyles />
     <ThemeProvider theme={theme}>
-      <App />
+      <SelectedPriceListsContextProvider>
+        <App />
+      </SelectedPriceListsContextProvider>
     </ThemeProvider>
   </React.Fragment>,
   document.getElementById('root')
