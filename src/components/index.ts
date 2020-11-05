@@ -10,6 +10,7 @@ import { Sidebar } from './sidebar';
 import { Main } from './main';
 import { ListItems } from './ListItems';
 import { Table } from './table';
+import { ContentTitle } from './title';
 export {
   Jumbotron,
   Tabs,
@@ -23,4 +24,5 @@ export {
   Main,
   ListItems,
   Table,
+  ContentTitle,
 };
