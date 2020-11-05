@@ -9,6 +9,7 @@ import { Form } from './form';
 import { Sidebar } from './sidebar';
 import { Main } from './main';
 import { ListItems } from './ListItems';
+import { Table } from './table';
 export {
   Jumbotron,
   Tabs,
@@ -21,4 +22,5 @@ export {
   Sidebar,
   Main,
   ListItems,
+  Table,
 };
