@@ -55,8 +55,10 @@ export const useAuth = () => {
         setAuthUser(initialValue);
         history.push(ROUTES.HOME);
       }
-      return () => listener();
     });
+    return () => {
+      listener();
+    };
   }, [history]);
   return { authUser, setAuthUser, initialValue };
 };
