@@ -8,7 +8,7 @@ import {
 import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
-import { useAuth, usePriceLists } from '../hooks';
+import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
 
 interface IBrowsePage {}
@@ -17,9 +17,13 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   ...restProps
 }) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
+  const {
+    selectedPriceLists,
+    setSelectedPriceLists,
+  } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
-  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
-  console.log(priceLists);
+  const { spareParts } = useSpareParts(selectedPriceLists, '');
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -66,7 +70,51 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           </ul>
         )}
       </SidebarContainer>
-      <MainContainer>MAIN CONTENT - SPARE PARTS</MainContainer>
+      <MainContainer>
+        {spareParts.length > 0 && (
+          <ul>
+            {spareParts.map((item) => {
+              return (
+                <li key={item.sparePartId}>
+                  <h2>{item.model}</h2>
+                  <h3>
+                    <div>
+                      <span>Spare part name</span>
+                    </div>
+                    <div>
+                      <span>From year</span>From year
+                    </div>
+                    <div>
+                      <span>To year</span>
+                    </div>
+                    <div>
+                      <span>Purchase price</span>
+                      <span>{`[${item.currency}]`}</span>
+                    </div>
+                    <div>
+                      <span>Is calculated</span>
+                    </div>
+                    <div>
+                      <span>Selling price</span>
+                      <span>[ZŁ]</span>
+                    </div>
+                  </h3>
+                  <div>
+                    <span>{item.name}</span>
+                    <span>{item.from}</span>
+                    <span>{item.to}</span>
+                    <span>{item.purchasePrice}</span>
+                    <span>{item.isCalculated ? 'YES' : 'NO'}</span>
+                    <span>{item.sellingPrice}</span>
+                  </div>
+                  <p>{item.description}</p>
+                  <p>{item.comments}</p>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </MainContainer>
     </React.Fragment>
   );
 };
