@@ -4,8 +4,9 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  ListItemsContainer,
 } from '../containers';
-import { Navigation, ListItems } from '../components';
+import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
@@ -52,40 +53,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
       </NavigationContainer>
       <SidebarContainer>
         {/** PRICE LISTS */}
-        <ListItems>
-          <ListItems.Title>Price Lists</ListItems.Title>
-          {priceLists.length > 0 && (
-            <ListItems.List>
-              {priceLists.map((item) => {
-                return (
-                  <ListItems.ListItem key={item.priceListID}>
-                    <ListItems.ListItemButton
-                      type='button'
-                      onKeyDown={() => setSelectedPriceLists(item.priceListID)}
-                      onClick={() => setSelectedPriceLists(item.priceListID)}
-                    >
-                      {item.name}
-                    </ListItems.ListItemButton>
-                  </ListItems.ListItem>
-                );
-              })}
-            </ListItems.List>
-          )}
-          <ListItems.ListButtonGroup>
-            <ListItems.ListItemIconButton
-              group
-              type='button'
-              onClick={() => {
-                setSelectedPriceLists('');
-              }}
-              onKeyDown={() => {
-                setSelectedPriceLists('');
-              }}
-            >
-              ALL
-            </ListItems.ListItemIconButton>
-          </ListItems.ListButtonGroup>
-        </ListItems>
+        <ListItemsContainer list={priceLists} handler={setSelectedPriceLists} />
         {/** PRICE LISTS */}
       </SidebarContainer>
       <MainContainer>
