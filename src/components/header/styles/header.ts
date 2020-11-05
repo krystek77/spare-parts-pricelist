@@ -8,7 +8,7 @@ export const Bacground = styled.div<{ src?: string }>`
   box-shadow: 0px 2px 2px -2px rgba(255, 255, 255, 0.2);
   ${(props) =>
     props.src
-      ? `background-image:url(../assets/images/${props.src}.png)`
+      ? `background-image:url(../assets/images/${props.src}.webP)`
       : `background-image:url(../assets/images/bg_home_transparent.png)`};
   background-size: cover;
   background-repeat: no-repeat;
