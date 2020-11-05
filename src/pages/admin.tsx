@@ -7,12 +7,14 @@ import {
 } from '../containers';
 import { Navigation, Sidebar } from '../components';
 import * as ROUTES from '../constants/routes';
-import { useAuth } from '../hooks';
+import { useAuth, usePriceLists } from '../hooks';
+import { useSelectedPriceListsContextValue } from '../context';
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
-  const { setAuthUser, initialValue } = useAuth();
-
+  const { authUser, setAuthUser, initialValue } = useAuth();
+  const { priceLists } = usePriceLists(authUser.userID); //Maybe from localStorage
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -39,6 +41,24 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <Sidebar.ButtonLink to={ROUTES.BROWSE}>
           Browse PriceLists
         </Sidebar.ButtonLink>
+        {priceLists.length > 0 && (
+          <ul>
+            {priceLists.map((item) => {
+              return (
+                <li key={item.priceListID}>
+                  <button
+                    type='button'
+                    onClick={() => setSelectedPriceLists(item.priceListID)}
+                    onKeyDown={() => setSelectedPriceLists(item.priceListID)}
+                  >
+                    {item.name}
+                    {/** Individual priceList */}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </SidebarContainer>
       <MainContainer>MAIN CONTAINER</MainContainer>
     </React.Fragment>
