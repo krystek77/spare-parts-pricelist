@@ -64,6 +64,17 @@ export const AdminPage: React.FC<IAdminPage> = () => {
             })}
           </ul>
         )}
+        <button
+          type='button'
+          onClick={() => {
+            setSelectedPriceLists('');
+          }}
+          onKeyDown={() => {
+            setSelectedPriceLists('');
+          }}
+        >
+          ALL SPARE PARTS
+        </button>
       </SidebarContainer>
       <MainContainer>
         {spareParts.length > 0 && (

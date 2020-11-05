@@ -69,6 +69,17 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
             })}
           </ul>
         )}
+        <button
+          type='button'
+          onClick={() => {
+            setSelectedPriceLists('');
+          }}
+          onKeyDown={() => {
+            setSelectedPriceLists('');
+          }}
+        >
+          ALL SPARE PARTS
+        </button>
       </SidebarContainer>
       <MainContainer>
         {spareParts.length > 0 && (
