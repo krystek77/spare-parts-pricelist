@@ -24,6 +24,12 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
   const { spareParts } = useSpareParts(selectedPriceLists, '');
+  
+  const selectedPriceList = priceLists.find(
+    (item) => item.priceListID === selectedPriceLists
+  );
+  const namePriceList =
+    selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
 
   return (
     <React.Fragment>
@@ -58,6 +64,12 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
       </SidebarContainer>
       <MainContainer>
         {/** DATA OF SPARE PARTS */}
+        <h3>
+          PRICELIST:{' '}
+          <span>
+            <strong>{namePriceList}</strong>
+          </span>
+        </h3>
         <Table>
           <Table.BaseTable>
             {spareParts.length > 0 && (
