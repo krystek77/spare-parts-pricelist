@@ -5,6 +5,7 @@ import { NavigationContainer } from './navigation';
 import { HeaderContainer } from './header';
 import { SidebarContainer } from './sidebar';
 import { MainContainer } from './main';
+import { ListItemsContainer } from './listItems';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -13,4 +14,5 @@ export {
   HeaderContainer,
   SidebarContainer,
   MainContainer,
+  ListItemsContainer,
 };
