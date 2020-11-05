@@ -7,7 +7,7 @@ import {
   SidebarContainer,
   ListItemsContainer,
 } from '../containers';
-import { Navigation, Sidebar, ListItems } from '../components';
+import { Navigation, Sidebar, ListItems, Table } from '../components';
 import * as ROUTES from '../constants/routes';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
@@ -57,49 +57,71 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/** PRICE LISTS */}
       </SidebarContainer>
       <MainContainer>
-        {spareParts.length > 0 && (
-          <ul>
-            {spareParts.map((item) => {
-              return (
-                <li key={item.sparePartId}>
-                  <h2>{item.model}</h2>
-                  <h3>
-                    <div>
-                      <span>Spare part name</span>
-                    </div>
-                    <div>
-                      <span>From year</span>From year
-                    </div>
-                    <div>
-                      <span>To year</span>
-                    </div>
-                    <div>
-                      <span>Purchase price</span>
-                      <span>{`[${item.currency}]`}</span>
-                    </div>
-                    <div>
-                      <span>Is calculated</span>
-                    </div>
-                    <div>
-                      <span>Selling price</span>
-                      <span>[ZŁ]</span>
-                    </div>
-                  </h3>
-                  <div>
-                    <span>{item.name}</span>
-                    <span>{item.from}</span>
-                    <span>{item.to}</span>
-                    <span>{item.purchasePrice}</span>
-                    <span>{item.isCalculated ? 'YES' : 'NO'}</span>
-                    <span>{item.sellingPrice}</span>
-                  </div>
-                  <p>{item.description}</p>
-                  <p>{item.comments}</p>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        {/** DATA OF SPARE PARTS */}
+        <Table>
+          <Table.BaseTable>
+            {spareParts.length > 0 && (
+              <>
+                <Table.HeaderRowTable>
+                  <Table.OrdinaryNumberColTable>
+                    Lp.
+                  </Table.OrdinaryNumberColTable>
+                  <Table.HeaderContentRowTable>
+                    <Table.HeaderColTable>Name</Table.HeaderColTable>
+                    <Table.HeaderColTable>Model</Table.HeaderColTable>
+                    <Table.HeaderColTable>From</Table.HeaderColTable>
+                    <Table.HeaderColTable>To</Table.HeaderColTable>
+                    <Table.HeaderColTable>Purchase</Table.HeaderColTable>
+                    <Table.HeaderColTable>Calc.</Table.HeaderColTable>
+                    <Table.HeaderColTable>Selling</Table.HeaderColTable>
+                  </Table.HeaderContentRowTable>
+                </Table.HeaderRowTable>
+                {spareParts.map((item, index) => {
+                  return (
+                    <Table.RowTable key={item.sparePartId}>
+                      <Table.OrdinaryNumberColTable>
+                        {index + 1}
+                      </Table.OrdinaryNumberColTable>
+                      <Table.ContentColTable>
+                        <Table.HeaderContentColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {item.name}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {item.model}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {item.from}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {item.to}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {parseFloat(item.purchasePrice).toFixed(2) +
+                              ` ${item.currency}`}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {item.isCalculated ? 'YES' : 'NO'}
+                          </Table.HeaderContentFieldColTable>
+                          <Table.HeaderContentFieldColTable>
+                            {parseFloat(item.sellingPrice).toFixed(2) + ' ZŁ'}
+                          </Table.HeaderContentFieldColTable>
+                        </Table.HeaderContentColTable>
+                        <Table.DescriptionContentColTable>
+                          {item.description}
+                        </Table.DescriptionContentColTable>
+                        <Table.CommentsContentsColTable>
+                          {item.comments}
+                        </Table.CommentsContentsColTable>
+                      </Table.ContentColTable>
+                    </Table.RowTable>
+                  );
+                })}
+              </>
+            )}
+          </Table.BaseTable>
+        </Table>
+        {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>
   );
