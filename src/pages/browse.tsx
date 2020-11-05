@@ -6,7 +6,7 @@ import {
   SidebarContainer,
   ListItemsContainer,
 } from '../containers';
-import { Navigation, Table } from '../components';
+import { Navigation, Table, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
@@ -24,7 +24,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
   const { spareParts } = useSpareParts(selectedPriceLists, '');
-  
+
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
   );
@@ -63,13 +63,13 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {/** PRICE LISTS */}
       </SidebarContainer>
       <MainContainer>
+        {/** CONTENT TITLE */}
+        <ContentTitle>
+          <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
+        </ContentTitle>
+        {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <h3>
-          PRICELIST:{' '}
-          <span>
-            <strong>{namePriceList}</strong>
-          </span>
-        </h3>
         <Table>
           <Table.BaseTable>
             {spareParts.length > 0 && (
