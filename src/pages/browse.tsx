@@ -8,7 +8,8 @@ import {
 import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
-import { useAuth } from '../hooks';
+import { useAuth, usePriceLists } from '../hooks';
+import { useSelectedPriceListsContextValue } from '../context';
 
 interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
@@ -16,7 +17,9 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   ...restProps
 }) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
-
+  const { priceLists } = usePriceLists('');
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
+  console.log(priceLists);
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -43,8 +46,27 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           sign out
         </Navigation.SignoutButton>
       </NavigationContainer>
-      <SidebarContainer>BROWSE FOR ALL...</SidebarContainer>
-      <MainContainer>MAIN CONTAINER</MainContainer>
+      <SidebarContainer>
+        {priceLists.length > 0 && (
+          <ul>
+            {priceLists.map((item) => {
+              return (
+                <li key={item.priceListID}>
+                  <button
+                    type='button'
+                    onKeyDown={() => setSelectedPriceLists(item.priceListID)}
+                    onClick={() => setSelectedPriceLists(item.priceListID)}
+                  >
+                    {item.name}
+                    {/** Individual priceList */}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </SidebarContainer>
+      <MainContainer>MAIN CONTENT - SPARE PARTS</MainContainer>
     </React.Fragment>
   );
 };
