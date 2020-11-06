@@ -103,7 +103,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
                 </Table.HeaderRowTable>
                 {spareParts.map((item, index) => {
                   return (
-                    <Table.RowTable key={item.sparePartId}>
+                    <Table.RowTable key={item.sparePartID}>
                       <Table.OrdinaryNumberColTable>
                         {index + 1}
                       </Table.OrdinaryNumberColTable>

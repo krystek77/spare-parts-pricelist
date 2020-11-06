@@ -90,7 +90,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
                 </Table.HeaderRowTable>
                 {spareParts.map((item, index) => {
                   return (
-                    <Table.RowTable key={item.sparePartId}>
+                    <Table.RowTable key={item.sparePartID}>
                       <Table.OrdinaryNumberColTable>
                         {index + 1}
                       </Table.OrdinaryNumberColTable>

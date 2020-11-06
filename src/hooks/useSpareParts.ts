@@ -2,7 +2,7 @@ import React from 'react';
 import { dataBase } from '../lib/firebase';
 
 interface ISpareParts {
-  sparePartId: string;
+  sparePartID: string;
   comments: string;
   currency: string;
   description: string;
@@ -47,7 +47,7 @@ export const useSpareParts = (
 
         snapshot.forEach((doc) => {
           const sparePart: ISpareParts = {
-            sparePartId: doc.id,
+            sparePartID: doc.id,
             comments: doc.data().comments,
             currency: doc.data().currency,
             description: doc.data().description,
