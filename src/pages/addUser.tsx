@@ -7,7 +7,7 @@ import {
   NavigationContainer,
   SidebarContainer,
 } from '../containers';
-import { Navigation, Sidebar, Form } from '../components';
+import { Navigation, Form, ListItems } from '../components';
 import * as ROUTES from '../constants/routes';
 import { dataValidation, checkLength, ROLES } from '../helpers';
 
@@ -80,11 +80,23 @@ export const AddUser: React.FC<IAddUser> = () => {
         </Navigation.SignoutButton>
       </NavigationContainer>
       <SidebarContainer>
-        SIDEBAR ADMIN ...
-        <Sidebar.ButtonLink to={ROUTES.ADD_USER}>Add User</Sidebar.ButtonLink>
-        <Sidebar.ButtonLink to={ROUTES.BROWSE}>
-          Browse PriceLists
-        </Sidebar.ButtonLink>
+        {/** LINKS */}
+        <ListItems>
+          <ListItems.Title>LINKS</ListItems.Title>
+          <ListItems.List>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADD_USER}>
+                Add User
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+                Browese PriceLists
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+          </ListItems.List>
+        </ListItems>
+        {/** LINKS */}
       </SidebarContainer>
       <MainContainer>
         {isError && errors.server && (
