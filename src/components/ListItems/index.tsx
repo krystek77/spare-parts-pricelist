@@ -8,16 +8,18 @@ import {
   ListItemButton,
   ListItemIconButton,
   Title,
+  ListItemButtonLink,
 } from './styles/listItems';
 
 interface IListItemsComposition {
   List: React.FC;
   ListButtonGroup: React.FC;
   ListItem: React.FC;
+  ListItemButtonLink: React.FC<{ to: string }>;
   ListItemButton: React.FC<{
     type: 'button';
-    onClick: () => void;
-    onKeyDown: () => void;
+    onClick?: () => void;
+    onKeyDown?: () => void;
   }>;
   Title: React.FC;
   ListItemIconButton: React.FC<{
@@ -53,6 +55,14 @@ ListItems.ListItemButton = function ListItemsListItemButton({
 }) {
   return <ListItemButton {...restProps}>{children}</ListItemButton>;
 };
+
+ListItems.ListItemButtonLink = function ListItemsListItemButtonLink({
+  children,
+  ...restProps
+}) {
+  return <ListItemButtonLink {...restProps}>{children}</ListItemButtonLink>;
+};
+
 ListItems.ListItemIconButton = function ListItemsListItemIconButton({
   children,
   ...restProps

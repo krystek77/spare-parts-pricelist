@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Link as ReactRouterLink } from 'react-router-dom';
 export const Container = styled.div`
   padding: 1rem 0.5rem;
 `;
@@ -38,6 +39,7 @@ export const ListItemButton = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
 `;
+
 export const ListItemIconButton = styled.button<{ group?: boolean }>`
   padding: 0.5rem;
   cursor: pointer;
@@ -63,5 +65,12 @@ export const ListItemIconButton = styled.button<{ group?: boolean }>`
       props.group
         ? `background-color: ${props.theme.colors.primary_darker}}`
         : `background-color: ${props.theme.colors.secondary_darker}`};
+  }
+`;
+export const ListItemButtonLink = styled(ReactRouterLink)`
+  color: ${({ theme }) => theme.colors.secondary_lighter};
+  margin-bottom: 0.2rem;
+  &:hover {
+    color: ${({ theme }) => theme.colors.medium};
   }
 `;
