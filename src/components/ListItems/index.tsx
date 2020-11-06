@@ -15,7 +15,10 @@ interface IListItemsComposition {
   List: React.FC;
   ListButtonGroup: React.FC;
   ListItem: React.FC;
-  ListItemButtonLink: React.FC<{ to: string }>;
+  ListItemButtonLink: React.FC<{
+    to: string;
+    onClick?: () => void;
+  }>;
   ListItemButton: React.FC<{
     type: 'button';
     onClick?: () => void;

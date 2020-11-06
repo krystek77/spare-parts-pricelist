@@ -60,7 +60,10 @@ export const AdminPage: React.FC<IAdminPage> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+              <ListItems.ListItemButtonLink
+                to={ROUTES.BROWSE}
+                onClick={() => setSelectedPriceLists('')}
+              >
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
