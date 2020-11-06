@@ -20,7 +20,6 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 <Table.HeaderColTable>From</Table.HeaderColTable>
                 <Table.HeaderColTable>To</Table.HeaderColTable>
                 <Table.HeaderColTable>Purchase</Table.HeaderColTable>
-                <Table.HeaderColTable>Calc.</Table.HeaderColTable>
                 <Table.HeaderColTable>Selling</Table.HeaderColTable>
               </Table.HeaderContentRowTable>
             </Table.HeaderRowTable>
@@ -47,9 +46,6 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       <Table.HeaderContentFieldColTable>
                         {parseFloat(item.purchasePrice).toFixed(2) +
                           ` ${item.currency}`}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.isCalculated ? 'YES' : 'NO'}
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
                         {parseFloat(item.sellingPrice).toFixed(2) + ' ZŁ'}

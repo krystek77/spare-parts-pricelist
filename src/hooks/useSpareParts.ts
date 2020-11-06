@@ -7,7 +7,6 @@ interface ISpareParts {
   currency: string;
   description: string;
   from: string;
-  isCalculated: boolean;
   model: string;
   name: string;
   priceListID: string;
@@ -52,7 +51,6 @@ export const useSpareParts = (
             currency: doc.data().currency,
             description: doc.data().description,
             from: doc.data().from,
-            isCalculated: doc.data().isCalculated,
             model: doc.data().model,
             name: doc.data().name,
             priceListID: doc.data().priceListID,
