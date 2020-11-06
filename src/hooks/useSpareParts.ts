@@ -10,8 +10,8 @@ interface ISpareParts {
   model: string;
   name: string;
   priceListID: string;
-  purchasePrice: string;
-  sellingPrice: string;
+  purchasePrice: number;
+  sellingPrice: number;
   to: string;
   userID: string;
 }
