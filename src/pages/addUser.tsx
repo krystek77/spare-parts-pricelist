@@ -94,6 +94,11 @@ export const AddUser: React.FC<IAddUser> = () => {
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADMIN}>
+                Admin
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
           </ListItems.List>
         </ListItems>
         {/** LINKS */}
