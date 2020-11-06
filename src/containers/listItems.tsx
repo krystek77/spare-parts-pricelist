@@ -2,8 +2,8 @@ import React from 'react';
 import { ListItems } from '../components';
 
 interface IListItemsContainer {
-  list: any[];
-  handler: (item: string) => void;
+  list?: any[];
+  handler?: (item: string) => void;
 }
 
 export const ListItemsContainer: React.FC<IListItemsContainer> = ({
@@ -15,15 +15,15 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
   return (
     <ListItems>
       <ListItems.Title>Price Lists</ListItems.Title>
-      {list.length > 0 && (
+      {list && list.length > 0 && (
         <ListItems.List>
           {list.map((item) => {
             return (
               <ListItems.ListItem key={item.priceListID}>
                 <ListItems.ListItemButton
                   type='button'
-                  onKeyDown={() => handler(item.priceListID)}
-                  onClick={() => handler(item.priceListID)}
+                  onKeyDown={() => handler && handler(item.priceListID)}
+                  onClick={() => handler && handler(item.priceListID)}
                 >
                   {item.name}
                 </ListItems.ListItemButton>
@@ -39,10 +39,10 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
           group
           type='button'
           onClick={() => {
-            handler('');
+            handler && handler('');
           }}
           onKeyDown={() => {
-            handler('');
+            handler && handler('');
           }}
         >
           ALL
