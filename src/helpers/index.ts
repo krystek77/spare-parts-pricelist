@@ -6,7 +6,7 @@ import {
   isEmpty,
   passwordValidation,
 } from './func';
-import { ROLES } from './enum';
+import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
 
 export {
@@ -17,6 +17,7 @@ export {
   isEmpty,
   passwordValidation,
   ROLES,
+  CURRENCY,
   RedirectUser,
   ProtectedRoute,
 };

@@ -3,4 +3,8 @@ enum ROLES {
   USER = 'user',
   TESTER = 'tester',
 }
-export { ROLES };
+enum CURRENCY {
+  EUR = 'EUR',
+  PL = 'ZŁ',
+}
+export { ROLES, CURRENCY };
