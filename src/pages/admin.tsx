@@ -16,7 +16,12 @@ import { useSelectedPriceListsContextValue } from '../context';
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
-  const { priceLists } = usePriceLists(authUser.userID); //Maybe from localStorage
+  /**
+   * If I passed empty string, then I display all pricelists created by any admin
+   * If I passed admin ID, then I displayed that pricelists for that admin
+   * I think the price lists should not be assigned to specyfic admin
+   */
+  const { priceLists } = usePriceLists('');
   const {
     selectedPriceLists,
     setSelectedPriceLists,
