@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div<{ bgColor?: boolean }>`
-  min-width: 320px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,8 @@ export const Container = styled.div<{ bgColor?: boolean }>`
 `;
 export const Inner = styled.div`
   width: 100%;
-  max-width: 320px;
+  max-width: 640px;
+  min-width: 320px;
   background-color: #131313;
   border: 1px solid black;
   padding: 1rem;
@@ -52,6 +53,7 @@ export const Input = styled.input`
   outline: none;
   font-weight: 200;
   color: ${({ theme }) => theme.colors.light};
+  width: 100%;
   &::placeholder {
     color: ${({ theme }) => theme.colors.light};
     font-weight: 200;
@@ -88,6 +90,8 @@ export const TextSmall = styled.p`
 export const InputsGroup = styled.div`
   display: flex;
   align-items: center;
+
+  flex-grow: 1;
 `;
 export const RadioInput = styled.input``;
 export const InputLabel = styled.label`
@@ -95,4 +99,23 @@ export const InputLabel = styled.label`
   font-weight: 300;
   padding: 0.3rem;
   cursor: pointer;
+`;
+export const IconButton = styled.button`
+  padding: 0.5rem;
+  margin-left: auto;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 0.2rem;
+  font-weight: 400;
+  outline: none;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.medium};
+  border-left: 1px solid ${({ theme }) => theme.colors.secondary_darker};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
+  background-color: ${({ theme }) => theme.colors.secondary};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary_darker};
+  }
 `;

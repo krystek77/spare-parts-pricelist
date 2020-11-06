@@ -13,6 +13,7 @@ import {
   InputsGroup,
   RadioInput,
   InputLabel,
+  IconButton,
 } from './styles/form';
 
 interface IForm {
@@ -30,7 +31,9 @@ interface IFormComposition {
     name: string;
     value: string;
     placeholder: string;
+    id?: string;
     onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+    onKeyDown?: (e: React.FormEvent<HTMLInputElement>) => void;
   }>;
   Break: React.FC;
   SubmitButton: React.FC<{ type: 'submit'; disabled?: boolean }>;
@@ -43,8 +46,14 @@ interface IFormComposition {
     checked: boolean;
     id: string;
     onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+    onKeyDown?: (e: React.FormEvent<HTMLInputElement>) => void;
   }>;
   InputLabel: React.FC<{ htmlFor?: string }>;
+  IconButton: React.FC<{
+    type: 'button';
+    onClick?: () => void;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  }>;
 }
 export const Form: React.FC<IForm> & IFormComposition = ({
   children,
@@ -88,4 +97,7 @@ Form.RadioInput = function FormRadioInput({ ...restProps }) {
 };
 Form.InputLabel = function FormInputLabel({ children, ...restProps }) {
   return <InputLabel {...restProps}>{children}</InputLabel>;
+};
+Form.IconButton = function FormIconButton({ children, ...restProps }) {
+  return <IconButton {...restProps}>{children}</IconButton>;
 };
