@@ -26,7 +26,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
             </Table.HeaderRowTable>
             {list.map((item, index) => {
               return (
-                <Table.RowTable key={item.sparePartId}>
+                <Table.RowTable key={item.sparePartID}>
                   <Table.OrdinaryNumberColTable>
                     {index + 1}
                   </Table.OrdinaryNumberColTable>
