@@ -7,6 +7,7 @@ import {
   SigninPage,
   UserPage,
   AddUser,
+  AddSparePart,
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
@@ -40,7 +41,13 @@ export function App() {
         {/* <Route path={ROUTES.USER}>
           <UserPage />
         </Route> */}
-
+        <ProtectedRoute
+          path={ROUTES.ADD_SPARE_PART}
+          authUser={authUser}
+          role={ROLES.ADMIN}
+        >
+          <AddSparePart />
+        </ProtectedRoute>
         <ProtectedRoute
           path={ROUTES.ADD_USER}
           authUser={authUser}

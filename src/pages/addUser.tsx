@@ -90,6 +90,11 @@ export const AddUser: React.FC<IAddUser> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
+                Add Spare Part
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
                 Browese PriceLists
               </ListItems.ListItemButtonLink>

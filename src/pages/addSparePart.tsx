@@ -1,33 +1,18 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import { useAuth } from '../hooks';
 import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
-  ListItemsContainer,
-  TableContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle } from '../components';
+import { Navigation, ListItems } from '../components';
 import * as ROUTES from '../constants/routes';
-import { useAuth, usePriceLists, useSpareParts } from '../hooks';
-import { useSelectedPriceListsContextValue } from '../context';
 
-interface IAdminPage {}
-export const AdminPage: React.FC<IAdminPage> = () => {
-  const { authUser, setAuthUser, initialValue } = useAuth();
-  const { priceLists } = usePriceLists(authUser.userID); //Maybe from localStorage
-  const {
-    selectedPriceLists,
-    setSelectedPriceLists,
-  } = useSelectedPriceListsContextValue();
-  const { spareParts } = useSpareParts(selectedPriceLists, authUser.userID);
+interface IAddSparePart {}
 
-  const selectedPriceList = priceLists.find(
-    (item) => item.priceListID === selectedPriceLists
-  );
-  const namePriceList =
-    selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
+export const AddSparePart: React.FC<IAddSparePart> = () => {
+  const { setAuthUser, initialValue } = useAuth();
 
   return (
     <React.Fragment>
@@ -40,6 +25,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
               .then(() => {
                 localStorage.removeItem('authUser');
                 setAuthUser(initialValue);
+                // history.push(ROUTES.HOME);
               })
               .catch((error) => {
                 console.log('Sign out failed');
@@ -65,10 +51,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink
-                to={ROUTES.BROWSE}
-                onClick={() => setSelectedPriceLists('')}
-              >
+              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
@@ -80,26 +63,8 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           </ListItems.List>
         </ListItems>
         {/** LINKS */}
-
-        {/** PRICE LISTS */}
-        <ListItemsContainer list={priceLists} handler={setSelectedPriceLists}>
-          <ListItems.ListItemIconButton type='button'>
-            <FaTrashAlt />
-          </ListItems.ListItemIconButton>
-        </ListItemsContainer>
-        {/** PRICE LISTS */}
       </SidebarContainer>
-      <MainContainer>
-        {/** CONTENT TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
-        </ContentTitle>
-        {/**  CONTENT TITLE */}
-        {/** DATA OF SPARE PARTS */}
-        <TableContainer list={spareParts} />
-        {/** DATA OF SPARE PARTS */}
-      </MainContainer>
+      <MainContainer>ADD SPARE PART</MainContainer>
     </React.Fragment>
   );
 };

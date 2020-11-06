@@ -5,6 +5,7 @@ import { UserPage } from './user';
 import { BrowsePage } from './browse';
 import { NoMatchPage } from './nomatch';
 import { AddUser } from './addUser';
+import { AddSparePart } from './addSparePart';
 export {
   HomePage,
   BrowsePage,
@@ -12,5 +13,6 @@ export {
   AdminPage,
   UserPage,
   AddUser,
+  AddSparePart,
   NoMatchPage,
 };
