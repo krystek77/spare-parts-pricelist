@@ -44,11 +44,10 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                         {item.to}
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
-                        {parseFloat(item.purchasePrice).toFixed(2) +
-                          ` ${item.currency}`}
+                        {`${item.purchasePrice.toFixed(2)} ${item.currency}`}
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
-                        {parseFloat(item.sellingPrice).toFixed(2) + ' ZŁ'}
+                        {`${item.sellingPrice.toFixed(2)} ZŁ`}
                       </Table.HeaderContentFieldColTable>
                     </Table.HeaderContentColTable>
                     <Table.DescriptionContentColTable>
