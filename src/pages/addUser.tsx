@@ -156,10 +156,6 @@ export const AddUser: React.FC<IAddUser> = () => {
               }}
             />
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!validForm}>
-              Add User
-            </Form.SubmitButton>
-            <Form.Break />
             <Form.InputsGroup>
               <Form.RadioInput
                 type='radio'
@@ -199,6 +195,10 @@ export const AddUser: React.FC<IAddUser> = () => {
                 {ROLES.TESTER}
               </Form.InputLabel>
             </Form.InputsGroup>
+            <Form.Break />
+            <Form.SubmitButton type='submit' disabled={!validForm}>
+              Add User
+            </Form.SubmitButton>
             <Form.Break />
             <Form.TextSmall>
               This page is protected by Google reCAPTCHA to ensure you are not a
