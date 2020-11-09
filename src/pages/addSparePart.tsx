@@ -38,6 +38,22 @@ const calculatePrice = (price: string, course: number): number | undefined => {
   }
   return 0;
 };
+const isSparePartName = (name: string): boolean => {
+  const regExp = /^[a-zA-Ząćęłńóśźż\s]{10,}/;
+  return !!name.match(regExp) ? true : false;
+};
+const isModel = (model: string): boolean => {
+  const regExp = /^[A-Z]{1,}[0-9]*-[0-9]+/;
+  return !!model.match(regExp) ? true : false;
+};
+const isYear = (year: string): boolean => {
+  const regExp = /^([0-9]{4}$)/;
+  return !!year.match(regExp) ? true : false;
+};
+const isPrice = (price: string) => {
+  const regExp = /^([0-9]+\.?[0-9]{2}$)/;
+  return !!price.match(regExp) ? true : false;
+};
 
 export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [name, setName] = React.useState<string>('');
@@ -71,6 +87,33 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     selectedPriceList && selectedPriceList.name
       ? selectedPriceList.name
       : 'PriceList no chosen';
+  /**
+   * VALIDATION
+   */
+  console.log('name', isSparePartName(name));
+  console.log('model', isModel(model));
+  console.log('from', isYear(from));
+  console.log('to', isYear(to));
+  console.log('price', isPrice(purchasePrice));
+  let isValidForm =
+    isSparePartName(name) &&
+    isModel(model) &&
+    isYear(from) &&
+    isYear(to) &&
+    selectedPriceLists &&
+    isPrice(purchasePrice);
+
+  if (sellingPrice !== '') {
+    isValidForm =
+      isSparePartName(name) &&
+      isModel(model) &&
+      isYear(from) &&
+      isYear(to) &&
+      selectedPriceLists &&
+      isPrice(purchasePrice) &&
+      isPrice(sellingPrice);
+    console.log('seeling', isPrice(sellingPrice));
+  }
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -374,7 +417,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             )}
 
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={false}>
+            <Form.SubmitButton type='submit' disabled={!isValidForm}>
               Add Spare Parts
             </Form.SubmitButton>
             <Form.Break />
