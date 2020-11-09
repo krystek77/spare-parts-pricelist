@@ -22,20 +22,21 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [to, setTo] = React.useState<string>('');
   const [purchasePrice, setPurchasePrice] = React.useState<string>('');
   const [currency, setCurrency] = React.useState<string>(CURRENCY.PL);
-  const [priceListName, setPriceListName] = React.useState<string>('');
   const [showPriceListsOverlay, setShowPriceListsOverlay] = React.useState<
     boolean
   >(false);
 
   const { setAuthUser, initialValue } = useAuth();
+  const { priceLists } = usePriceLists('');
+  const {
+    selectedPriceLists,
+    setSelectedPriceLists,
+  } = useSelectedPriceListsContextValue();
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log('ADD SPARE PARTS');
   };
-
-  const { priceLists } = usePriceLists('');
-  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
 
   return (
     <React.Fragment>
@@ -143,41 +144,24 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             </Form.InputsGroup>
             <Form.Break />
             <Form.InputsGroup>
-              <Form.InputsGroup>
-                <Form.InputLabel htmlFor='pricList'>
-                  PricList Category:
-                </Form.InputLabel>
-                <Form.Input
-                  type='text'
-                  name='pricList'
-                  id='pricList'
-                  value={priceListName}
-                  placeholder='Enter price list name ...'
-                  onChange={(e) => setPriceListName(e.currentTarget.value)}
-                  onKeyDown={(e) => setPriceListName(e.currentTarget.value)}
-                />
-              </Form.InputsGroup>
-              <Form.InputsGroup>
-                <Form.IconButton
-                  type='button'
-                  onClick={() =>
-                    setShowPriceListsOverlay(!showPriceListsOverlay)
-                  }
-                  onKeyDown={() =>
-                    setShowPriceListsOverlay(!showPriceListsOverlay)
-                  }
-                >
-                  <FaClipboardList />
-                </Form.IconButton>
-                {/** PRICELISTS OVERLAY */}
-                <PriceListsOverlay
-                  list={priceLists}
-                  setSelectedPriceLists={setSelectedPriceLists}
-                  showPriceListsOverlay={showPriceListsOverlay}
-                  setShowPriceListsOverlay={setShowPriceListsOverlay}
-                />
-                {/** PRICELISTS OVERLAY */}
-              </Form.InputsGroup>
+              <Form.InputLabel>PricList Category:</Form.InputLabel>
+              <Form.IconButton
+                type='button'
+                onClick={() => setShowPriceListsOverlay(!showPriceListsOverlay)}
+                onKeyDown={() =>
+                  setShowPriceListsOverlay(!showPriceListsOverlay)
+                }
+              >
+                <FaClipboardList />
+              </Form.IconButton>
+              {/** PRICELISTS OVERLAY */}
+              <PriceListsOverlay
+                list={priceLists}
+                setSelectedPriceLists={setSelectedPriceLists}
+                showPriceListsOverlay={showPriceListsOverlay}
+                setShowPriceListsOverlay={setShowPriceListsOverlay}
+              />
+              {/** PRICELISTS OVERLAY */}
             </Form.InputsGroup>
             <Form.Break />
             <Form.InputsGroup>

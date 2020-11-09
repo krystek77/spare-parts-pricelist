@@ -101,9 +101,9 @@ export const InputLabel = styled.label`
   cursor: pointer;
 `;
 export const IconButton = styled.button`
-  position: relative;
+  /* position: relative; */
   padding: 0.5rem;
-  margin-left: auto;
+  /* margin-left: auto; */
   cursor: pointer;
   text-align: center;
   border: none;

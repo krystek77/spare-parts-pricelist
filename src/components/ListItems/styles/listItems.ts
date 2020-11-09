@@ -8,7 +8,7 @@ export const Container = styled.div<{ dropDown?: boolean }>`
       position:absolute;
       background-color:${theme.colors.secondary};
       top:100%;
-      right:0;
+      left:0;
       margin-top:0.4rem;
       border-radius:0.2rem;
       box-shadow:0px 0px 4px 0px rgba(0,0,0,0.6);
