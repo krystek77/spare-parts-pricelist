@@ -120,3 +120,22 @@ export const IconButton = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
 `;
+
+export const TextAreaInput = styled.textarea`
+  resize: none;
+  flex-grow: 1;
+  padding: 0.7rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: ${({ theme }) => theme.colors.gray};
+  outline: none;
+  font-weight: 200;
+  color: ${({ theme }) => theme.colors.light};
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.light};
+    font-weight: 200;
+    font-size: 0.8rem;
+  }
+`;

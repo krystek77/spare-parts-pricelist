@@ -14,6 +14,7 @@ import {
   RadioInput,
   InputLabel,
   IconButton,
+  TextAreaInput,
 } from './styles/form';
 
 interface IForm {
@@ -53,6 +54,18 @@ interface IFormComposition {
     type: 'button';
     onClick?: () => void;
     onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  }>;
+  TextAreaInput: React.FC<{
+    value: string;
+    name: string;
+    id: string;
+    placeholder: string;
+    maxLength?: number;
+    minLength?: number;
+    rows?: number;
+    cols?: number;
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   }>;
 }
 export const Form: React.FC<IForm> & IFormComposition = ({
@@ -100,4 +113,7 @@ Form.InputLabel = function FormInputLabel({ children, ...restProps }) {
 };
 Form.IconButton = function FormIconButton({ children, ...restProps }) {
   return <IconButton {...restProps}>{children}</IconButton>;
+};
+Form.TextAreaInput = function FormTextAreaInput({ ...restProps }) {
+  return <TextAreaInput {...restProps} />;
 };
