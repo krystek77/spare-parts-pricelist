@@ -7,6 +7,7 @@ interface ITableContainer {
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   const { list } = restProps;
+
   return (
     <Table>
       <Table.BaseTable>
@@ -19,8 +20,8 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 <Table.HeaderColTable>Model</Table.HeaderColTable>
                 <Table.HeaderColTable>From</Table.HeaderColTable>
                 <Table.HeaderColTable>To</Table.HeaderColTable>
-                <Table.HeaderColTable>Purchase</Table.HeaderColTable>
-                <Table.HeaderColTable>Selling</Table.HeaderColTable>
+                <Table.HeaderColTable>Purchase netto</Table.HeaderColTable>
+                <Table.HeaderColTable>Selling netto</Table.HeaderColTable>
               </Table.HeaderContentRowTable>
             </Table.HeaderRowTable>
             {list.map((item, index) => {
@@ -44,18 +45,24 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                         {item.to}
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
-                        {`${item.purchasePrice.toFixed(2)} ${item.currency}`}
+                        {item.purchasePrice === 0
+                          ? '-'
+                          : `${item.purchasePrice.toFixed(2)} ${item.currency}`}
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
-                        {`${item.sellingPrice.toFixed(2)} ZŁ`}
+                        {`${item.sellingPrice.toFixed(2)} zł`}
                       </Table.HeaderContentFieldColTable>
                     </Table.HeaderContentColTable>
-                    <Table.DescriptionContentColTable>
-                      {item.description}
-                    </Table.DescriptionContentColTable>
-                    <Table.CommentsContentsColTable>
-                      {item.comments}
-                    </Table.CommentsContentsColTable>
+                    {item.description && (
+                      <Table.DescriptionContentColTable>
+                        {item.description}
+                      </Table.DescriptionContentColTable>
+                    )}
+                    {item.comments && (
+                      <Table.CommentsContentsColTable>
+                        {item.comments}
+                      </Table.CommentsContentsColTable>
+                    )}
                   </Table.ContentColTable>
                 </Table.RowTable>
               );

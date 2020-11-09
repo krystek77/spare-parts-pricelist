@@ -1,7 +1,11 @@
 import React from 'react';
-import { FaClipboardList } from 'react-icons/fa';
+import { dataBase } from '../lib/firebase';
+import { FaClipboardList, FaPlus } from 'react-icons/fa';
 import { useAuth, usePriceLists } from '../hooks';
-import { useSelectedPriceListsContextValue } from '../context';
+import {
+  useSelectedPriceListsContextValue,
+  useExchangeRateContext,
+} from '../context';
 import { auth } from '../lib/firebase';
 import {
   MainContainer,
@@ -14,6 +18,26 @@ import * as ROUTES from '../constants/routes';
 import { CURRENCY } from '../helpers';
 
 interface IAddSparePart {}
+
+const roundToDecimals = (number: number): number =>
+  Math.round((number + Number.EPSILON) * 100) / 100;
+
+const stringToNumber = (s: string): number | undefined => {
+  let num = parseFloat(s);
+  if (isNaN(num)) return 0;
+  return roundToDecimals(num);
+};
+
+const calculatePrice = (price: string, course: number): number | undefined => {
+  let purchasePrice = stringToNumber(price);
+  if (purchasePrice) {
+    const inPL = roundToDecimals(purchasePrice * course);
+    return inPL >= 500.0
+      ? roundToDecimals(inPL * 1.35)
+      : roundToDecimals(inPL * 1.65);
+  }
+  return 0;
+};
 
 export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [name, setName] = React.useState<string>('');
@@ -28,6 +52,9 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [showPriceListsOverlay, setShowPriceListsOverlay] = React.useState<
     boolean
   >(false);
+  const [addDescription, setAddDescription] = React.useState<boolean>(false);
+  const [addComment, setAddComment] = React.useState<boolean>(false);
+  const [message, setMessage] = React.useState<string>('');
 
   const { authUser, setAuthUser, initialValue } = useAuth(); //maybe from localstorage
   const { priceLists } = usePriceLists('');
@@ -35,25 +62,44 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     selectedPriceLists,
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
+  const { course } = useExchangeRateContext(); //returns null until it downloads
+
+  const selectedPriceList = priceLists.find(
+    (item) => item.priceListID === selectedPriceLists
+  );
+  const selectedPriceListName =
+    selectedPriceList && selectedPriceList.name
+      ? selectedPriceList.name
+      : 'PriceList no chosen';
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    const newSparePart = {
-      comments: '',
-      currency: currency,
-      description: '',
-      name: name,
-      model: model,
-      from: from,
-      to: to,
-      priceListID: selectedPriceLists,
-      purchasePrice: purchasePrice,
-      sellingPrice: '',
-      userID: authUser.userID,
-    };
-
-    console.log('ADD SPARE PARTS');
+    if (!!course) {
+      const newSparePart = {
+        comments: comment,
+        currency: currency,
+        description: description,
+        name: name,
+        model: model,
+        from: from,
+        to: to,
+        priceListID: selectedPriceLists,
+        'purchase-price': stringToNumber(purchasePrice),
+        'selling-price':
+          currency === CURRENCY.PL
+            ? stringToNumber(sellingPrice)
+            : calculatePrice(purchasePrice, course),
+        userID: authUser.userID,
+        added: new Date().toISOString().slice(0, 10),
+      };
+      console.log(newSparePart);
+      dataBase
+        .collection('spare-parts')
+        .add(newSparePart)
+        .then(() => setMessage('Spare part added successfully'))
+        .catch((error) => setMessage(error.message));
+    }
   };
 
   return (
@@ -107,6 +153,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
         {/** LINKS */}
       </SidebarContainer>
       <MainContainer>
+        {message && <Form.Message>{message}</Form.Message>}
         <Form>
           <Form.Title>Add Spare Parts</Form.Title>
           <Form.BaseForm onSubmit={handleAddSpareParts}>
@@ -118,8 +165,14 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                 id='name'
                 value={name}
                 placeholder='Enter spare part name'
-                onChange={(e) => setName(e.currentTarget.value)}
-                onKeyDown={(e) => setName(e.currentTarget.value)}
+                onChange={(e) => {
+                  setName(e.currentTarget.value);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setName(e.currentTarget.value);
+                  setMessage('');
+                }}
               />
             </Form.InputsGroup>
             <Form.InputsGroup>
@@ -180,6 +233,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                 setShowPriceListsOverlay={setShowPriceListsOverlay}
               />
               {/** PRICELISTS OVERLAY */}
+              <Form.InputLabel>{selectedPriceListName}</Form.InputLabel>
             </Form.InputsGroup>
             <Form.Break />
             <Form.InputsGroup>
@@ -237,7 +291,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                     name='selling'
                     id='selling'
                     value={sellingPrice}
-                    placeholder='100.10'
+                    placeholder='450.00'
                     onChange={(e) => setSellingPrice(e.currentTarget.value)}
                     onKeyDown={(e) => setSellingPrice(e.currentTarget.value)}
                   />
@@ -245,39 +299,67 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               </React.Fragment>
             )}
             <Form.Break />
-            <Form.InputLabel htmlFor='description'>
-              Description:
-            </Form.InputLabel>
             <Form.InputsGroup>
-              <Form.TextAreaInput
-                name='description'
-                id='description'
-                // maxLength={250}
-                minLength={10}
-                rows={3}
-                // cols={50}
-                value={description}
-                placeholder='Enter description...'
-                onChange={(e) => setDescription(e.currentTarget.value)}
-                onKeyDown={(e) => setDescription(e.currentTarget.value)}
-              />
+              <Form.IconButton
+                type='button'
+                onClick={() => setAddDescription(!addDescription)}
+                onKeyDown={() => setAddDescription(!addDescription)}
+              >
+                <FaPlus />
+                <span>Add Description</span>
+              </Form.IconButton>
+              <Form.IconButton
+                type='button'
+                onClick={() => setAddComment(!addComment)}
+                onKeyDown={() => setAddComment(!addComment)}
+              >
+                <FaPlus />
+                <span>Add Comment</span>
+              </Form.IconButton>
             </Form.InputsGroup>
-            <Form.Break />
-            <Form.InputLabel htmlFor='comment'>Comment:</Form.InputLabel>
-            <Form.InputsGroup>
-              <Form.TextAreaInput
-                name='comment'
-                id='comment'
-                // maxLength={250}
-                minLength={10}
-                rows={3}
-                // cols={50}
-                value={comment}
-                placeholder='Enter comment...'
-                onChange={(e) => setComment(e.currentTarget.value)}
-                onKeyDown={(e) => setComment(e.currentTarget.value)}
-              />
-            </Form.InputsGroup>
+            {addDescription && (
+              <React.Fragment>
+                <Form.Break />
+                <Form.InputLabel htmlFor='description'>
+                  Description:
+                </Form.InputLabel>
+                <Form.InputsGroup>
+                  <Form.TextAreaInput
+                    name='description'
+                    id='description'
+                    // maxLength={250}
+                    minLength={10}
+                    rows={2}
+                    // cols={50}
+                    value={description}
+                    placeholder='Enter description...'
+                    onChange={(e) => setDescription(e.currentTarget.value)}
+                    onKeyDown={(e) => setDescription(e.currentTarget.value)}
+                  />
+                </Form.InputsGroup>
+              </React.Fragment>
+            )}
+            {addComment && (
+              <React.Fragment>
+                <Form.Break />
+                <Form.InputLabel htmlFor='comment'>Comment:</Form.InputLabel>
+                <Form.InputsGroup>
+                  <Form.TextAreaInput
+                    name='comment'
+                    id='comment'
+                    // maxLength={250}
+                    minLength={10}
+                    rows={2}
+                    // cols={50}
+                    value={comment}
+                    placeholder='Enter comment...'
+                    onChange={(e) => setComment(e.currentTarget.value)}
+                    onKeyDown={(e) => setComment(e.currentTarget.value)}
+                  />
+                </Form.InputsGroup>
+              </React.Fragment>
+            )}
+
             <Form.Break />
             <Form.SubmitButton type='submit' disabled={false}>
               Add Spare Parts

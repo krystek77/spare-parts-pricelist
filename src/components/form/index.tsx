@@ -15,6 +15,7 @@ import {
   InputLabel,
   IconButton,
   TextAreaInput,
+  Message,
 } from './styles/form';
 
 interface IForm {
@@ -27,6 +28,7 @@ interface IFormComposition {
   Title: React.FC;
   Error: React.FC;
   ErrorServer: React.FC;
+  Message: React.FC;
   Input: React.FC<{
     type: string;
     name: string;
@@ -101,6 +103,9 @@ Form.ErrorServer = function FormErrorServer({ children }) {
 };
 Form.Error = function FormError({ children }) {
   return <Error>{children}</Error>;
+};
+Form.Message = function FormMessage({ children }) {
+  return <Message>{children}</Message>;
 };
 Form.InputsGroup = function FormInputsGroup({ children }) {
   return <InputsGroup>{children}</InputsGroup>;

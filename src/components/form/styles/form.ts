@@ -19,6 +19,16 @@ export const Inner = styled.div`
   padding: 1rem;
   border-radius: 0.4rem;
 `;
+export const Message = styled.div`
+  background-color: ${({ theme }) => theme.colors.warnning};
+  color: ${({ theme }) => theme.colors.dark};
+  padding: 1rem;
+  border-radius: 0.2rem;
+  font-weight: 400;
+  max-width: 320px;
+  margin: 0 auto 0.5rem;
+`;
+
 export const ErrorServer = styled.p`
   background-color: ${({ theme }) => theme.colors.warnning};
   color: ${({ theme }) => theme.colors.dark};
@@ -115,7 +125,13 @@ export const IconButton = styled.button`
   border-left: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   background-color: ${({ theme }) => theme.colors.secondary};
-
+  display: flex;
+  justify-content: center;
+  span {
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-left: 0.5rem;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }

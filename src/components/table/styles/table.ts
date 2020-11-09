@@ -20,14 +20,14 @@ export const HeaderRowTable = styled.li`
   /* flex-wrap: nowrap; */
   background-color: black;
   margin-bottom: 0.4rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.secondary}; */
 `;
 export const HeaderContentRowTable = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.secondary}; */
   flex-grow: 1;
 `;
 export const HeaderColTable = styled.span`
@@ -47,7 +47,7 @@ export const RowTable = styled.li`
   color: ${({ theme }) => theme.colors.dark};
   font-size: 0.9rem;
   font-weight: 300;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.secondary}; */
 `;
 export const OrdinaryNumberColTable = styled.span`
   padding: 0.5rem;
@@ -67,7 +67,7 @@ export const HeaderContentColTable = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};  */
 `;
 export const HeaderContentFieldColTable = styled.span`
   flex-shrink: 1;
@@ -92,8 +92,9 @@ export const HeaderContentFieldColTable = styled.span`
 `;
 export const DescriptionContentColTable = styled.p`
   padding: 0.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  border-top: 1px solid ${({ theme }) => theme.colors.secondary};
 `;
 export const CommentsContentsColTable = styled.p`
   padding: 0.5rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.secondary};
 `;

@@ -43,7 +43,6 @@ export const useSpareParts = (
     query
       .then((snapshot) => {
         const spareParts: ISpareParts[] = [];
-
         snapshot.forEach((doc) => {
           const sparePart: ISpareParts = {
             sparePartID: doc.id,
