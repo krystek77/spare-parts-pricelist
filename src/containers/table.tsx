@@ -57,7 +57,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                         {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
                       </Table.HeaderContentFieldColTable>
                     </Table.HeaderContentColTable>
-                    {item.description && (
+                    {/* {item.description && (
                       <Table.DescriptionContentColTable>
                         {item.description}
                       </Table.DescriptionContentColTable>
@@ -66,7 +66,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       <Table.CommentsContentsColTable>
                         {item.comments}
                       </Table.CommentsContentsColTable>
-                    )}
+                    )} */}
                   </Table.ContentColTable>
                 </Table.RowTable>
               );

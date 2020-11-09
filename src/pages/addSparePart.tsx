@@ -97,7 +97,20 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       dataBase
         .collection('spare-parts')
         .add(newSparePart)
-        .then(() => setMessage('Spare part added successfully'))
+        .then(() => {
+          setMessage('Spare part added successfully');
+          setName('');
+          setModel('');
+          setFrom('');
+          setTo('');
+          setCurrency(CURRENCY.PL);
+          setPurchasePrice('');
+          setSellingPrice('');
+          setDescription('');
+          setComment('');
+          setAddComment(false);
+          setAddDescription(false);
+        })
         .catch((error) => setMessage(error.message));
     }
   };
