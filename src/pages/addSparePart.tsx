@@ -174,6 +174,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                   list={priceLists}
                   setSelectedPriceLists={setSelectedPriceLists}
                   showPriceListsOverlay={showPriceListsOverlay}
+                  setShowPriceListsOverlay={setShowPriceListsOverlay}
                 />
                 {/** PRICELISTS OVERLAY */}
               </Form.InputsGroup>
