@@ -21,12 +21,15 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [from, setFrom] = React.useState<string>('');
   const [to, setTo] = React.useState<string>('');
   const [purchasePrice, setPurchasePrice] = React.useState<string>('');
+  const [sellingPrice, setSellingPrice] = React.useState<string>('');
+  const [description, setDescription] = React.useState<string>('');
+  const [comment, setComment] = React.useState<string>('');
   const [currency, setCurrency] = React.useState<string>(CURRENCY.PL);
   const [showPriceListsOverlay, setShowPriceListsOverlay] = React.useState<
     boolean
   >(false);
 
-  const { setAuthUser, initialValue } = useAuth();
+  const { authUser, setAuthUser, initialValue } = useAuth(); //maybe from localstorage
   const { priceLists } = usePriceLists('');
   const {
     selectedPriceLists,
@@ -35,6 +38,21 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    const newSparePart = {
+      comments: '',
+      currency: currency,
+      description: '',
+      name: name,
+      model: model,
+      from: from,
+      to: to,
+      priceListID: selectedPriceLists,
+      purchasePrice: purchasePrice,
+      sellingPrice: '',
+      userID: authUser.userID,
+    };
+
     console.log('ADD SPARE PARTS');
   };
 
@@ -144,7 +162,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             </Form.InputsGroup>
             <Form.Break />
             <Form.InputsGroup>
-              <Form.InputLabel>PricList Category:</Form.InputLabel>
+              <Form.InputLabel>PriceList Category:</Form.InputLabel>
               <Form.IconButton
                 type='button'
                 onClick={() => setShowPriceListsOverlay(!showPriceListsOverlay)}
@@ -178,7 +196,6 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                 onKeyDown={(e) => setPurchasePrice(e.currentTarget.value)}
               />
             </Form.InputsGroup>
-
             <Form.Break />
             <Form.InputsGroup>
               <Form.RadioInput
@@ -207,6 +224,59 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               <Form.InputLabel htmlFor='EUR'>
                 Purchase price given in <strong>{CURRENCY.EUR}</strong>
               </Form.InputLabel>
+            </Form.InputsGroup>
+            {currency === CURRENCY.PL && (
+              <React.Fragment>
+                <Form.Break />
+                <Form.InputsGroup>
+                  <Form.InputLabel htmlFor='selling'>
+                    Selling price:
+                  </Form.InputLabel>
+                  <Form.Input
+                    type='number'
+                    name='selling'
+                    id='selling'
+                    value={sellingPrice}
+                    placeholder='100.10'
+                    onChange={(e) => setSellingPrice(e.currentTarget.value)}
+                    onKeyDown={(e) => setSellingPrice(e.currentTarget.value)}
+                  />
+                </Form.InputsGroup>
+              </React.Fragment>
+            )}
+            <Form.Break />
+            <Form.InputLabel htmlFor='description'>
+              Description:
+            </Form.InputLabel>
+            <Form.InputsGroup>
+              <Form.TextAreaInput
+                name='description'
+                id='description'
+                // maxLength={250}
+                minLength={10}
+                rows={3}
+                // cols={50}
+                value={description}
+                placeholder='Enter description...'
+                onChange={(e) => setDescription(e.currentTarget.value)}
+                onKeyDown={(e) => setDescription(e.currentTarget.value)}
+              />
+            </Form.InputsGroup>
+            <Form.Break />
+            <Form.InputLabel htmlFor='comment'>Comment:</Form.InputLabel>
+            <Form.InputsGroup>
+              <Form.TextAreaInput
+                name='comment'
+                id='comment'
+                // maxLength={250}
+                minLength={10}
+                rows={3}
+                // cols={50}
+                value={comment}
+                placeholder='Enter comment...'
+                onChange={(e) => setComment(e.currentTarget.value)}
+                onKeyDown={(e) => setComment(e.currentTarget.value)}
+              />
             </Form.InputsGroup>
             <Form.Break />
             <Form.SubmitButton type='submit' disabled={false}>
