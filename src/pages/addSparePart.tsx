@@ -1,11 +1,13 @@
 import React from 'react';
 import { FaClipboardList } from 'react-icons/fa';
-import { useAuth } from '../hooks';
+import { useAuth, usePriceLists } from '../hooks';
+import { useSelectedPriceListsContextValue } from '../context';
 import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  PriceListsOverlay,
 } from '../containers';
 import { Navigation, ListItems, Form } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -31,6 +33,9 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     e.preventDefault();
     console.log('ADD SPARE PARTS');
   };
+
+  const { priceLists } = usePriceLists('');
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
 
   return (
     <React.Fragment>
@@ -164,6 +169,13 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
                 >
                   <FaClipboardList />
                 </Form.IconButton>
+                {/** PRICELISTS OVERLAY */}
+                <PriceListsOverlay
+                  list={priceLists}
+                  setSelectedPriceLists={setSelectedPriceLists}
+                  showPriceListsOverlay={showPriceListsOverlay}
+                />
+                {/** PRICELISTS OVERLAY */}
               </Form.InputsGroup>
             </Form.InputsGroup>
             <Form.Break />

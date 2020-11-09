@@ -32,9 +32,10 @@ interface IListItemsComposition {
     onKeyDown?: () => void;
   }>;
 }
-export const ListItems: React.FC & IListItemsComposition = ({ children }) => {
+export const ListItems: React.FC<{ dropDown?: boolean }> &
+  IListItemsComposition = ({ dropDown, children }) => {
   return (
-    <Container>
+    <Container dropDown={dropDown}>
       <Inner>{children}</Inner>
     </Container>
   );

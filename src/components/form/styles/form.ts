@@ -90,7 +90,7 @@ export const TextSmall = styled.p`
 export const InputsGroup = styled.div`
   display: flex;
   align-items: center;
-
+  position: relative;
   flex-grow: 1;
 `;
 export const RadioInput = styled.input``;
@@ -101,6 +101,7 @@ export const InputLabel = styled.label`
   cursor: pointer;
 `;
 export const IconButton = styled.button`
+  position: relative;
   padding: 0.5rem;
   margin-left: auto;
   cursor: pointer;

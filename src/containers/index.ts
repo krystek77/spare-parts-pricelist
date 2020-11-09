@@ -7,6 +7,7 @@ import { SidebarContainer } from './sidebar';
 import { MainContainer } from './main';
 import { ListItemsContainer } from './listItems';
 import { TableContainer } from './table';
+import { PriceListsOverlay } from './priceListsOverlay';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -17,4 +18,5 @@ export {
   MainContainer,
   ListItemsContainer,
   TableContainer,
+  PriceListsOverlay,
 };
