@@ -104,3 +104,32 @@ export const CommentsContentsColTable = styled.p`
   padding: 0.5rem;
   border-top: 1px solid ${({ theme }) => theme.colors.secondary};
 `;
+export const Controls = styled.div`
+  background-color: ${({ theme }) => theme.colors.secondary_light};
+  /* padding: 0.1rem 0.1rem; */
+  text-align: right;
+`;
+export const ControlButton = styled.button<{ btn?: string }>`
+  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border-radius: 0.2rem;
+  margin: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: lowercase;
+  background-color: ${({ theme }) => theme.colors.primary_darker};
+  color: ${({ theme }) => theme.colors.light};
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  outline: none;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary_darker};
+  }
+  ${({ btn, theme }) =>
+    btn === 'DESCRIPTION' || btn === 'COMMENT'
+      ? `background-color:${theme.colors.warnning};color:${theme.colors.dark};&:hover {color: ${theme.colors.light};}`
+      : btn === 'DELETE'
+      ? `background-color:${theme.colors.primary_darker}`
+      : `background-color:${theme.colors.green}`}
+`;

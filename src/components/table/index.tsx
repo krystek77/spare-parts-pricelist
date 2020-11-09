@@ -13,6 +13,8 @@ import {
   OrdinaryNumberColTable,
   RowTable,
   HeaderContentRowTable,
+  Controls,
+  ControlButton,
 } from './styles/table';
 interface ITable {
   BaseTable: React.FC;
@@ -26,6 +28,14 @@ interface ITable {
   OrdinaryNumberColTable: React.FC;
   RowTable: React.FC;
   HeaderContentRowTable: React.FC;
+  Controls: React.FC;
+  ControlButton: React.FC<{
+    type: 'button';
+    onClick?: () => void;
+    onKeyDown?: () => void;
+    title?: string;
+    btn?: string;
+  }>;
 }
 export const Table: React.FC & ITable = ({ children }) => {
   return (
@@ -33,6 +43,12 @@ export const Table: React.FC & ITable = ({ children }) => {
       <Inner>{children}</Inner>
     </Container>
   );
+};
+Table.Controls = function TableControls({ children, ...restProps }) {
+  return <Controls {...restProps}>{children}</Controls>;
+};
+Table.ControlButton = function TableControlButton({ children, ...restProps }) {
+  return <ControlButton {...restProps}>{children}</ControlButton>;
 };
 Table.BaseTable = function TableBaseTable({ children, ...restProps }) {
   return <BaseTable {...restProps}>{children}</BaseTable>;

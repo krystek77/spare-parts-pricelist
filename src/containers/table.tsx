@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
+import { MdDescription } from 'react-icons/md';
 import { Table } from '../components';
 
 interface ITableContainer {
@@ -27,37 +29,40 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
             </Table.HeaderRowTable>
             {list.map((item, index) => {
               return (
-                <Table.RowTable key={item.sparePartID}>
-                  <Table.OrdinaryNumberColTable>
-                    {index + 1}
-                  </Table.OrdinaryNumberColTable>
-                  <Table.ContentColTable>
-                    <Table.HeaderContentColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.name}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.model}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.from}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.to}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {item.purchasePrice === 0
-                          ? '-'
-                          : `${item.purchasePrice.toFixed(2)} ${item.currency}`}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {`${item.sellingPrice.toFixed(2)} zł`}
-                      </Table.HeaderContentFieldColTable>
-                      <Table.HeaderContentFieldColTable>
-                        {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
-                      </Table.HeaderContentFieldColTable>
-                    </Table.HeaderContentColTable>
-                    {/* {item.description && (
+                <React.Fragment>
+                  <Table.RowTable key={item.sparePartID}>
+                    <Table.OrdinaryNumberColTable>
+                      {index + 1}
+                    </Table.OrdinaryNumberColTable>
+                    <Table.ContentColTable>
+                      <Table.HeaderContentColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {item.name}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {item.model}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {item.from}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {item.to}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {item.purchasePrice === 0
+                            ? '-'
+                            : `${item.purchasePrice.toFixed(2)} ${
+                                item.currency
+                              }`}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {`${item.sellingPrice.toFixed(2)} zł`}
+                        </Table.HeaderContentFieldColTable>
+                        <Table.HeaderContentFieldColTable>
+                          {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
+                        </Table.HeaderContentFieldColTable>
+                      </Table.HeaderContentColTable>
+                      {/* {item.description && (
                       <Table.DescriptionContentColTable>
                         {item.description}
                       </Table.DescriptionContentColTable>
@@ -67,8 +72,47 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                         {item.comments}
                       </Table.CommentsContentsColTable>
                     )} */}
-                  </Table.ContentColTable>
-                </Table.RowTable>
+                    </Table.ContentColTable>
+                  </Table.RowTable>
+                  <Table.Controls>
+                    <Table.ControlButton
+                      btn='DESCRIPTION'
+                      type='button'
+                      title='Show description'
+                      onClick={() => console.log('SHOW DESC')}
+                      onKeyDown={() => console.log('SHOW DESC')}
+                    >
+                      <MdDescription />
+                    </Table.ControlButton>
+                    <Table.ControlButton
+                      btn='COMMENT'
+                      type='button'
+                      title='Show comment'
+                      onClick={() => console.log('SHOW COMMENT')}
+                      onKeyDown={() => console.log('SHOW COMMENT')}
+                    >
+                      <FaCommentAlt />
+                    </Table.ControlButton>
+                    <Table.ControlButton
+                      btn='DELETE'
+                      type='button'
+                      title='Delete'
+                      onClick={() => console.log('DELETE')}
+                      onKeyDown={() => console.log('DELETE')}
+                    >
+                      <FaTrashAlt />
+                    </Table.ControlButton>
+                    <Table.ControlButton
+                      btn='EDIT'
+                      type='button'
+                      title='Edit'
+                      onClick={() => console.log('EDIT')}
+                      onKeyDown={() => console.log('EDIT')}
+                    >
+                      <FaEdit />
+                    </Table.ControlButton>
+                  </Table.Controls>
+                </React.Fragment>
               );
             })}
           </>
