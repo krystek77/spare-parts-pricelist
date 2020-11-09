@@ -18,6 +18,7 @@ export const Inner = styled.div`
   border: 1px solid black;
   padding: 1rem;
   border-radius: 0.4rem;
+  position: relative;
 `;
 export const Message = styled.div`
   background-color: ${({ theme }) => theme.colors.warnning};
@@ -90,6 +91,22 @@ export const SubmitButton = styled.button`
     pointer-events: none;
     background-color: ${({ theme }) => theme.colors.gray};
     border-color: ${({ theme }) => theme.colors.gray};
+  }
+`;
+export const ClearButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border-radius: 0.2rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary_darker};
+    color: ${({ theme }) => theme.colors.light};
   }
 `;
 export const TextSmall = styled.p`

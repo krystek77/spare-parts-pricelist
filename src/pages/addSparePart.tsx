@@ -90,11 +90,12 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   /**
    * VALIDATION
    */
-  console.log('name', isSparePartName(name));
-  console.log('model', isModel(model));
-  console.log('from', isYear(from));
-  console.log('to', isYear(to));
-  console.log('price', isPrice(purchasePrice));
+  // console.log('name', isSparePartName(name));
+  // console.log('model', isModel(model));
+  // console.log('from', isYear(from));
+  // console.log('to', isYear(to));
+  // console.log('price', isPrice(purchasePrice));
+
   let isValidForm =
     isSparePartName(name) &&
     isModel(model) &&
@@ -112,7 +113,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       selectedPriceLists &&
       isPrice(purchasePrice) &&
       isPrice(sellingPrice);
-    console.log('seeling', isPrice(sellingPrice));
+    // console.log('seeling', isPrice(sellingPrice));
   }
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
@@ -211,6 +212,25 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       <MainContainer>
         {message && <Form.Message>{message}</Form.Message>}
         <Form>
+          <Form.ClearButton
+            type='button'
+            onClick={() => {
+              setMessage('');
+              setName('');
+              setModel('');
+              setFrom('');
+              setTo('');
+              setCurrency(CURRENCY.PL);
+              setPurchasePrice('');
+              setSellingPrice('');
+              setDescription('');
+              setComment('');
+              setAddComment(false);
+              setAddDescription(false);
+            }}
+          >
+            CLEAR
+          </Form.ClearButton>
           <Form.Title>Add Spare Parts</Form.Title>
           <Form.BaseForm onSubmit={handleAddSpareParts}>
             <Form.InputsGroup>

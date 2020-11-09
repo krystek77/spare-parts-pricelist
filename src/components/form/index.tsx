@@ -16,6 +16,7 @@ import {
   IconButton,
   TextAreaInput,
   Message,
+  ClearButton,
 } from './styles/form';
 
 interface IForm {
@@ -40,6 +41,10 @@ interface IFormComposition {
   }>;
   Break: React.FC;
   SubmitButton: React.FC<{ type: 'submit'; disabled?: boolean }>;
+  ClearButton: React.FC<{
+    type: 'button';
+    onClick?: () => void;
+  }>;
   TextSmall: React.FC;
   InputsGroup: React.FC;
   RadioInput: React.FC<{
@@ -94,6 +99,9 @@ Form.Break = function FormBreak() {
 };
 Form.SubmitButton = function FormSubmitButton({ children, ...restProps }) {
   return <SubmitButton {...restProps}>{children}</SubmitButton>;
+};
+Form.ClearButton = function FormClearButton({ children, ...restProps }) {
+  return <ClearButton {...restProps}>{children}</ClearButton>;
 };
 Form.TextSmall = function FormTextSmall({ children }) {
   return <TextSmall>{children}</TextSmall>;
