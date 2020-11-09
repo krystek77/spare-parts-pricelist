@@ -22,6 +22,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 <Table.HeaderColTable>To</Table.HeaderColTable>
                 <Table.HeaderColTable>Purchase netto</Table.HeaderColTable>
                 <Table.HeaderColTable>Selling netto</Table.HeaderColTable>
+                <Table.HeaderColTable>GROSS</Table.HeaderColTable>
               </Table.HeaderContentRowTable>
             </Table.HeaderRowTable>
             {list.map((item, index) => {
@@ -51,6 +52,9 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       </Table.HeaderContentFieldColTable>
                       <Table.HeaderContentFieldColTable>
                         {`${item.sellingPrice.toFixed(2)} zł`}
+                      </Table.HeaderContentFieldColTable>
+                      <Table.HeaderContentFieldColTable>
+                        {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
                       </Table.HeaderContentFieldColTable>
                     </Table.HeaderContentColTable>
                     {item.description && (

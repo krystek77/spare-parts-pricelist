@@ -89,6 +89,12 @@ export const HeaderContentFieldColTable = styled.span`
     font-style: italic;
     font-size: 1rem;
   }
+  &:nth-child(6) {
+    color: ${({ theme }) => theme.colors.dark};
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: right;
+  }
 `;
 export const DescriptionContentColTable = styled.p`
   padding: 0.5rem;
