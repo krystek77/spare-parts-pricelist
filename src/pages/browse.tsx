@@ -25,7 +25,10 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
-  const { spareParts, setSpareParts } = useSpareParts(selectedPriceLists, '');
+  const { spareParts, setSpareParts, isLoading } = useSpareParts(
+    selectedPriceLists,
+    ''
+  );
   const [message, setMessage] = React.useState('');
 
   const selectedPriceList = priceLists.find(
@@ -103,6 +106,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           list={spareParts}
           handleDelete={handleDeleteSparePart}
           message={message}
+          isLoading={isLoading}
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
