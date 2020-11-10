@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
-import { Table } from '../components';
+import { Table, Spinner } from '../components';
 
 interface ITableContainer {
   list?: any[];
@@ -14,7 +14,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   const { list, handleDelete, message, isLoading } = restProps;
 
   const content = isLoading ? (
-    <div>Loading data ...</div>
+    <Spinner>Loading data ...</Spinner>
   ) : list && list.length > 0 ? (
     <Table>
       {message && <Table.Message>{message}</Table.Message>}
