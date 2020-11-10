@@ -7,6 +7,7 @@ import {
   SidebarContainer,
   ListItemsContainer,
   TableContainer,
+  InfoContainer,
 } from '../containers';
 import { Navigation, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -93,6 +94,9 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           </ListItems.ListItemIconButton>
         </ListItemsContainer>
         {/** PRICE LISTS */}
+        {/** INFO */}
+        <InfoContainer />
+        {/** INFO */}
       </SidebarContainer>
       <MainContainer>
         {/** CONTENT TITLE */}

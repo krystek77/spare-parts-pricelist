@@ -6,6 +6,7 @@ import {
   SidebarContainer,
   ListItemsContainer,
   TableContainer,
+  InfoContainer,
 } from '../containers';
 import { Navigation, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -62,6 +63,9 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {/** PRICE LISTS */}
         <ListItemsContainer list={priceLists} handler={setSelectedPriceLists} />
         {/** PRICE LISTS */}
+        {/** INFO */}
+        <InfoContainer />
+        {/** INFO */}
       </SidebarContainer>
       <MainContainer>
         {/** CONTENT TITLE */}

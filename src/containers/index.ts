@@ -8,6 +8,7 @@ import { MainContainer } from './main';
 import { ListItemsContainer } from './listItems';
 import { TableContainer } from './table';
 import { PriceListsOverlay } from './priceListsOverlay';
+import { InfoContainer } from './info';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -19,4 +20,5 @@ export {
   ListItemsContainer,
   TableContainer,
   PriceListsOverlay,
+  InfoContainer,
 };
