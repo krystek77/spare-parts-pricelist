@@ -79,8 +79,6 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       btn='DESCRIPTION'
                       type='button'
                       title='Show description'
-                      onClick={() => console.log('SHOW DESC')}
-                      onKeyDown={() => console.log('SHOW DESC')}
                     >
                       <MdDescription />
                     </Table.ControlButton>
@@ -88,29 +86,23 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       btn='COMMENT'
                       type='button'
                       title='Show comment'
-                      onClick={() => console.log('SHOW COMMENT')}
-                      onKeyDown={() => console.log('SHOW COMMENT')}
                     >
                       <FaCommentAlt />
                     </Table.ControlButton>
-                    <Table.ControlButton
-                      btn='DELETE'
+                    <Table.ControlButtonDelete
                       type='button'
                       title='Delete'
                       onClick={() => console.log('DELETE')}
-                      onKeyDown={() => console.log('DELETE')}
                     >
                       <FaTrashAlt />
-                    </Table.ControlButton>
-                    <Table.ControlButton
-                      btn='EDIT'
+                    </Table.ControlButtonDelete>
+                    <Table.ControlButtonEdit
                       type='button'
                       title='Edit'
                       onClick={() => console.log('EDIT')}
-                      onKeyDown={() => console.log('EDIT')}
                     >
                       <FaEdit />
-                    </Table.ControlButton>
+                    </Table.ControlButtonEdit>
                   </Table.Controls>
                 </Table.BodyTable>
               );

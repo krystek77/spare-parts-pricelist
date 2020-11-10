@@ -15,6 +15,8 @@ import {
   HeaderContentRowTable,
   Controls,
   ControlButton,
+  ControlButtonDelete,
+  ControlButtonEdit,
   BodyTable,
 } from './styles/table';
 interface ITable {
@@ -32,11 +34,24 @@ interface ITable {
   HeaderContentRowTable: React.FC;
   Controls: React.FC;
   ControlButton: React.FC<{
+    id?: string;
     type: 'button';
     onClick?: () => void;
     onKeyDown?: () => void;
     title?: string;
     btn?: string;
+  }>;
+  ControlButtonDelete: React.FC<{
+    type: 'button';
+    title?: string;
+    onClick?: () => void;
+    onKeyDown?: () => void;
+  }>;
+  ControlButtonEdit: React.FC<{
+    type: 'button';
+    title?: string;
+    onClick?: () => void;
+    onKeyDown?: () => void;
   }>;
 }
 const defaultValue = {
@@ -195,6 +210,20 @@ Table.ControlButton = function TableControlButton({ children, ...restProps }) {
       {children}
     </ControlButton>
   );
+};
+
+Table.ControlButtonDelete = function TableControlButtonDelete({
+  children,
+  ...restProps
+}) {
+  return <ControlButtonDelete {...restProps}>{children}</ControlButtonDelete>;
+};
+
+Table.ControlButtonEdit = function TableControlButtonEdit({
+  children,
+  ...restProps
+}) {
+  return <ControlButtonEdit {...restProps}>{children}</ControlButtonEdit>;
 };
 
 Table.HeaderContentRowTable = function TableHeaderContentRowTable({

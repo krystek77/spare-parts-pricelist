@@ -116,8 +116,8 @@ export const ControlButton = styled.button<{ btn?: string }>`
   font-size: 0.7rem;
   font-weight: 300;
   text-transform: lowercase;
-  background-color: ${({ theme }) => theme.colors.primary_darker};
-  color: ${({ theme }) => theme.colors.light};
+  background-color: ${({ theme }) => theme.colors.warnning};
+  color: ${({ theme }) => theme.colors.dark};
   padding: 0.2rem;
   cursor: pointer;
   transition: all 0.3s ease-in;
@@ -125,12 +125,41 @@ export const ControlButton = styled.button<{ btn?: string }>`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
+    color: ${({ theme }) => theme.colors.light};
   }
-  ${({ btn, theme }) =>
-    btn === 'DESCRIPTION' || btn === 'COMMENT'
-      ? `background-color:${theme.colors.warnning};color:${theme.colors.dark};&:hover {color: ${theme.colors.light};}`
-      : btn === 'DELETE'
-      ? `background-color:${theme.colors.primary_darker}`
-      : `background-color:${theme.colors.green}`}
 `;
 export const BodyTable = styled.div``;
+export const ControlButtonDelete = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary_darker};
+  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border-radius: 0.2rem;
+  margin: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: ${({ theme }) => theme.colors.light};
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  outline: none;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary_darker};
+  }
+`;
+export const ControlButtonEdit = styled.button`
+  background-color: ${({ theme }) => theme.colors.green};
+  border: 1px solid ${({ theme }) => theme.colors.dark};
+  border-radius: 0.2rem;
+  margin: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: ${({ theme }) => theme.colors.light};
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  outline: none;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary_darker};
+  }
+`;
