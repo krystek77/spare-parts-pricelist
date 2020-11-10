@@ -28,6 +28,7 @@ export const Message = styled.div`
   font-weight: 400;
   max-width: 320px;
   margin: 0 auto 0.5rem;
+  text-align: center;
 `;
 
 export const ErrorServer = styled.p`

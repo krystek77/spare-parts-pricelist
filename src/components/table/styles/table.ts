@@ -163,3 +163,13 @@ export const ControlButtonEdit = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
 `;
+export const Message = styled.div`
+  background-color: ${({ theme }) => theme.colors.warnning};
+  color: ${({ theme }) => theme.colors.dark};
+  padding: 1rem;
+  border-radius: 0.2rem;
+  font-weight: 400;
+  max-width: 320px;
+  margin: 0 auto 0.5rem;
+  text-align: center;
+`;

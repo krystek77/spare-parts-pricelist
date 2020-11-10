@@ -18,6 +18,7 @@ import {
   ControlButtonDelete,
   ControlButtonEdit,
   BodyTable,
+  Message,
 } from './styles/table';
 interface ITable {
   BaseTable: React.FC;
@@ -53,6 +54,7 @@ interface ITable {
     onClick?: () => void;
     onKeyDown?: () => void;
   }>;
+  Message: React.FC;
 }
 const defaultValue = {
   isOpenDescription: false,
@@ -233,4 +235,8 @@ Table.HeaderContentRowTable = function TableHeaderContentRowTable({
   return (
     <HeaderContentRowTable {...restProps}>{children}</HeaderContentRowTable>
   );
+};
+
+Table.Message = function TableMessage({ children, ...restProps }) {
+  return <Message {...restProps}>{children}</Message>;
 };

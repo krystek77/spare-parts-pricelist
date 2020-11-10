@@ -26,6 +26,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
   const { spareParts, setSpareParts } = useSpareParts(selectedPriceLists, '');
+  const [message, setMessage] = React.useState('');
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
@@ -34,19 +35,26 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
     selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
 
   const handleDeleteSparePart = (sparePartID: string) => {
-    console.log('DELETE', sparePartID);
     dataBase
       .collection('spare-parts')
       .doc(sparePartID)
       .delete()
       .then(() => {
-        console.log('SPARE PART DELETING SUCCESSFULLY');
         const newSpareParts = spareParts.filter(
           (item) => item.sparePartID !== sparePartID
         );
         setSpareParts(newSpareParts);
+        setMessage('Spare part deleted successfully');
+        setTimeout(() => {
+          setMessage('');
+        }, 1000);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+        setTimeout(() => {
+          setMessage('');
+        }, 1000);
+      });
   };
 
   return (
@@ -94,6 +102,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         <TableContainer
           list={spareParts}
           handleDelete={handleDeleteSparePart}
+          message={message}
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>

@@ -6,13 +6,15 @@ import { Table } from '../components';
 interface ITableContainer {
   list?: any[];
   handleDelete?: (item: string) => void;
+  message?: string;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete } = restProps;
+  const { list, handleDelete, message } = restProps;
 
   return (
     <Table>
+      {message && <Table.Message>{message}</Table.Message>}
       <Table.BaseTable>
         {list && list.length > 0 && (
           <>
