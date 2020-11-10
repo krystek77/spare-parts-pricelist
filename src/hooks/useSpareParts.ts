@@ -20,7 +20,10 @@ export const useSpareParts = (
   currentUser: string = ''
 ) => {
   const [spareParts, setSpareParts] = React.useState<ISpareParts[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
   React.useEffect(() => {
+    setIsLoading(true);
     let query =
       selectedPriceLists !== '' && currentUser === ''
         ? dataBase
@@ -81,10 +84,14 @@ export const useSpareParts = (
           spareParts.push(sparePart);
         });
         setSpareParts(spareParts);
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
 
     return () => {};
   }, [currentUser, selectedPriceLists]);
-  return { spareParts, setSpareParts };
+  return { spareParts, setSpareParts, isLoading };
 };
