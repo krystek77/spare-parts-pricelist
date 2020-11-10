@@ -103,13 +103,12 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                   >
                     <FaTrashAlt />
                   </Table.ControlButtonDelete>
-                  <Table.ControlButtonEdit
-                    type='button'
+                  <Table.EditLink
+                    to={`/admin/edit/${item.sparePartID}`}
                     title='Edit'
-                    onClick={() => console.log('EDIT')}
                   >
                     <FaEdit />
-                  </Table.ControlButtonEdit>
+                  </Table.EditLink>
                 </Table.Controls>
               )}
             </Table.BodyTable>

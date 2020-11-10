@@ -16,7 +16,7 @@ import {
   Controls,
   ControlButton,
   ControlButtonDelete,
-  ControlButtonEdit,
+  EditLink,
   BodyTable,
   Message,
 } from './styles/table';
@@ -48,11 +48,9 @@ interface ITable {
     onClick?: () => void;
     onKeyDown?: () => void;
   }>;
-  ControlButtonEdit: React.FC<{
-    type: 'button';
+  EditLink: React.FC<{
+    to: string;
     title?: string;
-    onClick?: () => void;
-    onKeyDown?: () => void;
   }>;
   Message: React.FC;
 }
@@ -221,11 +219,12 @@ Table.ControlButtonDelete = function TableControlButtonDelete({
   return <ControlButtonDelete {...restProps}>{children}</ControlButtonDelete>;
 };
 
-Table.ControlButtonEdit = function TableControlButtonEdit({
-  children,
-  ...restProps
-}) {
-  return <ControlButtonEdit {...restProps}>{children}</ControlButtonEdit>;
+Table.EditLink = function TableEditLink({ children, to, ...restProps }) {
+  return (
+    <EditLink to={to} {...restProps}>
+      {children}
+    </EditLink>
+  );
 };
 
 Table.HeaderContentRowTable = function TableHeaderContentRowTable({

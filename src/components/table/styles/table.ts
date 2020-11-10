@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Link as ReactRouterLink } from 'react-router-dom';
 export const Container = styled.div`
   width: 100%;
 `;
@@ -146,7 +147,8 @@ export const ControlButtonDelete = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
 `;
-export const ControlButtonEdit = styled.button`
+export const EditLink = styled(ReactRouterLink)`
+  display: inline-block;
   background-color: ${({ theme }) => theme.colors.green};
   border: 1px solid ${({ theme }) => theme.colors.dark};
   border-radius: 0.2rem;
