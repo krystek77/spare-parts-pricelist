@@ -12,6 +12,7 @@ import { ListItems } from './ListItems';
 import { Table } from './table';
 import { ContentTitle } from './title';
 import { Info } from './info';
+import { Spinner } from './spinner';
 export {
   Jumbotron,
   Tabs,
@@ -27,4 +28,5 @@ export {
   Table,
   ContentTitle,
   Info,
+  Spinner,
 };
