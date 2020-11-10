@@ -13,6 +13,7 @@ import { Navigation, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
+import { ROLES } from '../helpers';
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
@@ -109,7 +110,11 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         </ContentTitle>
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <TableContainer list={spareParts} isLoading={isLoading} />
+        <TableContainer
+          list={spareParts}
+          isLoading={isLoading}
+          role={ROLES.ADMIN}
+        />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>

@@ -2,16 +2,18 @@ import React from 'react';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import { Table, Spinner } from '../components';
+import { ROLES } from '../helpers';
 
 interface ITableContainer {
   list?: any[];
   handleDelete?: (item: string) => void;
   message?: string;
   isLoading?: boolean;
+  role?: string;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete, message, isLoading } = restProps;
+  const { list, handleDelete, message, isLoading, role } = restProps;
 
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
@@ -76,36 +78,40 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                   )}
                 </Table.ContentColTable>
               </Table.RowTable>
-              <Table.Controls>
-                <Table.ControlButton
-                  btn='DESCRIPTION'
-                  type='button'
-                  title='Show description'
-                >
-                  <MdDescription />
-                </Table.ControlButton>
-                <Table.ControlButton
-                  btn='COMMENT'
-                  type='button'
-                  title='Show comment'
-                >
-                  <FaCommentAlt />
-                </Table.ControlButton>
-                <Table.ControlButtonDelete
-                  type='button'
-                  title='Delete'
-                  onClick={() => handleDelete && handleDelete(item.sparePartID)}
-                >
-                  <FaTrashAlt />
-                </Table.ControlButtonDelete>
-                <Table.ControlButtonEdit
-                  type='button'
-                  title='Edit'
-                  onClick={() => console.log('EDIT')}
-                >
-                  <FaEdit />
-                </Table.ControlButtonEdit>
-              </Table.Controls>
+              {role === ROLES.ADMIN && (
+                <Table.Controls>
+                  <Table.ControlButton
+                    btn='DESCRIPTION'
+                    type='button'
+                    title='Show description'
+                  >
+                    <MdDescription />
+                  </Table.ControlButton>
+                  <Table.ControlButton
+                    btn='COMMENT'
+                    type='button'
+                    title='Show comment'
+                  >
+                    <FaCommentAlt />
+                  </Table.ControlButton>
+                  <Table.ControlButtonDelete
+                    type='button'
+                    title='Delete'
+                    onClick={() =>
+                      handleDelete && handleDelete(item.sparePartID)
+                    }
+                  >
+                    <FaTrashAlt />
+                  </Table.ControlButtonDelete>
+                  <Table.ControlButtonEdit
+                    type='button'
+                    title='Edit'
+                    onClick={() => console.log('EDIT')}
+                  >
+                    <FaEdit />
+                  </Table.ControlButtonEdit>
+                </Table.Controls>
+              )}
             </Table.BodyTable>
           );
         })}

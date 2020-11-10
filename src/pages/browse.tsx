@@ -59,7 +59,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         }, 1000);
       });
   };
-
+  // console.log(localStorage.getItem('authUser'));
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -107,6 +107,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           handleDelete={handleDeleteSparePart}
           message={message}
           isLoading={isLoading}
+          role={authUser.role}
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
