@@ -6,7 +6,7 @@ const theme = {
     light: '#e2e2e2',
     medium: '#f7f7f7',
     warnning: '#dfc614',
-    green: '#105102',
+    green: '#008e6e',
     gray: '#393838',
     primary_darker: '#8e0500',
     primary: '#cc0800',
