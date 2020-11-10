@@ -43,6 +43,26 @@ export const useSpareParts = (
     query
       .then((snapshot) => {
         const spareParts: ISpareParts[] = [];
+        // const allSpareParts = snapshot.docs.map((doc) => {
+        //   return {
+        //     sparePartID: doc.id,
+        //     comments: doc.data().comments,
+        //     currency: doc.data().currency,
+        //     description: doc.data().description,
+        //     from: doc.data().from,
+        //     model: doc.data().model,
+        //     name: doc.data().name,
+        //     priceListID: doc.data().priceListID,
+        //     purchasePrice: doc.data()['purchase-price'],
+        //     sellingPrice: doc.data()['selling-price'],
+        //     to: doc.data().to,
+        //     userID: doc.data().userID,
+        //   };
+        // });
+        // console.log('useSpareParts', allSpareParts);
+        // if (JSON.stringify(allSpareParts) !== JSON.stringify(spareParts)) {
+        //   setSpareParts(spareParts);
+        // }
         snapshot.forEach((doc) => {
           const sparePart: ISpareParts = {
             sparePartID: doc.id,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../lib/firebase';
+import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -25,13 +25,29 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
   const { priceLists } = usePriceLists('');
-  const { spareParts } = useSpareParts(selectedPriceLists, '');
+  const { spareParts, setSpareParts } = useSpareParts(selectedPriceLists, '');
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
   );
   const namePriceList =
     selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
+
+  const handleDeleteSparePart = (sparePartID: string) => {
+    console.log('DELETE', sparePartID);
+    dataBase
+      .collection('spare-parts')
+      .doc(sparePartID)
+      .delete()
+      .then(() => {
+        console.log('SPARE PART DELETING SUCCESSFULLY');
+        const newSpareParts = spareParts.filter(
+          (item) => item.sparePartID !== sparePartID
+        );
+        setSpareParts(newSpareParts);
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <React.Fragment>
@@ -75,7 +91,10 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         </ContentTitle>
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <TableContainer list={spareParts} />
+        <TableContainer
+          list={spareParts}
+          handleDelete={handleDeleteSparePart}
+        />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>

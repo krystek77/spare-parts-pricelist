@@ -5,10 +5,11 @@ import { Table } from '../components';
 
 interface ITableContainer {
   list?: any[];
+  handleDelete?: (item: string) => void;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list } = restProps;
+  const { list, handleDelete } = restProps;
 
   return (
     <Table>
@@ -92,7 +93,9 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     <Table.ControlButtonDelete
                       type='button'
                       title='Delete'
-                      onClick={() => console.log('DELETE')}
+                      onClick={() =>
+                        handleDelete && handleDelete(item.sparePartID)
+                      }
                     >
                       <FaTrashAlt />
                     </Table.ControlButtonDelete>
