@@ -64,9 +64,7 @@ export const useSpareParts = (
       })
       .catch((error) => console.log(error));
 
-    return () => {
-      console.log('CLEAN SIDE EFFECTS');
-    };
+    return () => {};
   }, [currentUser, selectedPriceLists]);
   return { spareParts, setSpareParts };
 };
