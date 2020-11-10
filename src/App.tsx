@@ -8,6 +8,7 @@ import {
   UserPage,
   AddUser,
   AddSparePart,
+  EditSparePartPage,
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
@@ -42,6 +43,14 @@ export function App() {
           <UserPage />
         </Route> */}
         <ProtectedRoute
+          path={`${ROUTES.EDIT_SPARE_PART}/:sparePartID`}
+          authUser={authUser}
+          role={ROLES.ADMIN}
+        >
+          <EditSparePartPage />
+        </ProtectedRoute>
+        <ProtectedRoute
+          exact
           path={ROUTES.ADD_SPARE_PART}
           authUser={authUser}
           role={ROLES.ADMIN}
@@ -61,6 +70,7 @@ export function App() {
         </Route> */}
 
         <ProtectedRoute
+          exact
           role={ROLES.ADMIN}
           authUser={authUser}
           path={ROUTES.ADMIN}

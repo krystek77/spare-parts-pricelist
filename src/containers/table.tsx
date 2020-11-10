@@ -3,6 +3,7 @@ import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import { Table, Spinner } from '../components';
 import { ROLES } from '../helpers';
+import * as ROUTES from '../constants/routes';
 
 interface ITableContainer {
   list?: any[];
@@ -104,7 +105,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     <FaTrashAlt />
                   </Table.ControlButtonDelete>
                   <Table.EditLink
-                    to={`/admin/edit/${item.sparePartID}`}
+                    to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
                     title='Edit'
                   >
                     <FaEdit />
