@@ -13,8 +13,11 @@ export const BaseTitle = styled.h3`
   color: ${({ theme }) => theme.colors.light};
 `;
 export const SubTitle = styled.h4`
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  font-family: 'Oswald';
+  color: ${({ theme }) => theme.colors.green};
 `;
