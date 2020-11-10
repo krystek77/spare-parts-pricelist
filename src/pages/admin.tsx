@@ -27,7 +27,10 @@ export const AdminPage: React.FC<IAdminPage> = () => {
     selectedPriceLists,
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
-  const { spareParts } = useSpareParts(selectedPriceLists, authUser.userID);
+  const { spareParts, isLoading } = useSpareParts(
+    selectedPriceLists,
+    authUser.userID
+  );
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
@@ -106,7 +109,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         </ContentTitle>
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <TableContainer list={spareParts} />
+        <TableContainer list={spareParts} isLoading={isLoading} />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>
