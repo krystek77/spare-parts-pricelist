@@ -29,7 +29,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
             </Table.HeaderRowTable>
             {list.map((item, index) => {
               return (
-                <React.Fragment key={item.sparePartID}>
+                <Table.BodyTable key={item.sparePartID}>
                   <Table.RowTable>
                     <Table.OrdinaryNumberColTable>
                       {index + 1}
@@ -64,12 +64,12 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       </Table.HeaderContentColTable>
                       {item.description && (
                         <Table.DescriptionContentColTable>
-                          {item.description}
+                          {`DESC: ${item.description}`}
                         </Table.DescriptionContentColTable>
                       )}
                       {item.comments && (
                         <Table.CommentsContentsColTable>
-                          {item.comments}
+                          {`COMMENT: ${item.comments}`}
                         </Table.CommentsContentsColTable>
                       )}
                     </Table.ContentColTable>
@@ -112,7 +112,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       <FaEdit />
                     </Table.ControlButton>
                   </Table.Controls>
-                </React.Fragment>
+                </Table.BodyTable>
               );
             })}
           </>

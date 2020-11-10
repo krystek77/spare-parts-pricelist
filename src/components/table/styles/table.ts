@@ -133,3 +133,4 @@ export const ControlButton = styled.button<{ btn?: string }>`
       ? `background-color:${theme.colors.primary_darker}`
       : `background-color:${theme.colors.green}`}
 `;
+export const BodyTable = styled.div``;

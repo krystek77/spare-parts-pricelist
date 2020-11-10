@@ -15,9 +15,11 @@ import {
   HeaderContentRowTable,
   Controls,
   ControlButton,
+  BodyTable,
 } from './styles/table';
 interface ITable {
   BaseTable: React.FC;
+  BodyTable: React.FC;
   CommentsContentsColTable: React.FC;
   ContentColTable: React.FC;
   DescriptionContentColTable: React.FC;
@@ -37,6 +39,39 @@ interface ITable {
     btn?: string;
   }>;
 }
+const defaultValue = {
+  isOpenDescription: false,
+  setIsOpenDescription: () => {},
+  isOpenComment: false,
+  setIsOpenComment: () => {},
+};
+interface ITabelContext {
+  isOpenDescription: boolean;
+  setIsOpenDescription: (isOpenDescription: boolean) => void;
+  isOpenComment: boolean;
+  setIsOpenComment: (isOpenComment: boolean) => void;
+}
+const TableContext = React.createContext<ITabelContext>(defaultValue);
+const TableContextProvider: React.FC = ({ children }) => {
+  const [isOpenDescription, setIsOpenDescription] = React.useState<boolean>(
+    false
+  );
+  const [isOpenComment, setIsOpenComment] = React.useState<boolean>(false);
+
+  return (
+    <TableContext.Provider
+      value={{
+        isOpenDescription,
+        isOpenComment,
+        setIsOpenDescription,
+        setIsOpenComment,
+      }}
+    >
+      {children}
+    </TableContext.Provider>
+  );
+};
+
 export const Table: React.FC & ITable = ({ children }) => {
   return (
     <Container>
@@ -44,12 +79,7 @@ export const Table: React.FC & ITable = ({ children }) => {
     </Container>
   );
 };
-Table.Controls = function TableControls({ children, ...restProps }) {
-  return <Controls {...restProps}>{children}</Controls>;
-};
-Table.ControlButton = function TableControlButton({ children, ...restProps }) {
-  return <ControlButton {...restProps}>{children}</ControlButton>;
-};
+
 Table.BaseTable = function TableBaseTable({ children, ...restProps }) {
   return <BaseTable {...restProps}>{children}</BaseTable>;
 };
@@ -103,27 +133,70 @@ Table.HeaderContentFieldColTable = function TableHeaderContentFieldColTable({
   );
 };
 
+Table.BodyTable = function TableBodyTable({ children, ...restProps }) {
+  return (
+    <TableContextProvider>
+      <BodyTable {...restProps}>{children}</BodyTable>
+    </TableContextProvider>
+  );
+};
+
 Table.DescriptionContentColTable = function TableDescriptionContentColTable({
   children,
   ...restProps
 }) {
-  return (
+  const { isOpenDescription } = React.useContext<ITabelContext>(TableContext);
+  return isOpenDescription ? (
     <DescriptionContentColTable {...restProps}>
       {children}
     </DescriptionContentColTable>
-  );
+  ) : null;
 };
 
 Table.CommentsContentsColTable = function TableCommentsContentsColTable({
   children,
   ...restProps
 }) {
-  return (
+  const { isOpenComment } = React.useContext<ITabelContext>(TableContext);
+  return isOpenComment ? (
     <CommentsContentsColTable {...restProps}>
       {children}
     </CommentsContentsColTable>
+  ) : null;
+};
+
+Table.Controls = function TableControls({ children, ...restProps }) {
+  return <Controls {...restProps}>{children}</Controls>;
+};
+Table.ControlButton = function TableControlButton({ children, ...restProps }) {
+  const {
+    isOpenDescription,
+    setIsOpenDescription,
+    isOpenComment,
+    setIsOpenComment,
+  } = React.useContext<ITabelContext>(TableContext);
+  const { btn } = restProps;
+  return (
+    <ControlButton
+      {...restProps}
+      onClick={() => {
+        switch (btn) {
+          case 'DESCRIPTION':
+            setIsOpenDescription(!isOpenDescription);
+            break;
+          case 'COMMENT':
+            setIsOpenComment(!isOpenComment);
+            break;
+          default:
+            break;
+        }
+      }}
+    >
+      {children}
+    </ControlButton>
   );
 };
+
 Table.HeaderContentRowTable = function TableHeaderContentRowTable({
   children,
   ...restProps
