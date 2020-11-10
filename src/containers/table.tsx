@@ -29,8 +29,8 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
             </Table.HeaderRowTable>
             {list.map((item, index) => {
               return (
-                <React.Fragment>
-                  <Table.RowTable key={item.sparePartID}>
+                <React.Fragment key={item.sparePartID}>
+                  <Table.RowTable>
                     <Table.OrdinaryNumberColTable>
                       {index + 1}
                     </Table.OrdinaryNumberColTable>
@@ -62,16 +62,16 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                           {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
                         </Table.HeaderContentFieldColTable>
                       </Table.HeaderContentColTable>
-                      {/* {item.description && (
-                      <Table.DescriptionContentColTable>
-                        {item.description}
-                      </Table.DescriptionContentColTable>
-                    )}
-                    {item.comments && (
-                      <Table.CommentsContentsColTable>
-                        {item.comments}
-                      </Table.CommentsContentsColTable>
-                    )} */}
+                      {item.description && (
+                        <Table.DescriptionContentColTable>
+                          {item.description}
+                        </Table.DescriptionContentColTable>
+                      )}
+                      {item.comments && (
+                        <Table.CommentsContentsColTable>
+                          {item.comments}
+                        </Table.CommentsContentsColTable>
+                      )}
                     </Table.ContentColTable>
                   </Table.RowTable>
                   <Table.Controls>
