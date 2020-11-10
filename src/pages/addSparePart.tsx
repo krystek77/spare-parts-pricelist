@@ -15,45 +15,17 @@ import {
 } from '../containers';
 import { Navigation, ListItems, Form } from '../components';
 import * as ROUTES from '../constants/routes';
-import { CURRENCY } from '../helpers';
+import {
+  CURRENCY,
+  stringToNumber,
+  calculatePrice,
+  isSparePartName,
+  isModel,
+  isPrice,
+  isYear,
+} from '../helpers';
 
 interface IAddSparePart {}
-
-const roundToDecimals = (number: number): number =>
-  Math.round((number + Number.EPSILON) * 100) / 100;
-
-const stringToNumber = (s: string): number | undefined => {
-  let num = parseFloat(s);
-  if (isNaN(num)) return 0;
-  return roundToDecimals(num);
-};
-
-const calculatePrice = (price: string, course: number): number | undefined => {
-  let purchasePrice = stringToNumber(price);
-  if (purchasePrice) {
-    const inPL = roundToDecimals(purchasePrice * course);
-    return inPL >= 500.0
-      ? roundToDecimals(inPL * 1.35)
-      : roundToDecimals(inPL * 1.65);
-  }
-  return 0;
-};
-const isSparePartName = (name: string): boolean => {
-  const regExp = /^[a-zA-Ząćęłńóśźż\s]{10,}/;
-  return !!name.match(regExp) ? true : false;
-};
-const isModel = (model: string): boolean => {
-  const regExp = /^[A-Z]{1,}[0-9]*-[0-9]+/;
-  return !!model.match(regExp) ? true : false;
-};
-const isYear = (year: string): boolean => {
-  const regExp = /^([0-9]{4}$)/;
-  return !!year.match(regExp) ? true : false;
-};
-const isPrice = (price: string) => {
-  const regExp = /^([0-9]+\.?[0-9]{2}$)/;
-  return !!price.match(regExp) ? true : false;
-};
 
 export const AddSparePart: React.FC<IAddSparePart> = () => {
   const [name, setName] = React.useState<string>('');

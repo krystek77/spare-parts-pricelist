@@ -5,6 +5,13 @@ import {
   isEmail,
   isEmpty,
   passwordValidation,
+  calculatePrice,
+  isSparePartName,
+  isModel,
+  isYear,
+  isPrice,
+  roundToDecimals,
+  stringToNumber,
 } from './func';
 import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
@@ -20,4 +27,11 @@ export {
   CURRENCY,
   RedirectUser,
   ProtectedRoute,
+  calculatePrice,
+  isSparePartName,
+  isModel,
+  isYear,
+  isPrice,
+  roundToDecimals,
+  stringToNumber,
 };
