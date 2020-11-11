@@ -15,7 +15,7 @@ interface IRoutesProps {
   /**
    * routes props
    */
-  sparePartID: string;
+  slug: string;
 }
 interface IEditSparePartPage extends RouteComponentProps<IRoutesProps> {
   /**
@@ -86,7 +86,7 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         <ContentTitle>
           <ContentTitle.BaseTitle>EDIT SPARE PART</ContentTitle.BaseTitle>
           <ContentTitle.SubTitle>
-            ...{match.params.sparePartID} ...
+            ...{match.params.slug} ...
           </ContentTitle.SubTitle>
         </ContentTitle>
         {/**  CONTENT TITLE */}

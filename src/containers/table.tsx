@@ -15,7 +15,6 @@ interface ITableContainer {
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   const { list, handleDelete, message, isLoading, role } = restProps;
-
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
   ) : list && list.length > 0 ? (
@@ -105,7 +104,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     <FaTrashAlt />
                   </Table.ControlButtonDelete>
                   <Table.EditLink
-                    to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
+                    to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}`}
                     title='Edit'
                   >
                     <FaEdit />

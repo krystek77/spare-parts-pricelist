@@ -14,6 +14,7 @@ interface ISpareParts {
   sellingPrice: number;
   to: string;
   userID: string;
+  slug: string;
 }
 export const useSpareParts = (
   selectedPriceLists: string = '',
@@ -80,6 +81,7 @@ export const useSpareParts = (
             sellingPrice: doc.data()['selling-price'],
             to: doc.data().to,
             userID: doc.data().userID,
+            slug: doc.data().slug,
           };
           spareParts.push(sparePart);
         });

@@ -43,7 +43,7 @@ export function App() {
           <UserPage />
         </Route> */}
         <ProtectedRoute
-          path={`${ROUTES.EDIT_SPARE_PART}/:sparePartID`}
+          path={`${ROUTES.EDIT_SPARE_PART}/:slug`}
           authUser={authUser}
           role={ROLES.ADMIN}
         >
