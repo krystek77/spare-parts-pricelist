@@ -51,6 +51,7 @@ interface ITable {
   EditLink: React.FC<{
     to: string;
     title?: string;
+    onClick?: () => void;
   }>;
   Message: React.FC;
 }

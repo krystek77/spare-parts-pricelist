@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelectedSparePartContext } from '../context';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import { Table, Spinner } from '../components';
@@ -15,6 +16,8 @@ interface ITableContainer {
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   const { list, handleDelete, message, isLoading, role } = restProps;
+  const { setSelectedSparePart } = useSelectedSparePartContext();
+
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
   ) : list && list.length > 0 ? (
@@ -106,6 +109,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                   <Table.EditLink
                     to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}`}
                     title='Edit'
+                    onClick={() => setSelectedSparePart(item.sparePartID)}
                   >
                     <FaEdit />
                   </Table.EditLink>

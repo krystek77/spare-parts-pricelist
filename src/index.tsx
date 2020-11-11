@@ -7,6 +7,7 @@ import { App } from './App';
 import { ThemeProvider, theme } from './theme';
 import {
   SelectedPriceListsContextProvider,
+  SelectedSparePartContextProvider,
   ExchangeRateContextProvider,
 } from './context';
 
@@ -24,9 +25,11 @@ render(
     <GlobalStyles />
     <ThemeProvider theme={theme}>
       <ExchangeRateContextProvider>
-        <SelectedPriceListsContextProvider>
-          <App />
-        </SelectedPriceListsContextProvider>
+        <SelectedSparePartContextProvider>
+          <SelectedPriceListsContextProvider>
+            <App />
+          </SelectedPriceListsContextProvider>
+        </SelectedSparePartContextProvider>
       </ExchangeRateContextProvider>
     </ThemeProvider>
   </React.Fragment>,
