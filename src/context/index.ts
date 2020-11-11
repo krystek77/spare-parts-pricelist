@@ -10,6 +10,12 @@ import {
   ExchangeRateContextProvider,
   useExchangeRateContext,
 } from './exchange-rate';
+import {
+  SelectedSparePartContext,
+  SelectedSparePartContextConsumer,
+  SelectedSparePartContextProvider,
+  useSelectedSparePartContext,
+} from './selected-spare-part-context';
 export {
   SelectedPriceListsContext,
   SelectedPriceListsContextProvider,
@@ -19,4 +25,8 @@ export {
   ExchangeRateContextConsumer,
   ExchangeRateContextProvider,
   useExchangeRateContext,
+  SelectedSparePartContext,
+  SelectedSparePartContextConsumer,
+  SelectedSparePartContextProvider,
+  useSelectedSparePartContext,
 };
