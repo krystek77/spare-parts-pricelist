@@ -23,6 +23,7 @@ import {
   isModel,
   isPrice,
   isYear,
+  prepareSlug,
 } from '../helpers';
 
 interface IAddSparePart {}
@@ -59,6 +60,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     selectedPriceList && selectedPriceList.name
       ? selectedPriceList.name
       : 'PriceList no chosen';
+
   /**
    * VALIDATION
    */
@@ -108,6 +110,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             : calculatePrice(purchasePrice, course),
         userID: authUser.userID,
         added: new Date().toISOString().slice(0, 10),
+        slug: prepareSlug(name, model),
       };
       console.log(newSparePart);
       dataBase
