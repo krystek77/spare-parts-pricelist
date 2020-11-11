@@ -15,7 +15,7 @@ interface IRoutesProps {
   /**
    * routes props
    */
-  slug: string;
+  sparePartID: string;
 }
 interface IEditSparePartPage extends RouteComponentProps<IRoutesProps> {
   /**
@@ -23,10 +23,29 @@ interface IEditSparePartPage extends RouteComponentProps<IRoutesProps> {
    */
 }
 
+interface ISparePart {
+  sparePartID: string;
+  comments: string;
+  currency: string;
+  description: string;
+  from: string;
+  model: string;
+  name: string;
+  priceListID: string;
+  purchasePrice: number;
+  sellingPrice: number;
+  to: string;
+  userID: string;
+  slug: string;
+}
+
 const EditPage: React.FC<IEditSparePartPage> = (props) => {
   const { setAuthUser, initialValue } = useAuth();
   const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
+
   const { match } = props;
+  console.log('sparePartID', match.params.sparePartID);
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -86,7 +105,7 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         <ContentTitle>
           <ContentTitle.BaseTitle>EDIT SPARE PART</ContentTitle.BaseTitle>
           <ContentTitle.SubTitle>
-            ...{match.params.slug} ...
+            ...{match.params.sparePartID} ...
           </ContentTitle.SubTitle>
         </ContentTitle>
         {/**  CONTENT TITLE */}

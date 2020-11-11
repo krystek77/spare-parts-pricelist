@@ -49,7 +49,10 @@ interface ITable {
     onKeyDown?: () => void;
   }>;
   EditLink: React.FC<{
-    to: string;
+    to:
+      | string
+      | { pathname: string; search: string }
+      | { pathname: string; query: { sparePartID: string } };
     title?: string;
     onClick?: () => void;
   }>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelectedSparePartContext } from '../context';
+// import { useSelectedSparePartContext } from '../context';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import { Table, Spinner } from '../components';
@@ -16,7 +16,7 @@ interface ITableContainer {
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   const { list, handleDelete, message, isLoading, role } = restProps;
-  const { setSelectedSparePart } = useSelectedSparePartContext();
+  // const { setSelectedSparePart } = useSelectedSparePartContext();
 
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
@@ -107,9 +107,18 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     <FaTrashAlt />
                   </Table.ControlButtonDelete>
                   <Table.EditLink
-                    to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}`}
+                    to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
+                    // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
+                    // to={{
+                    //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                    //   search: `?sparePartID=${item.sparePartID}`,
+                    // }}
+                    // to={{
+                    //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                    //   query: { sparePartID: item.sparePartID },
+                    // }}
                     title='Edit'
-                    onClick={() => setSelectedSparePart(item.sparePartID)}
+                    // onClick={() => setSelectedSparePart(item.sparePartID)}
                   >
                     <FaEdit />
                   </Table.EditLink>

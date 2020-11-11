@@ -112,7 +112,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
         added: new Date().toISOString().slice(0, 10),
         slug: prepareSlug(name, model),
       };
-      console.log(newSparePart);
+
       dataBase
         .collection('spare-parts')
         .add(newSparePart)
