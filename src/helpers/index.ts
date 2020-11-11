@@ -12,6 +12,7 @@ import {
   isPrice,
   roundToDecimals,
   stringToNumber,
+  prepareSlug,
 } from './func';
 import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
@@ -34,4 +35,5 @@ export {
   isPrice,
   roundToDecimals,
   stringToNumber,
+  prepareSlug,
 };

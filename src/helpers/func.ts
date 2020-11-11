@@ -68,6 +68,12 @@ const isPrice = (price: string) => {
   return !!price.match(regExp) ? true : false;
 };
 
+const prepareSlug = (name: string, model: string): string => {
+  const regExp = /\s/g;
+  const slug = (name + '-' + model).replace(regExp, '-').toLowerCase();
+  return slug;
+};
+
 export {
   isEmail,
   isEmpty,
@@ -82,4 +88,5 @@ export {
   isPrice,
   roundToDecimals,
   stringToNumber,
+  prepareSlug,
 };
