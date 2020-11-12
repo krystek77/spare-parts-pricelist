@@ -9,6 +9,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
   color: ${({ theme }) => theme.colors.light};
   height: calc(100% - 48px);
+  overflow-y: auto;
 `;
 export const Inner = styled.div`
   padding: 1rem;
