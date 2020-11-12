@@ -4,13 +4,16 @@ import { ListItems } from '../components';
 interface IListItemsContainer {
   list?: any[];
   handler?: (item: string) => void;
+  activeValue?: string;
 }
 
 export const ListItemsContainer: React.FC<IListItemsContainer> = ({
   children,
+  activeValue = null,
   ...restProps
 }) => {
   const { list, handler } = restProps;
+  const [active, setActive] = React.useState<string | null>(activeValue);
 
   return (
     <ListItems>
@@ -23,7 +26,11 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
                 <ListItems.ListItemButton
                   type='button'
                   onKeyDown={() => handler && handler(item.priceListID)}
-                  onClick={() => handler && handler(item.priceListID)}
+                  active={active === item.priceListID}
+                  onClick={() => {
+                    handler && handler(item.priceListID);
+                    setActive(item.priceListID);
+                  }}
                 >
                   {item.name}
                 </ListItems.ListItemButton>

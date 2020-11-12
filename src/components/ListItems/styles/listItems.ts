@@ -37,7 +37,7 @@ export const ListItem = styled.li`
   margin-bottom: 0.2rem;
 `;
 export const ListButtonGroup = styled.div``;
-export const ListItemButton = styled.button`
+export const ListItemButton = styled.button<{ active?: boolean }>`
   flex-grow: 1;
   text-align: left;
   padding: 0.5rem;
@@ -48,9 +48,11 @@ export const ListItemButton = styled.button`
   color: ${({ theme }) => theme.colors.medium};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   background-color: ${({ theme }) => theme.colors.secondary_lighter};
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
+  ${({ active, theme }) => active && `background-color:${theme.colors.primary}`}
 `;
 
 export const ListItemIconButton = styled.button<{ group?: boolean }>`

@@ -14,13 +14,16 @@ import {
 interface IListItemsComposition {
   List: React.FC;
   ListButtonGroup: React.FC;
-  ListItem: React.FC;
+  ListItem: React.FC<{
+    active?: boolean;
+  }>;
   ListItemButtonLink: React.FC<{
     to: string;
     onClick?: () => void;
   }>;
   ListItemButton: React.FC<{
     type: 'button';
+    active?: boolean;
     onClick?: () => void;
     onKeyDown?: () => void;
   }>;
