@@ -8,6 +8,7 @@ import {
   ListItemsContainer,
   TableContainer,
   InfoContainer,
+  AddPriceList,
 } from '../containers';
 import { Navigation, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -122,6 +123,9 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           </ListItems.ListItemIconButton>
         </ListItemsContainer>
         {/** PRICE LISTS */}
+        {/** ADD PRICE LIST */}
+        <AddPriceList />
+        {/** ADD PRICE LIST */}
         {/** INFO */}
         <InfoContainer />
         {/** INFO */}

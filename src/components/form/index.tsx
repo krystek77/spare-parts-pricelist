@@ -17,6 +17,7 @@ import {
   TextAreaInput,
   Message,
   ClearButton,
+  CustomButton,
 } from './styles/form';
 
 interface IForm {
@@ -41,6 +42,12 @@ interface IFormComposition {
   }>;
   Break: React.FC;
   SubmitButton: React.FC<{ type: 'submit'; disabled?: boolean }>;
+  CustomButton: React.FC<{
+    btn?: string;
+    type: 'submit' | 'button' | 'reset';
+    disabled?: boolean;
+    onClick?: () => void;
+  }>;
   ClearButton: React.FC<{
     type: 'button';
     onClick?: () => void;
@@ -99,6 +106,9 @@ Form.Break = function FormBreak() {
 };
 Form.SubmitButton = function FormSubmitButton({ children, ...restProps }) {
   return <SubmitButton {...restProps}>{children}</SubmitButton>;
+};
+Form.CustomButton = function FormCustomButton({ children, ...restProps }) {
+  return <CustomButton {...restProps}>{children}</CustomButton>;
 };
 Form.ClearButton = function FormClearButton({ children, ...restProps }) {
   return <ClearButton {...restProps}>{children}</ClearButton>;

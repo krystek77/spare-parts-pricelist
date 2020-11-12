@@ -9,6 +9,7 @@ import { ListItemsContainer } from './listItems';
 import { TableContainer } from './table';
 import { PriceListsOverlay } from './priceListsOverlay';
 import { InfoContainer } from './info';
+import { AddPriceList } from './addPriceList';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -21,4 +22,5 @@ export {
   TableContainer,
   PriceListsOverlay,
   InfoContainer,
+  AddPriceList,
 };

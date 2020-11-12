@@ -8,7 +8,8 @@ export const Button = styled.button`
   font-size: 0.9rem;
   padding: 0.4rem 0.8rem;
   outline: none;
-  margin: 0.2rem;
+  margin-top: 0.2rem;
+  margin-left: auto;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -20,7 +21,7 @@ export const Button = styled.button`
     color: ${({ theme }) => theme.colors.dark};
   }
 `;
-export const CancelButton = styled(Button)`
+export const AddButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
   border: 1px solid ${({ theme }) => theme.colors.primary_darker};
   &:hover {
@@ -28,7 +29,7 @@ export const CancelButton = styled(Button)`
     color: ${({ theme }) => theme.colors.light};
   }
 `;
-export const AddButton = styled(Button)`
+export const CancelButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.secondary};
   border: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   &:hover {

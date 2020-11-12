@@ -173,3 +173,38 @@ export const TextAreaInput = styled.textarea`
     font-size: 0.8rem;
   }
 `;
+
+export const CustomButton = styled.button<{ btn?: string }>`
+  background-color: ${({ theme }) => theme.colors.dark};
+  background-color: ${({ btn, theme }) =>
+    btn === 'ADD' ? theme.colors.secondary : theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border: 1px solid
+    ${({ btn, theme }) =>
+      btn === 'ADD'
+        ? theme.colors.secondary_darker
+        : theme.colors.primary_darker};
+  border-radius: 0.2rem;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.light};
+    color: ${({ theme }) => theme.colors.dark};
+    background-color: ${({ btn, theme }) =>
+      btn === 'ADD'
+        ? theme.colors.secondary_darker
+        : theme.colors.primary_darker};
+    color: ${({ btn, theme }) =>
+      (btn === 'ADD' || btn === 'CANCEL') && theme.colors.light};
+  }
+`;
