@@ -13,6 +13,7 @@ import {
   roundToDecimals,
   stringToNumber,
   prepareSlug,
+  getAuthUser,
 } from './func';
 import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
@@ -36,4 +37,5 @@ export {
   roundToDecimals,
   stringToNumber,
   prepareSlug,
+  getAuthUser,
 };

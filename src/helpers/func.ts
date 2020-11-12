@@ -73,6 +73,24 @@ const prepareSlug = (name: string, model: string): string => {
   const slug = (name + '-' + model).replace(regExp, '-').toLowerCase();
   return slug;
 };
+interface IAuthUser {
+  avatar: string;
+  userID: string;
+  email: string;
+  role: string;
+  nick: string;
+}
+const initialValue: IAuthUser = {
+  avatar: '',
+  userID: '',
+  email: '',
+  role: '',
+  nick: '',
+};
+const getAuthUser = (): IAuthUser => {
+  const authUser: string | null = localStorage.getItem('authUser');
+  return authUser ? JSON.parse(authUser) : initialValue;
+};
 
 export {
   isEmail,
@@ -89,4 +107,5 @@ export {
   roundToDecimals,
   stringToNumber,
   prepareSlug,
+  getAuthUser,
 };
