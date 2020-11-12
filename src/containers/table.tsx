@@ -12,10 +12,11 @@ interface ITableContainer {
   message?: string;
   isLoading?: boolean;
   role?: string;
+  browse?: boolean;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete, message, isLoading, role } = restProps;
+  const { list, handleDelete, message, isLoading, role, browse } = restProps;
   // const { setSelectedSparePart } = useSelectedSparePartContext();
 
   const content = isLoading ? (
@@ -97,31 +98,35 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                   >
                     <FaCommentAlt />
                   </Table.ControlButton>
-                  <Table.ControlButtonDelete
-                    type='button'
-                    title='Delete'
-                    onClick={() =>
-                      handleDelete && handleDelete(item.sparePartID)
-                    }
-                  >
-                    <FaTrashAlt />
-                  </Table.ControlButtonDelete>
-                  <Table.EditLink
-                    to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
-                    // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
-                    // to={{
-                    //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
-                    //   search: `?sparePartID=${item.sparePartID}`,
-                    // }}
-                    // to={{
-                    //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
-                    //   query: { sparePartID: item.sparePartID },
-                    // }}
-                    title='Edit'
-                    // onClick={() => setSelectedSparePart(item.sparePartID)}
-                  >
-                    <FaEdit />
-                  </Table.EditLink>
+                  {!browse && (
+                    <React.Fragment>
+                      <Table.ControlButtonDelete
+                        type='button'
+                        title='Delete'
+                        onClick={() => {
+                          handleDelete && handleDelete(item.sparePartID);
+                        }}
+                      >
+                        <FaTrashAlt />
+                      </Table.ControlButtonDelete>
+                      <Table.EditLink
+                        to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
+                        // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
+                        // to={{
+                        //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                        //   search: `?sparePartID=${item.sparePartID}`,
+                        // }}
+                        // to={{
+                        //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                        //   query: { sparePartID: item.sparePartID },
+                        // }}
+                        title='Edit'
+                        // onClick={() => setSelectedSparePart(item.sparePartID)}
+                      >
+                        <FaEdit />
+                      </Table.EditLink>
+                    </React.Fragment>
+                  )}
                 </Table.Controls>
               )}
             </Table.BodyTable>

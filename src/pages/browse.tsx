@@ -108,6 +108,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           message={message}
           isLoading={isLoading}
           role={authUser.role}
+          browse
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
