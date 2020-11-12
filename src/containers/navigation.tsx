@@ -13,6 +13,7 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
   ...restProps
 }) => {
   const authUser = getAuthUser();
+  console.log(authUser);
   return (
     <>
       <Navigation.Container bgColor={bgColor}>
@@ -27,7 +28,7 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
             <Navigation.Panel>
               {`Hi, ${authUser.nick}`}
               <Navigation.Avatar
-                src={`../assets/images/${authUser.avatar}.webP`}
+                src={`../../assets/images/${authUser.avatar}.webP`}
                 alt={`User avatar`}
               />
             </Navigation.Panel>
