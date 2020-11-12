@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import { auth } from '../lib/firebase';
+import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -28,16 +28,40 @@ export const AdminPage: React.FC<IAdminPage> = () => {
     selectedPriceLists,
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
-  const { spareParts, isLoading } = useSpareParts(
+  const { spareParts, isLoading, setSpareParts } = useSpareParts(
     selectedPriceLists,
     authUser.userID
   );
+  const [message, setMessage] = React.useState('');
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
   );
   const namePriceList =
     selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
+
+  const handleDeleteSparePart = (sparePartID: string) => {
+    dataBase
+      .collection('spare-parts')
+      .doc(sparePartID)
+      .delete()
+      .then(() => {
+        const newSpareParts = spareParts.filter(
+          (item) => item.sparePartID !== sparePartID
+        );
+        setSpareParts(newSpareParts);
+        setMessage('Spare part deleted successfully');
+        setTimeout(() => {
+          setMessage('');
+        }, 1000);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+        setTimeout(() => {
+          setMessage('');
+        }, 1000);
+      });
+  };
 
   return (
     <React.Fragment>
@@ -113,7 +137,9 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <TableContainer
           list={spareParts}
           isLoading={isLoading}
+          handleDelete={handleDeleteSparePart}
           role={ROLES.ADMIN}
+          message={message}
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
