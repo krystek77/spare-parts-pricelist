@@ -47,9 +47,11 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
           type='button'
           onClick={() => {
             handler && handler('');
+            setActive(null);
           }}
           onKeyDown={() => {
             handler && handler('');
+            setActive(null);
           }}
         >
           ALL
