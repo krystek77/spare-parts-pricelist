@@ -24,7 +24,7 @@ export const Inner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
+  /* max-width: 1100px; */
   margin: 0 auto;
 `;
 export const Panel = styled.div`
