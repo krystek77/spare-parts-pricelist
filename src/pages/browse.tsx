@@ -88,7 +88,11 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
       </NavigationContainer>
       <SidebarContainer>
         {/** PRICE LISTS */}
-        <ListItemsContainer list={priceLists} handler={setSelectedPriceLists} />
+        <ListItemsContainer
+          list={priceLists}
+          handler={setSelectedPriceLists}
+          browse
+        />
         {/** PRICE LISTS */}
         {/** INFO */}
         <InfoContainer />

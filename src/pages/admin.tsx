@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
 import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
@@ -40,6 +39,61 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   );
   const namePriceList =
     selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
+
+  const handleDeletePriceList = (priceListID: string) => {
+    console.log('DELETE PRICE LIST', priceListID);
+    /**
+     * A specific price list can only be deleted by the user who created it.
+     * If other user added spare part to it than it was deleted.
+     */
+    const authUserID = authUser.userID;
+    dataBase
+      .collection('pricelists')
+      .doc(priceListID)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userID = doc.data()?.userID;
+          if (userID === authUserID) {
+            return (
+              dataBase
+                .collection('spare-parts')
+                .where('priceListID', '==', priceListID)
+                // .where('userID', '==', authUserID)
+                .get()
+            );
+          } else {
+            throw new Error(
+              'You cannot delete this price list because you have not created it.'
+            );
+          }
+        } else {
+          throw new Error('Price list does not exist!');
+        }
+      })
+      .then((result) => {
+        const size = result?.size;
+
+        if (size === 0) {
+          throw new Error(
+            'All spare parts from this price list have been deleted'
+          );
+        }
+        const batch = dataBase.batch();
+        result?.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+        return batch.commit();
+      })
+      .then(() => {
+        console.log('Now I can delete pricelist');
+        return dataBase.collection('pricelists').doc(priceListID).delete();
+      })
+      .then(() => console.log('PRICELIST DELETED'))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const handleDeleteSparePart = (sparePartID: string) => {
     dataBase
@@ -117,11 +171,11 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/** LINKS */}
 
         {/** PRICE LISTS */}
-        <ListItemsContainer list={priceLists} handler={setSelectedPriceLists}>
-          <ListItems.ListItemIconButton type='button'>
-            <FaTrashAlt />
-          </ListItems.ListItemIconButton>
-        </ListItemsContainer>
+        <ListItemsContainer
+          list={priceLists}
+          handler={setSelectedPriceLists}
+          handleDeletePriceList={handleDeletePriceList}
+        />
         {/** PRICE LISTS */}
         {/** ADD PRICE LIST */}
         <AddPriceList />

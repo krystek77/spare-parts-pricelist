@@ -1,10 +1,13 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 import { ListItems } from '../components';
 
 interface IListItemsContainer {
   list?: any[];
   handler?: (item: string) => void;
+  handleDeletePriceList?: (item: string) => void;
   activeValue?: string;
+  browse?: boolean;
 }
 
 export const ListItemsContainer: React.FC<IListItemsContainer> = ({
@@ -12,7 +15,7 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
   activeValue = null,
   ...restProps
 }) => {
-  const { list, handler } = restProps;
+  const { list, handler, handleDeletePriceList, browse } = restProps;
   const [active, setActive] = React.useState<string | null>(activeValue);
 
   return (
@@ -34,8 +37,18 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
                 >
                   {item.name}
                 </ListItems.ListItemButton>
+                {!browse && (
+                  <ListItems.ListItemIconButton
+                    type='button'
+                    onClick={() =>
+                      handleDeletePriceList &&
+                      handleDeletePriceList(item.priceListID)
+                    }
+                  >
+                    <FaTrashAlt />
+                  </ListItems.ListItemIconButton>
+                )}
                 {children}
-                {/** for example icon button */}
               </ListItems.ListItem>
             );
           })}
