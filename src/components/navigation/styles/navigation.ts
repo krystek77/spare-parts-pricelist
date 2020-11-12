@@ -95,3 +95,10 @@ export const LogoText = styled.span`
   margin-left: 0.5rem;
   font-size: 0.9rem;
 `;
+export const Avatar = styled.img`
+  margin-left: 0.4rem;
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+`;
