@@ -16,6 +16,7 @@ export const AddPriceList: React.FC<IAddPriceList> = ({
 }) => {
   const [priceListName, setPriceListName] = React.useState<string>('');
   const [show, setShow] = React.useState<boolean>(showAddPriceList);
+  const [message, setMessage] = React.useState<string>('');
 
   const authUser = getAuthUser();
 
@@ -30,47 +31,56 @@ export const AddPriceList: React.FC<IAddPriceList> = ({
     dataBase
       .collection('pricelists')
       .add(newPriceList)
-      .then((result) => {
-        console.log(result.id);
-        console.log('PRICE LIST ADDED SUCCESSFULLY');
+      .then(() => {
+        setTimeout(() => {
+          setMessage('');
+        }, 1000);
+        setMessage('Price list added');
+        setPriceListName('');
+        setShow(false);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   };
 
   return (
     <React.Fragment>
+      {message && <Form.Message>{message}</Form.Message>}
       {show && (
-        <Form size={'addPriceList'}>
-          <Form.Title>Add Price List</Form.Title>
-          <Form.BaseForm onSubmit={(e) => handleAddPriceList(e)}>
-            <Form.Input
-              type='text'
-              id='priceListName'
-              name='priceListName'
-              value={priceListName}
-              placeholder='Enter name of pricelist'
-              onChange={(e) => setPriceListName(e.currentTarget.value)}
-              onKeyDown={(e) => setPriceListName(e.currentTarget.value)}
-            />
-            <Form.InputsGroup></Form.InputsGroup>
-            <Form.Break />
-            <Form.InputsGroup>
-              <Form.CustomButton type='submit' btn={'ADD'}>
-                +ADD
-              </Form.CustomButton>
-              <Form.CustomButton
-                type='button'
-                btn={'CANCEL'}
-                onClick={() => {
-                  setPriceListName('');
-                  setShow(false);
-                }}
-              >
-                CANCEL
-              </Form.CustomButton>
-            </Form.InputsGroup>
-          </Form.BaseForm>
-        </Form>
+        <React.Fragment>
+          <Form size={'addPriceList'}>
+            <Form.Title>Add Price List</Form.Title>
+            <Form.BaseForm onSubmit={(e) => handleAddPriceList(e)}>
+              <Form.Input
+                type='text'
+                id='priceListName'
+                name='priceListName'
+                value={priceListName}
+                placeholder='Enter name of pricelist'
+                onChange={(e) => setPriceListName(e.currentTarget.value)}
+                onKeyDown={(e) => setPriceListName(e.currentTarget.value)}
+              />
+              <Form.InputsGroup></Form.InputsGroup>
+              <Form.Break />
+              <Form.InputsGroup>
+                <Form.CustomButton type='submit' btn={'ADD'}>
+                  +ADD
+                </Form.CustomButton>
+                <Form.CustomButton
+                  type='button'
+                  btn={'CANCEL'}
+                  onClick={() => {
+                    setPriceListName('');
+                    setShow(false);
+                  }}
+                >
+                  CANCEL
+                </Form.CustomButton>
+              </Form.InputsGroup>
+            </Form.BaseForm>
+          </Form>
+        </React.Fragment>
       )}
       <Form.InputsGroup>
         <CustomButton onClick={() => setShow(!show)}>
