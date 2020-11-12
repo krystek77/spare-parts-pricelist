@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { ListItems } from '../components';
+import { getAuthUser } from '../helpers';
 
 interface IListItemsContainer {
   list?: any[];
@@ -17,7 +18,7 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
 }) => {
   const { list, handler, handleDeletePriceList, browse } = restProps;
   const [active, setActive] = React.useState<string | null>(activeValue);
-
+  const authUser = getAuthUser();
   return (
     <ListItems>
       <ListItems.Title>Price Lists</ListItems.Title>
@@ -44,6 +45,8 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
                       handleDeletePriceList &&
                       handleDeletePriceList(item.priceListID)
                     }
+                    isOwner={authUser.userID === item.userID}
+                    disabled={authUser.userID !== item.userID}
                   >
                     <FaTrashAlt />
                   </ListItems.ListItemIconButton>

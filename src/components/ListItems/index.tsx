@@ -29,6 +29,8 @@ interface IListItemsComposition {
   }>;
   Title: React.FC;
   ListItemIconButton: React.FC<{
+    isOwner?: boolean;
+    disabled?: boolean;
     group?: boolean;
     type: 'button';
     onClick?: () => void;

@@ -55,7 +55,10 @@ export const ListItemButton = styled.button<{ active?: boolean }>`
   ${({ active, theme }) => active && `background-color:${theme.colors.primary}`}
 `;
 
-export const ListItemIconButton = styled.button<{ group?: boolean }>`
+export const ListItemIconButton = styled.button<{
+  group?: boolean;
+  isOwner?: boolean;
+}>`
   padding: 0.5rem;
   cursor: pointer;
   text-align: center;
@@ -66,6 +69,7 @@ export const ListItemIconButton = styled.button<{ group?: boolean }>`
   border-left: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   background-color: ${({ theme }) => theme.colors.secondary};
+
   ${(props) =>
     props.group
       ? `background-color: ${props.theme.colors.primary}`
@@ -76,10 +80,14 @@ export const ListItemIconButton = styled.button<{ group?: boolean }>`
     props.group && `border-radius:0.2rem;font-size:0.8rem;padding:0.3rem`};
 
   &:hover {
-    ${(props) =>
-      props.group
-        ? `background-color: ${props.theme.colors.primary_darker}}`
-        : `background-color: ${props.theme.colors.secondary_darker}`};
+    ${({ group, theme }) =>
+      group
+        ? `background-color: ${theme.colors.primary_darker}}`
+        : `background-color: ${theme.colors.secondary_darker}`};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.dark};
+    cursor: auto;
   }
 `;
 export const ListItemButtonLink = styled(ReactRouterLink)`
