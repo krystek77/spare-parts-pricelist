@@ -1,7 +1,7 @@
 import React from 'react';
 import { dataBase } from '../lib/firebase';
 
-interface ISpareParts {
+interface ISparePart {
   sparePartID: string;
   comments: string;
   currency: string;
@@ -16,12 +16,13 @@ interface ISpareParts {
   userID: string;
   slug: string;
   added: string;
+  updated: string;
 }
 export const useSpareParts = (
   selectedPriceLists: string = '',
   currentUser: string = ''
 ) => {
-  const [spareParts, setSpareParts] = React.useState<ISpareParts[]>([]);
+  const [spareParts, setSpareParts] = React.useState<ISparePart[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -47,7 +48,7 @@ export const useSpareParts = (
 
     query
       .then((snapshot) => {
-        const spareParts: ISpareParts[] = [];
+        const spareParts: ISparePart[] = [];
         // const allSpareParts = snapshot.docs.map((doc) => {
         //   return {
         //     sparePartID: doc.id,
@@ -69,7 +70,7 @@ export const useSpareParts = (
         //   setSpareParts(spareParts);
         // }
         snapshot.forEach((doc) => {
-          const sparePart: ISpareParts = {
+          const sparePart: ISparePart = {
             sparePartID: doc.id,
             comments: doc.data().comments,
             currency: doc.data().currency,
@@ -84,6 +85,7 @@ export const useSpareParts = (
             userID: doc.data().userID,
             slug: doc.data().slug,
             added: doc.data().added,
+            updated: '',
           };
           spareParts.push(sparePart);
         });
