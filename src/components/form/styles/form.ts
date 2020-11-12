@@ -10,10 +10,15 @@ export const Container = styled.div<{ bgColor?: boolean }>`
   ${(props) =>
     props.bgColor ? 'background-color: rgba(0, 0, 0, 0.6)' : 'transparent'};
 `;
-export const Inner = styled.div`
+export const Inner = styled.div<{ size?: string }>`
   width: 100%;
   max-width: 640px;
-  min-width: 320px;
+  ${({ size }) =>
+    size === 'addPriceList'
+      ? `max-width:252px`
+      : size === 'signin'
+      ? `max-width:320px`
+      : `min-width:320px`};
   background-color: #131313;
   border: 1px solid black;
   padding: 1rem;

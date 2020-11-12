@@ -39,7 +39,7 @@ export const SigninPage: React.FC<ISigninPage> = () => {
   return (
     <HeaderContainer bgImage src='bg_Signin'>
       <NavigationContainer bgColor />
-      <Form bgColor>
+      <Form bgColor size={'signin'}>
         <Form.Title>Sign in</Form.Title>
         {isError && errors.server && (
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>

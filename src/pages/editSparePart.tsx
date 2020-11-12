@@ -251,7 +251,7 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         {/**  CONTENT TITLE */}
         {/** EDIT FORM */}
         {message && <Form.Message>{message}</Form.Message>}
-        <Form>
+        <Form size={'editSparePart'}>
           <Form.ClearButton
             type='button'
             onClick={() => {

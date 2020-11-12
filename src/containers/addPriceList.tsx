@@ -7,7 +7,7 @@ export const AddPriceList = ({ showAddPriceList = false }) => {
   return (
     <React.Fragment>
       {show && (
-        <Form>
+        <Form size={'addPriceList'}>
           <Form.Title>Add Price List</Form.Title>
           <Form.BaseForm
             onSubmit={(e) => {

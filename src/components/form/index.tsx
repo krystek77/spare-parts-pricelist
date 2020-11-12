@@ -22,6 +22,7 @@ import {
 
 interface IForm {
   bgColor?: boolean;
+  size?: string;
 }
 interface IFormComposition {
   BaseForm: React.FC<{
@@ -88,7 +89,7 @@ export const Form: React.FC<IForm> & IFormComposition = ({
 }) => {
   return (
     <Container {...restProps}>
-      <Inner>{children}</Inner>
+      <Inner {...restProps}>{children}</Inner>
     </Container>
   );
 };

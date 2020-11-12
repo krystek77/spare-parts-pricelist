@@ -112,7 +112,7 @@ export const AddUser: React.FC<IAddUser> = () => {
         {isError && errors.server && (
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>
         )}
-        <Form>
+        <Form size={'addUser'}>
           <Form.Title>Add User</Form.Title>
           <Form.BaseForm onSubmit={handleAddUser}>
             <Form.Input

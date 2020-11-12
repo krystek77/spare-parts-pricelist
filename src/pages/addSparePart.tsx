@@ -186,7 +186,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       </SidebarContainer>
       <MainContainer>
         {message && <Form.Message>{message}</Form.Message>}
-        <Form>
+        <Form size={'addSparePart'}>
           <Form.ClearButton
             type='button'
             onClick={() => {
