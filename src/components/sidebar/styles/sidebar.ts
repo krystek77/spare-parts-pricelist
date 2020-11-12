@@ -20,4 +20,4 @@ export const ButtonLink = styled(ReactRouterLink)`
   color: ${({ theme }) => theme.colors.light};
   font-size: 0.8rem;
   font-weight: 200;
-`;
+`;  

@@ -13,7 +13,6 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
   ...restProps
 }) => {
   const authUser = getAuthUser();
-  console.log(authUser);
   return (
     <>
       <Navigation.Container bgColor={bgColor}>
