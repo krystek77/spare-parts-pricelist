@@ -75,9 +75,8 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         const size = result?.size;
 
         if (size === 0) {
-          throw new Error(
-            'All spare parts from this price list have been deleted'
-          );
+          console.log('All spare parts from this price list have been deleted');
+          return;
         }
         const batch = dataBase.batch();
         result?.docs.forEach((doc) => {
