@@ -96,3 +96,11 @@ export const DeleteButton = styled.button`
     background-color: ${({ theme }) => theme.colors.primary_darker};
   }
 `;
+
+export const Message = styled.div`
+  color: ${({ theme }) => theme.colors.warnning};
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+`;

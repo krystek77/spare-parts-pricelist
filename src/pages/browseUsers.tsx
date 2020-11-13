@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth, useUsers } from '../hooks';
-import { auth } from '../lib/firebase';
+import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -13,7 +13,26 @@ import * as ROUTES from '../constants/routes';
 export const BrowseUSersPage: React.FC = () => {
   const { setAuthUser, initialValue } = useAuth();
   const { users } = useUsers();
+  const [message, setMessage] = React.useState('');
 
+  const handleDeleteUser = (userID: string) => {
+    dataBase
+      .collection('users')
+      .doc(userID)
+      .delete()
+      .then(() => {
+        setMessage('User deleted successfully');
+        setTimeout(() => {
+          setMessage('');
+        }, 500);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+        setTimeout(() => {
+          setMessage('');
+        }, 500);
+      });
+  };
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -80,7 +99,13 @@ export const BrowseUSersPage: React.FC = () => {
         {users &&
           users.length > 0 &&
           users.map((item) => (
-            <UserProfileContainer key={item.userID} authUser={item} userList />
+            <UserProfileContainer
+              key={item.userID}
+              authUser={item}
+              userList
+              handleDelete={handleDeleteUser}
+              message={message}
+            />
           ))}
         {/** USER LIST */}
       </MainContainer>

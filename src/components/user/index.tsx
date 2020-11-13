@@ -10,6 +10,7 @@ import {
   DataValue,
   ControlWrapper,
   DeleteButton,
+  Message,
 } from './styles/user';
 
 interface IUserProfileComposition {
@@ -25,6 +26,7 @@ interface IUserProfileComposition {
     onClick: () => void;
     disabled?: boolean;
   }>;
+  Message: React.FC;
 }
 export const UserProfile: React.FC<{ userList?: boolean }> &
   IUserProfileComposition = ({ children, userList, ...restProps }) => {
@@ -76,4 +78,7 @@ UserProfile.DeleteButton = function UserProfileDeleteButton({
   ...restProps
 }) {
   return <DeleteButton {...restProps}>{children}</DeleteButton>;
+};
+UserProfile.Message = function UserProfileMessage({ children, ...restProps }) {
+  return <Message {...restProps}>{children}</Message>;
 };
