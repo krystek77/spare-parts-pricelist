@@ -7,12 +7,14 @@ import { NoMatchPage } from './nomatch';
 import { AddUser } from './addUser';
 import { AddSparePart } from './addSparePart';
 import { EditSparePartPage } from './editSparePart';
+import { EditUserPage } from './editUser';
 export {
   HomePage,
   BrowsePage,
   SigninPage,
   AdminPage,
   UserPage,
+  EditUserPage,
   AddUser,
   AddSparePart,
   EditSparePartPage,

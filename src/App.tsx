@@ -6,6 +6,7 @@ import {
   AdminPage,
   SigninPage,
   UserPage,
+  EditUserPage,
   AddUser,
   AddSparePart,
   EditSparePartPage,
@@ -31,6 +32,13 @@ export function App() {
         {/* <Route path={ROUTES.SIGNIN}>
           <SigninPage />
         </Route> */}
+        <ProtectedRoute
+          role={ROLES.USER}
+          authUser={authUser}
+          path={ROUTES.USER_EDIT}
+        >
+          <EditUserPage />
+        </ProtectedRoute>
         <ProtectedRoute
           role={ROLES.USER}
           authUser={authUser}
