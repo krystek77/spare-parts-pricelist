@@ -8,6 +8,8 @@ import {
   Data,
   DataLabel,
   DataValue,
+  ControlWrapper,
+  DeleteButton,
 } from './styles/user';
 
 interface IUserProfileComposition {
@@ -17,6 +19,12 @@ interface IUserProfileComposition {
   Data: React.FC<{ role?: string }>;
   DataLabel: React.FC;
   DataValue: React.FC;
+  ControlWrapper: React.FC;
+  DeleteButton: React.FC<{
+    type: 'button';
+    onClick: () => void;
+    disabled?: boolean;
+  }>;
 }
 export const UserProfile: React.FC<{ userList?: boolean }> &
   IUserProfileComposition = ({ children, userList, ...restProps }) => {
@@ -56,4 +64,16 @@ UserProfile.DataValue = function UserProfileDataValue({
   ...restProps
 }) {
   return <DataValue {...restProps}>{children}</DataValue>;
+};
+UserProfile.ControlWrapper = function UserProfileControlWrapper({
+  children,
+  ...restProps
+}) {
+  return <ControlWrapper {...restProps}>{children}</ControlWrapper>;
+};
+UserProfile.DeleteButton = function UserProfileDeleteButton({
+  children,
+  ...restProps
+}) {
+  return <DeleteButton {...restProps}>{children}</DeleteButton>;
 };

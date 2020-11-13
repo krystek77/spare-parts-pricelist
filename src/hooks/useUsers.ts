@@ -16,10 +16,8 @@ export const useUsers = () => {
   const [error, setError] = React.useState<string>('');
 
   React.useEffect(() => {
-    console.log('[useUsers] - useEffect');
     const unsubscribe = dataBase.collection('users').onSnapshot(
       (snapshot) => {
-        console.log(snapshot);
         const users: IAuthUser[] = snapshot.docs.map((doc) => {
           return {
             role: doc.data().role,

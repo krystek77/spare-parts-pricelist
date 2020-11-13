@@ -11,6 +11,7 @@ export const Inner = styled.div<{ userList?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
   flex-direction: ${({ userList }) => userList && 'row'};
   justify-content: ${({ userList }) => userList && 'center'};
   padding-top: ${({ userList }) => userList && '1rem'};
@@ -71,4 +72,27 @@ export const DataValue = styled.div`
   font-size: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+`;
+export const ControlWrapper = styled.div`
+  flex-basis: 100%;
+  text-align: right;
+`;
+export const DeleteButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary_darker};
+  border-radius: 0.2rem;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  &:disabled {
+    pointer-events: none;
+    background-color: ${({ theme }) => theme.colors.dark};
+    border: 1px solid ${({ theme }) => theme.colors.gray};
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary_darker};
+  }
 `;

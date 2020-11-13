@@ -1,12 +1,13 @@
 import React from 'react';
 import { UserProfile } from '../components';
+import { FaTrashAlt } from 'react-icons/fa';
+import { ROLES } from '../helpers';
 
 export const UserProfileContainer = ({ ...restProps }) => {
   const {
     authUser: { role, email, avatar, nick, added, country, mobile, city },
     userList,
   } = restProps;
-  console.log(userList);
   return (
     <UserProfile userList={userList}>
       <UserProfile.ImageWrapper>
@@ -54,6 +55,17 @@ export const UserProfileContainer = ({ ...restProps }) => {
           </UserProfile.Data>
         )}
       </UserProfile.DataWrapper>
+      {userList && (
+        <UserProfile.ControlWrapper>
+          <UserProfile.DeleteButton
+            type='button'
+            onClick={() => console.log('DELETE USER')}
+            disabled={role === ROLES.ADMIN}
+          >
+            <FaTrashAlt />
+          </UserProfile.DeleteButton>
+        </UserProfile.ControlWrapper>
+      )}
     </UserProfile>
   );
 };
