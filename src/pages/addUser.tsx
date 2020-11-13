@@ -7,7 +7,7 @@ import {
   NavigationContainer,
   SidebarContainer,
 } from '../containers';
-import { Navigation, Form, ListItems } from '../components';
+import { Navigation, Form, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { dataValidation, checkLength, ROLES } from '../helpers';
 
@@ -118,6 +118,12 @@ export const AddUser: React.FC<IAddUser> = () => {
         {/** LINKS */}
       </SidebarContainer>
       <MainContainer>
+        {/** PAGE TITLE */}
+        <ContentTitle>
+          <ContentTitle.BaseTitle>ADD USER</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>Another satisfied user</ContentTitle.SubTitle>
+        </ContentTitle>
+        {/** PAGE TITLE */}
         {isError && errors.server && (
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>
         )}
