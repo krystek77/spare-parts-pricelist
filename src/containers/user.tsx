@@ -40,18 +40,24 @@ export const UserProfileContainer = ({ ...restProps }) => {
           <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
           <UserProfile.DataValue>{role}</UserProfile.DataValue>
         </UserProfile.Data>
-        <UserProfile.Data>
-          <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
-          <UserProfile.DataValue>{country}</UserProfile.DataValue>
-        </UserProfile.Data>
-        <UserProfile.Data>
-          <UserProfile.DataLabel>City:</UserProfile.DataLabel>
-          <UserProfile.DataValue>{city}</UserProfile.DataValue>
-        </UserProfile.Data>
-        <UserProfile.Data>
-          <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
-          <UserProfile.DataValue>{mobile}</UserProfile.DataValue>
-        </UserProfile.Data>
+        {country && (
+          <UserProfile.Data>
+            <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
+            <UserProfile.DataValue>{country}</UserProfile.DataValue>
+          </UserProfile.Data>
+        )}
+        {city && (
+          <UserProfile.Data>
+            <UserProfile.DataLabel>City:</UserProfile.DataLabel>
+            <UserProfile.DataValue>{city}</UserProfile.DataValue>
+          </UserProfile.Data>
+        )}
+        {mobile && (
+          <UserProfile.Data>
+            <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
+            <UserProfile.DataValue>{mobile}</UserProfile.DataValue>
+          </UserProfile.Data>
+        )}
       </UserProfile.DataWrapper>
     </UserProfile>
   );
