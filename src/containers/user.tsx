@@ -75,6 +75,7 @@ export const UserProfileContainer = ({ ...restProps }) => {
               type='button'
               onClick={() => handleDelete && handleDelete(userID)}
               disabled={role === ROLES.ADMIN}
+              
             >
               <FaTrashAlt />
             </UserProfile.DeleteButton>
