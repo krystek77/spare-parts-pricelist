@@ -17,7 +17,7 @@ import * as ROUTES from '../constants/routes';
 interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
-  console.log(authUser);
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -75,7 +75,7 @@ export const UserPage: React.FC<IUserPage> = () => {
           <UserProfile.DataWrapper>
             <UserProfile.Data>
               <UserProfile.DataLabel>Added:</UserProfile.DataLabel>
-              <UserProfile.DataValue>2020-11-13</UserProfile.DataValue>
+              <UserProfile.DataValue>{authUser.added}</UserProfile.DataValue>
             </UserProfile.Data>
             <UserProfile.Data>
               <UserProfile.DataLabel>Email:</UserProfile.DataLabel>
@@ -93,15 +93,15 @@ export const UserPage: React.FC<IUserPage> = () => {
             </UserProfile.Data>
             <UserProfile.Data>
               <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
-              <UserProfile.DataValue>Poland</UserProfile.DataValue>
+              <UserProfile.DataValue>{authUser.country}</UserProfile.DataValue>
             </UserProfile.Data>
             <UserProfile.Data>
               <UserProfile.DataLabel>City:</UserProfile.DataLabel>
-              <UserProfile.DataValue>Kielce</UserProfile.DataValue>
+              <UserProfile.DataValue>{authUser.city}</UserProfile.DataValue>
             </UserProfile.Data>
             <UserProfile.Data>
               <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
-              <UserProfile.DataValue>602 191 607</UserProfile.DataValue>
+              <UserProfile.DataValue>{authUser.mobile}</UserProfile.DataValue>
             </UserProfile.Data>
           </UserProfile.DataWrapper>
         </UserProfile>

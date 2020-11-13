@@ -9,6 +9,10 @@ interface IAuthUser {
   email: string;
   avatar: string;
   nick: string;
+  added: string;
+  country: string;
+  mobile: string;
+  city: string;
 }
 const initialValue: IAuthUser = {
   avatar: '',
@@ -16,6 +20,10 @@ const initialValue: IAuthUser = {
   email: '',
   role: '',
   nick: '',
+  added: '',
+  country: '',
+  mobile: '',
+  city: '',
 };
 
 export const useAuth = () => {
@@ -44,6 +52,10 @@ export const useAuth = () => {
                 email: doc.data()?.email,
                 role: doc.data()?.role,
                 nick: doc.data()?.nick,
+                added: doc.data()?.added,
+                country: doc.data()?.country,
+                mobile: doc.data()?.mobile,
+                city: doc.data()?.city,
               };
               localStorage.setItem('authUser', JSON.stringify(authUser));
               setAuthUser(authUser);

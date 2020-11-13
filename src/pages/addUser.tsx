@@ -43,13 +43,17 @@ export const AddUser: React.FC<IAddUser> = () => {
       .then((authUser) => {
         if (authUser.user) {
           const uid = authUser.user.uid;
-          dataBase.collection('users').doc(uid).set({
-            userID: uid,
-            email: email,
-            role: userRole,
-            nick: nick,
-            avatar: 'default_avatar',
-          });
+          dataBase
+            .collection('users')
+            .doc(uid)
+            .set({
+              userID: uid,
+              email: email,
+              role: userRole,
+              nick: nick,
+              avatar: 'default_avatar',
+              added: new Date().toISOString().slice(0, 10),
+            });
         }
       })
       .then(() => {
