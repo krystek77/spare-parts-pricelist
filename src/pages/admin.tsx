@@ -32,7 +32,8 @@ export const AdminPage: React.FC<IAdminPage> = () => {
     selectedPriceLists,
     authUser.userID
   );
-  const [message, setMessage] = React.useState('');
+  const [message, setMessage] = React.useState<string>('');
+  const [messagePriceList, setMessagePriceList] = React.useState<string>('');
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
@@ -41,7 +42,6 @@ export const AdminPage: React.FC<IAdminPage> = () => {
     selectedPriceList && !!selectedPriceList ? selectedPriceList.name : 'ALL';
 
   const handleDeletePriceList = (priceListID: string) => {
-    console.log('DELETE PRICE LIST', priceListID);
     /**
      * A specific price list can only be deleted by the user who created it.
      * If other user added spare part to it than it was deleted.
@@ -75,7 +75,12 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         const size = result?.size;
 
         if (size === 0) {
-          console.log('All spare parts from this price list have been deleted');
+          setMessagePriceList(
+            'All spare parts from this price list have been deleted'
+          );
+          setTimeout(() => {
+            setMessagePriceList('');
+          }, 500);
           return;
         }
         const batch = dataBase.batch();
@@ -85,11 +90,13 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         return batch.commit();
       })
       .then(() => {
-        console.log('Now I can delete pricelist');
         return dataBase.collection('pricelists').doc(priceListID).delete();
       })
       .then(() => {
-        console.log('PRICELIST DELETED');
+        setMessagePriceList('The price list deleted successfully');
+        setTimeout(() => {
+          setMessagePriceList('');
+        }, 500);
         const restSpareParts = spareParts.filter(
           (item) => item.priceListID !== priceListID
         );
@@ -97,6 +104,10 @@ export const AdminPage: React.FC<IAdminPage> = () => {
       })
       .catch((error) => {
         console.log(error.message);
+        setMessagePriceList(error.message);
+        setTimeout(() => {
+          setMessagePriceList('');
+        }, 500);
       });
   };
 
@@ -174,7 +185,9 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           </ListItems.List>
         </ListItems>
         {/** LINKS */}
-
+        {messagePriceList && (
+          <ListItems.ListMessage>{messagePriceList}</ListItems.ListMessage>
+        )}
         {/** PRICE LISTS */}
         <ListItemsContainer
           list={priceLists}

@@ -97,3 +97,8 @@ export const ListItemButtonLink = styled(ReactRouterLink)`
     color: ${({ theme }) => theme.colors.medium};
   }
 `;
+export const ListMessage = styled.div`
+  color: ${({ theme }) => theme.colors.warnning};
+  text-align: center;
+  font-weight: 300;
+`;

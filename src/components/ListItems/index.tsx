@@ -9,6 +9,7 @@ import {
   ListItemIconButton,
   Title,
   ListItemButtonLink,
+  ListMessage,
 } from './styles/listItems';
 
 interface IListItemsComposition {
@@ -36,6 +37,7 @@ interface IListItemsComposition {
     onClick?: () => void;
     onKeyDown?: () => void;
   }>;
+  ListMessage: React.FC;
 }
 export const ListItems: React.FC<{ dropDown?: boolean }> &
   IListItemsComposition = ({ dropDown, children }) => {
@@ -77,4 +79,11 @@ ListItems.ListItemIconButton = function ListItemsListItemIconButton({
   ...restProps
 }) {
   return <ListItemIconButton {...restProps}>{children}</ListItemIconButton>;
+};
+
+ListItems.ListMessage = function ListItemsListMessage({
+  children,
+  ...restProps
+}) {
+  return <ListMessage {...restProps}>{children}</ListMessage>;
 };
