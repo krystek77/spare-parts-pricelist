@@ -88,7 +88,13 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         console.log('Now I can delete pricelist');
         return dataBase.collection('pricelists').doc(priceListID).delete();
       })
-      .then(() => console.log('PRICELIST DELETED'))
+      .then(() => {
+        console.log('PRICELIST DELETED');
+        const restSpareParts = spareParts.filter(
+          (item) => item.priceListID !== priceListID
+        );
+        setSpareParts(restSpareParts);
+      })
       .catch((error) => {
         console.log(error.message);
       });
