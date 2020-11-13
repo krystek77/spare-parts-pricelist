@@ -11,8 +11,6 @@ export const usePriceLists = (selected: string) => {
   const [priceLists, setPriceLists] = React.useState<IPriceList[]>([]);
 
   React.useEffect(() => {
-    console.log('[usePriceList] - useEffect');
-
     let unsubscribe =
       selected !== ''
         ? dataBase
