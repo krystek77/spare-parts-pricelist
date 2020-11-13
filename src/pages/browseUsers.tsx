@@ -1,16 +1,18 @@
 import React from 'react';
-import { useAuth } from '../hooks';
+import { useAuth, useUsers } from '../hooks';
 import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  UserProfileContainer,
 } from '../containers';
-import { Navigation, ListItems } from '../components';
+import { Navigation, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 
 export const BrowseUSersPage: React.FC = () => {
   const { setAuthUser, initialValue } = useAuth();
+  const { users } = useUsers();
 
   return (
     <React.Fragment>
@@ -67,7 +69,21 @@ export const BrowseUSersPage: React.FC = () => {
         </ListItems>
         {/** LINKS */}
       </SidebarContainer>
-      <MainContainer>BROSWE USERS PAGE</MainContainer>
+      <MainContainer>
+        {/** PAGE TITLE */}
+        <ContentTitle>
+          <ContentTitle.BaseTitle>USER LIST</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>All users</ContentTitle.SubTitle>
+        </ContentTitle>
+        {/** PAGE TITLE */}
+        {/** USER LIST */}
+        {users &&
+          users.length > 0 &&
+          users.map((item) => (
+            <UserProfileContainer key={item.userID} authUser={item} />
+          ))}
+        {/** USER LIST */}
+      </MainContainer>
     </React.Fragment>
   );
 };
