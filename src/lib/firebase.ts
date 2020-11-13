@@ -1,8 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-
-
+import 'firebase/storage';
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
@@ -18,5 +17,6 @@ firebase.initializeApp(firebaseConfig);
 
 const dataBase = firebase.firestore();
 const auth = firebase.auth();
+const storage = firebase.storage();
 
-export { firebase, dataBase, auth };
+export { firebase, dataBase, auth, storage };
