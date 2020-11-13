@@ -5,8 +5,9 @@ import {
   NavigationContainer,
   SidebarContainer,
 } from '../containers';
-import { Navigation } from '../components';
+import { Navigation, ListItems } from '../components';
 import { useAuth } from '../hooks';
+import * as ROUTES from '../constants/routes';
 
 interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
@@ -32,7 +33,25 @@ export const UserPage: React.FC<IUserPage> = () => {
           sign out
         </Navigation.SignoutButton>
       </NavigationContainer>
-      <SidebarContainer>SIDEBAR USER ....</SidebarContainer>
+      <SidebarContainer>
+        {/** LINKS */}
+        <ListItems>
+          <ListItems.Title>LINKS</ListItems.Title>
+          <ListItems.List>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.USER_EDIT}>
+                Edit Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+                Browse Price Lists
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+          </ListItems.List>
+        </ListItems>
+        {/** LINKS */}
+      </SidebarContainer>
       <MainContainer>MAIN CONTAINER</MainContainer>
     </React.Fragment>
   );
