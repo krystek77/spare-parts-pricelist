@@ -31,7 +31,7 @@ export const UserProfileContainer = ({ ...restProps }) => {
             {`${nick}`.toUpperCase()}
           </UserProfile.DataValue>
         </UserProfile.Data>
-        <UserProfile.Data>
+        <UserProfile.Data role={role}>
           <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
           <UserProfile.DataValue>{role}</UserProfile.DataValue>
         </UserProfile.Data>

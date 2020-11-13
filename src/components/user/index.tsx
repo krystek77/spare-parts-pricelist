@@ -14,7 +14,7 @@ interface IUserProfileComposition {
   ImageWrapper: React.FC;
   Image: React.FC<{ src: string; alt: string; userList?: boolean }>;
   DataWrapper: React.FC;
-  Data: React.FC;
+  Data: React.FC<{ role?: string }>;
   DataLabel: React.FC;
   DataValue: React.FC;
 }

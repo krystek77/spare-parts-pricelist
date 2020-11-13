@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { ROLES } from '../../../helpers';
 export const Container = styled.div`
   width: 100%;
   padding: 0 1rem;
@@ -34,7 +35,7 @@ export const Image = styled.img<{ userList?: boolean }>`
   max-width: ${({ userList }) => userList && '150px'};
   max-height: ${({ userList }) => userList && 'auto'};
 `;
-export const Data = styled.div`
+export const Data = styled.div<{ role?: string }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -43,6 +44,10 @@ export const Data = styled.div`
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   background-color: #333333;
+  ${({ role, theme }) =>
+    role === ROLES.ADMIN
+      ? `border-bottom:1px solid ${theme.colors.secondary_darker};background-color: ${theme.colors.secondary_lighter};`
+      : `border-bottom:none;background-color: #333333`};
   margin-bottom: 0.3rem;
   color: #b7b7b7;
   &:nth-child(2) {
