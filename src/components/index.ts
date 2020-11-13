@@ -13,6 +13,7 @@ import { Table } from './table';
 import { ContentTitle } from './title';
 import { Info } from './info';
 import { Spinner } from './spinner';
+import { UserProfile } from './user';
 export {
   Jumbotron,
   Tabs,
@@ -29,4 +30,5 @@ export {
   ContentTitle,
   Info,
   Spinner,
+  UserProfile,
 };

@@ -5,14 +5,19 @@ import {
   NavigationContainer,
   SidebarContainer,
 } from '../containers';
-import { Navigation, ListItems } from '../components';
+import {
+  Navigation,
+  ListItems,
+  UserProfile,
+  ContentTitle,
+} from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 
 interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
-  const { setAuthUser, initialValue } = useAuth();
-
+  const { authUser, setAuthUser, initialValue } = useAuth();
+  console.log(authUser);
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -52,7 +57,56 @@ export const UserPage: React.FC<IUserPage> = () => {
         </ListItems>
         {/** LINKS */}
       </SidebarContainer>
-      <MainContainer>MAIN CONTAINER</MainContainer>
+      <MainContainer>
+        {/** TITLE */}
+        <ContentTitle>
+          <ContentTitle.BaseTitle>USER PROFILE</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>{authUser.nick}</ContentTitle.SubTitle>
+        </ContentTitle>
+        {/** TITLE */}
+        {/** USER PROFILE */}
+        <UserProfile>
+          <UserProfile.ImageWrapper>
+            <UserProfile.Image
+              src={`../assets/images/${authUser.avatar}.webP`}
+              alt='User avatar'
+            />
+          </UserProfile.ImageWrapper>
+          <UserProfile.DataWrapper>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Added:</UserProfile.DataLabel>
+              <UserProfile.DataValue>2020-11-13</UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Email:</UserProfile.DataLabel>
+              <UserProfile.DataValue>{authUser.email}</UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Name:</UserProfile.DataLabel>
+              <UserProfile.DataValue>
+                {`${authUser.nick}`.toUpperCase()}
+              </UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
+              <UserProfile.DataValue>{authUser.role}</UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
+              <UserProfile.DataValue>Poland</UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>City:</UserProfile.DataLabel>
+              <UserProfile.DataValue>Kielce</UserProfile.DataValue>
+            </UserProfile.Data>
+            <UserProfile.Data>
+              <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
+              <UserProfile.DataValue>602 191 607</UserProfile.DataValue>
+            </UserProfile.Data>
+          </UserProfile.DataWrapper>
+        </UserProfile>
+        {/** USER PROFILE */}
+      </MainContainer>
     </React.Fragment>
   );
 };
