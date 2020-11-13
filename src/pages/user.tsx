@@ -4,13 +4,9 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  UserProfileContainer,
 } from '../containers';
-import {
-  Navigation,
-  ListItems,
-  UserProfile,
-  ContentTitle,
-} from '../components';
+import { Navigation, ListItems, ContentTitle } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 
@@ -65,46 +61,7 @@ export const UserPage: React.FC<IUserPage> = () => {
         </ContentTitle>
         {/** TITLE */}
         {/** USER PROFILE */}
-        <UserProfile>
-          <UserProfile.ImageWrapper>
-            <UserProfile.Image
-              src={`../assets/images/${authUser.avatar}.webP`}
-              alt='User avatar'
-            />
-          </UserProfile.ImageWrapper>
-          <UserProfile.DataWrapper>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Added:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.added}</UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Email:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.email}</UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Name:</UserProfile.DataLabel>
-              <UserProfile.DataValue>
-                {`${authUser.nick}`.toUpperCase()}
-              </UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.role}</UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.country}</UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>City:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.city}</UserProfile.DataValue>
-            </UserProfile.Data>
-            <UserProfile.Data>
-              <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
-              <UserProfile.DataValue>{authUser.mobile}</UserProfile.DataValue>
-            </UserProfile.Data>
-          </UserProfile.DataWrapper>
-        </UserProfile>
+        <UserProfileContainer authUser={authUser} />
         {/** USER PROFILE */}
       </MainContainer>
     </React.Fragment>

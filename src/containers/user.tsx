@@ -1,0 +1,58 @@
+import React from 'react';
+import { UserProfile } from '../components';
+
+export const UserProfileContainer = ({ ...restProps }) => {
+  const {
+    role,
+    email,
+    avatar,
+    nick,
+    added,
+    country,
+    mobile,
+    city,
+  } = restProps.authUser;
+
+  return (
+    <UserProfile>
+      <UserProfile.ImageWrapper>
+        <UserProfile.Image
+          src={`../assets/images/${avatar}.webP`}
+          alt='User avatar'
+        />
+      </UserProfile.ImageWrapper>
+      <UserProfile.DataWrapper>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Added:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{added}</UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Email:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{email}</UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Name:</UserProfile.DataLabel>
+          <UserProfile.DataValue>
+            {`${nick}`.toUpperCase()}
+          </UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{role}</UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Country:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{country}</UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>City:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{city}</UserProfile.DataValue>
+        </UserProfile.Data>
+        <UserProfile.Data>
+          <UserProfile.DataLabel>Mobile phone:</UserProfile.DataLabel>
+          <UserProfile.DataValue>{mobile}</UserProfile.DataValue>
+        </UserProfile.Data>
+      </UserProfile.DataWrapper>
+    </UserProfile>
+  );
+};
