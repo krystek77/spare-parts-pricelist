@@ -12,19 +12,17 @@ import {
 
 interface IUserProfileComposition {
   ImageWrapper: React.FC;
-  Image: React.FC<{ src: string; alt: string }>;
+  Image: React.FC<{ src: string; alt: string; userList?: boolean }>;
   DataWrapper: React.FC;
   Data: React.FC;
   DataLabel: React.FC;
   DataValue: React.FC;
 }
-export const UserProfile: React.FC & IUserProfileComposition = ({
-  children,
-  ...restProps
-}) => {
+export const UserProfile: React.FC<{ userList?: boolean }> &
+  IUserProfileComposition = ({ children, userList, ...restProps }) => {
   return (
     <Container>
-      <Inner>{children}</Inner>
+      <Inner userList={userList}>{children}</Inner>
     </Container>
   );
 };

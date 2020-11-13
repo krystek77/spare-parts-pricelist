@@ -3,22 +3,17 @@ import { UserProfile } from '../components';
 
 export const UserProfileContainer = ({ ...restProps }) => {
   const {
-    role,
-    email,
-    avatar,
-    nick,
-    added,
-    country,
-    mobile,
-    city,
-  } = restProps.authUser;
-
+    authUser: { role, email, avatar, nick, added, country, mobile, city },
+    userList,
+  } = restProps;
+  console.log(userList);
   return (
-    <UserProfile>
+    <UserProfile userList={userList}>
       <UserProfile.ImageWrapper>
         <UserProfile.Image
           src={`../assets/images/${avatar}.webP`}
           alt='User avatar'
+          userList={userList}
         />
       </UserProfile.ImageWrapper>
       <UserProfile.DataWrapper>

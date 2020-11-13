@@ -80,7 +80,7 @@ export const BrowseUSersPage: React.FC = () => {
         {users &&
           users.length > 0 &&
           users.map((item) => (
-            <UserProfileContainer key={item.userID} authUser={item} />
+            <UserProfileContainer key={item.userID} authUser={item} userList />
           ))}
         {/** USER LIST */}
       </MainContainer>
