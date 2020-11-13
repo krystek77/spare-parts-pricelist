@@ -166,6 +166,11 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
+                Browse Users
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
                 Add Spare Part
               </ListItems.ListItemButtonLink>

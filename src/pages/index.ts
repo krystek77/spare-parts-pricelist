@@ -8,6 +8,7 @@ import { AddUser } from './addUser';
 import { AddSparePart } from './addSparePart';
 import { EditSparePartPage } from './editSparePart';
 import { EditUserPage } from './editUser';
+import { BrowseUSersPage } from './browseUsers';
 export {
   HomePage,
   BrowsePage,
@@ -16,6 +17,7 @@ export {
   UserPage,
   EditUserPage,
   AddUser,
+  BrowseUSersPage,
   AddSparePart,
   EditSparePartPage,
   NoMatchPage,

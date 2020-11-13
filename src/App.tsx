@@ -8,6 +8,7 @@ import {
   UserPage,
   EditUserPage,
   AddUser,
+  BrowseUSersPage,
   AddSparePart,
   EditSparePartPage,
   NoMatchPage,
@@ -65,6 +66,7 @@ export function App() {
         >
           <AddSparePart />
         </ProtectedRoute>
+
         <ProtectedRoute
           path={ROUTES.ADD_USER}
           authUser={authUser}
@@ -76,6 +78,13 @@ export function App() {
         {/* <Route path={ROUTES.ADD_USER}>
           <AddUser />
         </Route> */}
+        <ProtectedRoute
+          path={ROUTES.BROWSE_USERS}
+          authUser={authUser}
+          role={ROLES.ADMIN}
+        >
+          <BrowseUSersPage />
+        </ProtectedRoute>
 
         <ProtectedRoute
           exact
