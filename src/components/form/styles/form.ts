@@ -131,6 +131,7 @@ export const InputLabel = styled.label`
   font-size: 0.8rem;
   font-weight: 300;
   padding: 0.3rem;
+  min-width: 100px;
   cursor: pointer;
 `;
 export const IconButton = styled.button`

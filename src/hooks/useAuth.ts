@@ -13,6 +13,7 @@ interface IAuthUser {
   country: string;
   mobile: string;
   city: string;
+  lastUpdated: string;
 }
 const initialValue: IAuthUser = {
   avatar: '',
@@ -24,6 +25,7 @@ const initialValue: IAuthUser = {
   country: '',
   mobile: '',
   city: '',
+  lastUpdated: '',
 };
 
 export const useAuth = () => {
@@ -56,6 +58,7 @@ export const useAuth = () => {
                 country: doc.data()?.country,
                 mobile: doc.data()?.mobile,
                 city: doc.data()?.city,
+                lastUpdated: doc.data()?.lastUpdated,
               };
               localStorage.setItem('authUser', JSON.stringify(authUser));
               setAuthUser(authUser);

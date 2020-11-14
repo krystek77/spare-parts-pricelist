@@ -26,7 +26,7 @@ export const UserProfileContainer = ({ ...restProps }) => {
       <UserProfile userList={userList}>
         <UserProfile.ImageWrapper>
           <UserProfile.Image
-            src={`../assets/images/${avatar}.webP`}
+            src={avatar}
             alt='User avatar'
             userList={userList}
           />
@@ -75,7 +75,6 @@ export const UserProfileContainer = ({ ...restProps }) => {
               type='button'
               onClick={() => handleDelete && handleDelete(userID)}
               disabled={role === ROLES.ADMIN}
-              
             >
               <FaTrashAlt />
             </UserProfile.DeleteButton>

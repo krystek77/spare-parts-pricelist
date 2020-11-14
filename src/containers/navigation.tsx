@@ -26,10 +26,7 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
           {authUser && authUser.role && (
             <Navigation.Panel>
               {`Hi, ${authUser.nick}`}
-              <Navigation.Avatar
-                src={`../../assets/images/${authUser.avatar}.webP`}
-                alt={`User avatar`}
-              />
+              <Navigation.Avatar src={authUser.avatar} alt={`User avatar`} />
             </Navigation.Panel>
           )}
           <Navigation.Panel>{children}</Navigation.Panel>

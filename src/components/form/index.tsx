@@ -33,9 +33,10 @@ interface IFormComposition {
   ErrorServer: React.FC;
   Message: React.FC;
   Input: React.FC<{
+    accept?: string;
     type: string;
     name: string;
-    value: string;
+    value?: string;
     placeholder: string;
     id?: string;
     onChange: (e: React.FormEvent<HTMLInputElement>) => void;
