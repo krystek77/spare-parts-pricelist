@@ -93,10 +93,6 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
       spareParts.find((item) => item.sparePartID === match.params.sparePartID);
 
     if (updatedSparePart) {
-      // console.log(updatedSparePart);
-      // console.log('userID', authUser.userID);
-      // console.log('sparePartID', match.params.sparePartID);
-      // console.log('priceListID', updatedSparePart.priceListID);
 
       setName(updatedSparePart.name);
       setModel(updatedSparePart.model);
@@ -146,7 +142,6 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
       selectedPriceLists &&
       isPrice(purchasePrice) &&
       isPrice(sellingPrice);
-    // console.log('seeling', isPrice(sellingPrice));
   }
 
   const handleEditSpareParts = (e: React.SyntheticEvent) => {

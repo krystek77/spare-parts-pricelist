@@ -73,7 +73,6 @@ export const EditUserPage: React.FC<IUserPage> = () => {
       const uploadTask = storageRef.put(file);
 
       if (isUpdateEmail) {
-        console.log('Is update email too');
         const user = auth.currentUser;
         const credential = firebase.auth.EmailAuthProvider.credential(
           currentEmail,
@@ -152,7 +151,6 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             setMessage(error.message);
           });
       } else {
-        console.log('No is update email too');
         uploadTask.on(
           'state_changed',
           null,

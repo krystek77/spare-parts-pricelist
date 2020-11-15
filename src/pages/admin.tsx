@@ -104,7 +104,6 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         setSpareParts(restSpareParts);
       })
       .catch((error) => {
-        console.log(error.message);
         setMessagePriceList(error.message);
         setTimeout(() => {
           setMessagePriceList('');

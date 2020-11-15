@@ -34,7 +34,6 @@ export const useUsers = () => {
         setUsers(users);
       },
       (error) => {
-        console.log(error.message);
         setError(error.message);
       }
     );

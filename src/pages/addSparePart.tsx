@@ -61,15 +61,6 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       ? selectedPriceList.name
       : 'PriceList no chosen';
 
-  /**
-   * VALIDATION
-   */
-  // console.log('name', isSparePartName(name));
-  // console.log('model', isModel(model));
-  // console.log('from', isYear(from));
-  // console.log('to', isYear(to));
-  // console.log('price', isPrice(purchasePrice));
-
   let isValidForm =
     isSparePartName(name) &&
     isModel(model) &&
@@ -87,7 +78,6 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       selectedPriceLists &&
       isPrice(purchasePrice) &&
       isPrice(sellingPrice);
-    // console.log('seeling', isPrice(sellingPrice));
   }
 
   const handleAddSpareParts = (e: React.SyntheticEvent) => {

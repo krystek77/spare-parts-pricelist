@@ -28,9 +28,7 @@ const ExchangeRateContextProvider: React.FC = ({ children }) => {
     };
 
     fetchExchangeRate();
-    return () => {
-      console.log('CLEAN SIDE EFFECTS');
-    };
+    return () => {};
   }, []);
 
   return (
