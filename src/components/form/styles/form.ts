@@ -1,12 +1,14 @@
 import styled from 'styled-components/macro';
 
-export const Container = styled.div<{ bgColor?: boolean }>`
+export const Container = styled.div<{ bgColor?: boolean; size?: string }>`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  margin-top: ${({ size }) => size && '1rem'};
+  margin-bottom: ${({ size }) => size && '1rem'};
   ${(props) =>
     props.bgColor ? 'background-color: rgba(0, 0, 0, 0.6)' : 'transparent'};
 `;

@@ -8,12 +8,28 @@ import {
   TableContainer,
   InfoContainer,
 } from '../containers';
-import { Navigation, ContentTitle } from '../components';
+import { Navigation, ContentTitle, Form } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
-
+interface ISparePart {
+  sparePartID: string;
+  comments: string;
+  currency: string;
+  description: string;
+  from: string;
+  model: string;
+  name: string;
+  priceListID: string;
+  purchasePrice: number;
+  sellingPrice: number;
+  to: string;
+  userID: string;
+  slug: string;
+  added: string;
+  updated: string;
+}
 interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
   children,
@@ -59,7 +75,21 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         }, 1000);
       });
   };
-  // console.log(localStorage.getItem('authUser'));
+
+  const [filteredSpareParts, setFilteredSpareParts] = React.useState<
+    ISparePart[]
+  >([]);
+
+  const [search, setSearch] = React.useState<string>('');
+
+  React.useEffect(() => {
+    const filtered = spareParts.filter((item) => {
+      return item.name.match(search);
+    });
+    setFilteredSpareParts(filtered);
+    return () => {};
+  }, [search, spareParts]);
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -99,15 +129,34 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>
+        {/** SEARCH BY NAME */}
+        <Form size='search'>
+          <Form.Title>Search By Name</Form.Title>
+          <Form.BaseForm>
+            <Form.InputsGroup>
+              <Form.Input
+                type='text'
+                name='search'
+                id='search'
+                value={search}
+                placeholder='Enter search text'
+                onChange={(e) => setSearch(e.currentTarget.value)}
+                onKeyDown={(e) => setSearch(e.currentTarget.value)}
+              />
+            </Form.InputsGroup>
+          </Form.BaseForm>
+        </Form>
+        {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
         <ContentTitle>
           <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
           <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
         </ContentTitle>
         {/**  CONTENT TITLE */}
+
         {/** DATA OF SPARE PARTS */}
         <TableContainer
-          list={spareParts}
+          list={filteredSpareParts}
           handleDelete={handleDeleteSparePart}
           message={message}
           isLoading={isLoading}

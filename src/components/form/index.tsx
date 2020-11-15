@@ -27,7 +27,7 @@ interface IForm {
 }
 interface IFormComposition {
   BaseForm: React.FC<{
-    onSubmit: (e: React.SyntheticEvent) => void;
+    onSubmit?: (e: React.SyntheticEvent) => void;
   }>;
   Title: React.FC;
   Error: React.FC;
