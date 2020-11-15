@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAuth, useUsers } from '../hooks';
-import { auth, dataBase } from '../lib/firebase';
+import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -8,31 +7,15 @@ import {
   UserProfileContainer,
 } from '../containers';
 import { Navigation, ListItems, ContentTitle } from '../components';
+import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
+import { useSelectedPriceListsContextValue } from '../context';
 
-export const BrowseUSersPage: React.FC = () => {
-  const { setAuthUser, initialValue } = useAuth();
-  const { users } = useUsers();
-  const [message, setMessage] = React.useState('');
+interface IAdminProfilePage {}
+export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
+  const { authUser, setAuthUser, initialValue } = useAuth();
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
 
-  const handleDeleteUser = (userID: string) => {
-    dataBase
-      .collection('users')
-      .doc(userID)
-      .delete()
-      .then(() => {
-        setMessage('User deleted successfully');
-        setTimeout(() => {
-          setMessage('');
-        }, 500);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-        setTimeout(() => {
-          setMessage('');
-        }, 500);
-      });
-  };
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -44,7 +27,6 @@ export const BrowseUSersPage: React.FC = () => {
               .then(() => {
                 localStorage.removeItem('authUser');
                 setAuthUser(initialValue);
-                // history.push(ROUTES.HOME);
               })
               .catch((error) => {
                 console.log('Sign out failed');
@@ -85,7 +67,10 @@ export const BrowseUSersPage: React.FC = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+              <ListItems.ListItemButtonLink
+                to={ROUTES.BROWSE}
+                onClick={() => setSelectedPriceLists('')}
+              >
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
@@ -99,25 +84,15 @@ export const BrowseUSersPage: React.FC = () => {
         {/** LINKS */}
       </SidebarContainer>
       <MainContainer>
-        {/** PAGE TITLE */}
+        {/** TITLE */}
         <ContentTitle>
-          <ContentTitle.BaseTitle>USER LIST</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>All users</ContentTitle.SubTitle>
+          <ContentTitle.BaseTitle>USER PROFILE</ContentTitle.BaseTitle>
+          <ContentTitle.SubTitle>{authUser.nick}</ContentTitle.SubTitle>
         </ContentTitle>
-        {/** PAGE TITLE */}
-        {/** USER LIST */}
-        {users &&
-          users.length > 0 &&
-          users.map((item) => (
-            <UserProfileContainer
-              key={item.userID}
-              authUser={item}
-              userList
-              handleDelete={handleDeleteUser}
-              message={message}
-            />
-          ))}
-        {/** USER LIST */}
+        {/** TITLE */}
+        {/** USER PROFILE */}
+        <UserProfileContainer authUser={authUser} />
+        {/** USER PROFILE */}
       </MainContainer>
     </React.Fragment>
   );

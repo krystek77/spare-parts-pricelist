@@ -10,6 +10,7 @@ import { EditSparePartPage } from './editSparePart';
 import { EditUserPage } from './editUser';
 import { BrowseUSersPage } from './browseUsers';
 import { EditAdminPage } from './editAdmin';
+import { AdminProfilePage } from './adminProfile';
 export {
   HomePage,
   BrowsePage,
@@ -22,5 +23,6 @@ export {
   AddSparePart,
   EditSparePartPage,
   EditAdminPage,
+  AdminProfilePage,
   NoMatchPage,
 };

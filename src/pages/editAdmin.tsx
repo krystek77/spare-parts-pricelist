@@ -141,7 +141,7 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
                     setMessage('User profile and account updated successfully');
                     setTimeout(() => {
                       setMessage('');
-                      history.push(ROUTES.USER);
+                      history.push(ROUTES.ADMIN_PROFILE);
                     }, 500);
                   })
                   .catch((error) => {
@@ -206,7 +206,7 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
                 setTimeout(() => {
                   setMessage('');
                 }, 500);
-                history.push(ROUTES.USER);
+                history.push(ROUTES.ADMIN_PROFILE);
               })
               .catch((error) => {
                 setMessage(error.message);
@@ -237,7 +237,7 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
             setMessage('User profile and account updated successfully');
             setTimeout(() => {
               setMessage('');
-              history.push(ROUTES.USER);
+              history.push(ROUTES.ADMIN_PROFILE);
             }, 500);
           })
           .catch((error) => {
@@ -252,7 +252,7 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
             setMessage('User profile updated successfully');
             setTimeout(() => {
               setMessage('');
-              history.push(ROUTES.USER);
+              history.push(ROUTES.ADMIN_PROFILE);
             }, 500);
           })
           .catch((error) => {
@@ -286,6 +286,11 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
         <ListItems>
           <ListItems.Title>LINKS</ListItems.Title>
           <ListItems.List>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADMIN_PROFILE}>
+                Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
             <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.ADD_USER}>
                 Add User

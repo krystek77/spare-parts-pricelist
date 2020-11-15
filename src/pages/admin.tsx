@@ -160,6 +160,11 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           <ListItems.Title>LINKS</ListItems.Title>
           <ListItems.List>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADMIN_PROFILE}>
+                Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.ADD_USER}>
                 Add User
               </ListItems.ListItemButtonLink>
