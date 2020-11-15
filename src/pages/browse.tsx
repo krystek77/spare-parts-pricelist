@@ -9,10 +9,10 @@ import {
   InfoContainer,
   SearchFormContainer,
 } from '../containers';
-import { Navigation, ContentTitle} from '../components';
+import { Navigation, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
-import { useAuth, usePriceLists, useSpareParts } from '../hooks';
+import { useAuth, usePriceLists, useSpareParts, useSearch } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
 interface ISparePart {
   sparePartID: string;
@@ -76,20 +76,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         }, 1000);
       });
   };
-
-  const [filteredSpareParts, setFilteredSpareParts] = React.useState<
-    ISparePart[]
-  >([]);
-
-  const [search, setSearch] = React.useState<string>('');
-
-  React.useEffect(() => {
-    const filtered = spareParts.filter((item) => {
-      return item.name.match(search);
-    });
-    setFilteredSpareParts(filtered);
-    return () => {};
-  }, [search, spareParts]);
+  const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
 
   return (
     <React.Fragment>
