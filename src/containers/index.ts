@@ -11,6 +11,7 @@ import { PriceListsOverlay } from './priceListsOverlay';
 import { InfoContainer } from './info';
 import { AddPriceList } from './addPriceList';
 import { UserProfileContainer } from './user';
+import { SearchFormContainer } from './searchForm';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -25,4 +26,5 @@ export {
   InfoContainer,
   AddPriceList,
   UserProfileContainer,
+  SearchFormContainer,
 };

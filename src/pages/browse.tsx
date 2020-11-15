@@ -7,8 +7,9 @@ import {
   ListItemsContainer,
   TableContainer,
   InfoContainer,
+  SearchFormContainer,
 } from '../containers';
-import { Navigation, ContentTitle, Form } from '../components';
+import { Navigation, ContentTitle} from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts } from '../hooks';
@@ -130,22 +131,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
       </SidebarContainer>
       <MainContainer>
         {/** SEARCH BY NAME */}
-        <Form size='search'>
-          <Form.Title>Search By Name</Form.Title>
-          <Form.BaseForm>
-            <Form.InputsGroup>
-              <Form.Input
-                type='text'
-                name='search'
-                id='search'
-                value={search}
-                placeholder='Enter search text'
-                onChange={(e) => setSearch(e.currentTarget.value)}
-                onKeyDown={(e) => setSearch(e.currentTarget.value)}
-              />
-            </Form.InputsGroup>
-          </Form.BaseForm>
-        </Form>
+        <SearchFormContainer search={search} setSearch={setSearch} />
         {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
         <ContentTitle>
