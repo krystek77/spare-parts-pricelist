@@ -166,6 +166,11 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.EDIT_ADMIN}>
+                Edit Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
                 Browse Users
               </ListItems.ListItemButtonLink>
@@ -176,7 +181,10 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+              <ListItems.ListItemButtonLink
+                to={ROUTES.BROWSE}
+                onClick={() => setSelectedPriceLists('')}
+              >
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>

@@ -11,6 +11,7 @@ import { Navigation, Form, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { dataValidation, checkLength, ROLES } from '../helpers';
 import { EditSparePartPage } from '.';
+import { useSelectedPriceListsContextValue } from '../context';
 
 interface IAddUser {}
 interface IErrors {
@@ -30,10 +31,12 @@ export const AddUser: React.FC<IAddUser> = () => {
   const history = useHistory();
   const { setAuthUser, initialValue } = useAuth();
 
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
   const validForm =
     dataValidation(email, password) &&
-    password === confiremdPassword &&EditSparePartPage
-    checkLength(nick, 4, 8);
+    password === confiremdPassword &&
+    EditSparePartPage;
+  checkLength(nick, 4, 8);
   const isError = Object.keys(errors).length > 0 ? true : false;
 
   const handleAddUser = (e: React.SyntheticEvent) => {
@@ -96,6 +99,11 @@ export const AddUser: React.FC<IAddUser> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.EDIT_ADMIN}>
+                Edit Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
                 Browse Users
               </ListItems.ListItemButtonLink>
@@ -106,7 +114,10 @@ export const AddUser: React.FC<IAddUser> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
+              <ListItems.ListItemButtonLink
+                to={ROUTES.BROWSE}
+                onClick={() => setSelectedPriceLists('')}
+              >
                 Browese PriceLists
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>

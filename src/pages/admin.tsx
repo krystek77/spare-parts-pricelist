@@ -165,6 +165,11 @@ export const AdminPage: React.FC<IAdminPage> = () => {
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.EDIT_ADMIN}>
+                Edit Profile
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
                 Browse Users
               </ListItems.ListItemButtonLink>

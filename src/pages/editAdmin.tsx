@@ -15,11 +15,13 @@ import {
   isPhoneNumber,
   passwordValidation,
 } from '../helpers';
+import { useSelectedPriceListsContextValue } from '../context';
 
 interface IUserPage {}
-export const EditUserPage: React.FC<IUserPage> = () => {
+export const EditAdminPage: React.FC<IUserPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const history = useHistory();
+  const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
 
   const [nick, setNick] = React.useState<string>(authUser.nick);
   const [country, setCountry] = React.useState<string>(authUser.country);
@@ -139,7 +141,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                     setMessage('User profile and account updated successfully');
                     setTimeout(() => {
                       setMessage('');
-                      history.push(ROUTES.ADMIN);
+                      history.push(ROUTES.USER);
                     }, 500);
                   })
                   .catch((error) => {
@@ -204,7 +206,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 setTimeout(() => {
                   setMessage('');
                 }, 500);
-                history.push(ROUTES.ADMIN);
+                history.push(ROUTES.USER);
               })
               .catch((error) => {
                 setMessage(error.message);
@@ -235,7 +237,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             setMessage('User profile and account updated successfully');
             setTimeout(() => {
               setMessage('');
-              history.push(ROUTES.BROWSE);
+              history.push(ROUTES.USER);
             }, 500);
           })
           .catch((error) => {
@@ -250,7 +252,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             setMessage('User profile updated successfully');
             setTimeout(() => {
               setMessage('');
-              history.push(ROUTES.ADMIN);
+              history.push(ROUTES.USER);
             }, 500);
           })
           .catch((error) => {
@@ -285,18 +287,36 @@ export const EditUserPage: React.FC<IUserPage> = () => {
           <ListItems.Title>LINKS</ListItems.Title>
           <ListItems.List>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.USER}>
-                User
+              <ListItems.ListItemButtonLink to={ROUTES.ADD_USER}>
+                Add User
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.USER_EDIT}>
+              <ListItems.ListItemButtonLink to={ROUTES.EDIT_ADMIN}>
                 Edit Profile
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
             <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE}>
-                Browse Price Lists
+              <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
+                Browse Users
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
+                Add Spare Part
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink
+                to={ROUTES.BROWSE}
+                onClick={() => setSelectedPriceLists('')}
+              >
+                Browese PriceLists
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.ADMIN}>
+                Admin
               </ListItems.ListItemButtonLink>
             </ListItems.ListItem>
           </ListItems.List>

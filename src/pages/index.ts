@@ -9,6 +9,7 @@ import { AddSparePart } from './addSparePart';
 import { EditSparePartPage } from './editSparePart';
 import { EditUserPage } from './editUser';
 import { BrowseUSersPage } from './browseUsers';
+import { EditAdminPage } from './editAdmin';
 export {
   HomePage,
   BrowsePage,
@@ -20,5 +21,6 @@ export {
   BrowseUSersPage,
   AddSparePart,
   EditSparePartPage,
+  EditAdminPage,
   NoMatchPage,
 };

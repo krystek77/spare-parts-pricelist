@@ -2,6 +2,7 @@ export const HOME = '/';
 export const BROWSE = '/browse';
 export const SIGNIN = '/signin';
 export const ADD_USER = '/admin/addUser';
+export const EDIT_ADMIN = '/admin/edit';
 export const BROWSE_USERS = '/admin/browseUsers';
 export const EDIT_SPARE_PART = '/admin/edit-spare-part';
 export const ADMIN = '/admin';

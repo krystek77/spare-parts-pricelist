@@ -11,6 +11,7 @@ import {
   BrowseUSersPage,
   AddSparePart,
   EditSparePartPage,
+  EditAdminPage,
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
@@ -57,6 +58,13 @@ export function App() {
           role={ROLES.ADMIN}
         >
           <EditSparePartPage />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path={ROUTES.EDIT_ADMIN}
+          authUser={authUser}
+          role={ROLES.ADMIN}
+        >
+          <EditAdminPage />
         </ProtectedRoute>
         <ProtectedRoute
           exact
