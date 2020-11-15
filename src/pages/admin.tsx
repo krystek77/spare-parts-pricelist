@@ -8,10 +8,11 @@ import {
   TableContainer,
   InfoContainer,
   AddPriceList,
+  SearchFormContainer,
 } from '../containers';
 import { Navigation, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
-import { useAuth, usePriceLists, useSpareParts } from '../hooks';
+import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
 import { ROLES } from '../helpers';
 
@@ -134,6 +135,8 @@ export const AdminPage: React.FC<IAdminPage> = () => {
       });
   };
 
+  const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -218,6 +221,9 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>
+        {/** SEARCH BY NAME */}
+        <SearchFormContainer search={search} setSearch={setSearch} />
+        {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
         <ContentTitle>
           <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
@@ -226,7 +232,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
         <TableContainer
-          list={spareParts}
+          list={filteredSpareParts}
           isLoading={isLoading}
           handleDelete={handleDeleteSparePart}
           role={ROLES.ADMIN}
