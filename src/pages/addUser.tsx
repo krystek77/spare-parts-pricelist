@@ -58,6 +58,10 @@ export const AddUser: React.FC<IAddUser> = () => {
               avatar:
                 'https://firebasestorage.googleapis.com/v0/b/spare-parts-pricelist.appspot.com/o/assets%2Fimages%2Fdefault_avatar.webP?alt=media&token=642bc9f6-6015-463e-b845-69013cd697da',
               added: new Date().toISOString().slice(0, 10),
+              lastUpdated: '',
+              mobile: '',
+              country: '',
+              city: '',
             });
         }
       })
