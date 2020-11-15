@@ -55,7 +55,7 @@ const calculatePrice = (price: string, course: number): number | undefined => {
   return 0;
 };
 const isSparePartName = (name: string): boolean => {
-  const regExp = /^[a-zA-Ząćęłńóśźż\s]{10,}/;
+  const regExp = /^[a-zA-Z0-9ąćęłńóśźż\s]{5,}/;
   return !!name.match(regExp) ? true : false;
 };
 const isModel = (model: string): boolean => {
