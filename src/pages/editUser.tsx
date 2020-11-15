@@ -9,6 +9,12 @@ import {
 import { Navigation, ListItems, ContentTitle, Form } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
+import {
+  checkLength,
+  emailValidation,
+  isPhoneNumber,
+  passwordValidation,
+} from '../helpers';
 
 interface IUserPage {}
 export const EditUserPage: React.FC<IUserPage> = () => {
@@ -29,6 +35,23 @@ export const EditUserPage: React.FC<IUserPage> = () => {
   const [newEmail, setNewEmail] = React.useState<string>('');
   const [currentPassword, setCurrentPassword] = React.useState<string>('');
   const [isUpdateEmail, setIsUpdateEmail] = React.useState<boolean>(false);
+
+  //TODO: validation data
+  let isValidForm =
+    checkLength(nick, 4, 8) &&
+    checkLength(country, 4, 20) &&
+    checkLength(city, 4, 20) &&
+    isPhoneNumber(mobile);
+  if (isUpdateEmail) {
+    isValidForm =
+      checkLength(nick, 4, 8) &&
+      checkLength(country, 4, 20) &&
+      checkLength(city, 4, 20) &&
+      isPhoneNumber(mobile) &&
+      emailValidation(currentEmail) &&
+      emailValidation(newEmail) &&
+      passwordValidation(currentPassword);
+  }
 
   const handleUpdateProfileUser = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -311,7 +334,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 id='nick'
                 name='nick'
                 value={nick}
-                placeholder='Your nick'
+                placeholder='Your nick {4,8}'
                 onChange={(e) => {
                   setNick(e.currentTarget.value);
                   setMessage('');
@@ -329,7 +352,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 id='country'
                 name='country'
                 value={country}
-                placeholder='Your country'
+                placeholder='Your country {4,20}'
                 onChange={(e) => {
                   setCountry(e.currentTarget.value);
                   setMessage('');
@@ -347,7 +370,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 id='city'
                 name='city'
                 value={city}
-                placeholder='Your city'
+                placeholder='Your city {4,20}'
                 onChange={(e) => {
                   setCity(e.currentTarget.value);
                   setMessage('');
@@ -365,7 +388,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 id='mobile'
                 name='mobile'
                 value={mobile}
-                placeholder='Your mobile'
+                placeholder='Your mobile: +48602191607'
                 onChange={(e) => {
                   setMobile(e.currentTarget.value);
                   setMessage('');
@@ -425,7 +448,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                     id='currentEmail'
                     name='currentEmail'
                     value={currentEmail}
-                    placeholder='Current email'
+                    placeholder='Current email - kryniu@gmail.com'
                     onChange={(e) => {
                       setCurrentEmail(e.currentTarget.value);
                       setMessage('');
@@ -445,7 +468,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                     id='newEmail'
                     name='newEmail'
                     value={newEmail}
-                    placeholder='New email'
+                    placeholder='New email - kryniu@wp.pl'
                     onChange={(e) => {
                       setNewEmail(e.currentTarget.value);
                       setMessage('');
@@ -465,7 +488,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                     id='currentPassword'
                     name='currentPassword'
                     value={currentPassword}
-                    placeholder='Current password'
+                    placeholder='Current password -{6,10}'
                     onChange={(e) => {
                       setCurrentPassword(e.currentTarget.value);
                       setMessage('');
@@ -480,7 +503,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             )}
             {/** IF USER WANT TO CHANGE EMAIL ACCOUNT TOO */}
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={false}>
+            <Form.SubmitButton type='submit' disabled={!isValidForm}>
               Edit
             </Form.SubmitButton>
             <Form.Break />

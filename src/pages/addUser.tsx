@@ -10,6 +10,7 @@ import {
 import { Navigation, Form, ListItems, ContentTitle } from '../components';
 import * as ROUTES from '../constants/routes';
 import { dataValidation, checkLength, ROLES } from '../helpers';
+import { EditSparePartPage } from '.';
 
 interface IAddUser {}
 interface IErrors {
@@ -31,7 +32,7 @@ export const AddUser: React.FC<IAddUser> = () => {
 
   const validForm =
     dataValidation(email, password) &&
-    password === confiremdPassword &&
+    password === confiremdPassword &&EditSparePartPage
     checkLength(nick, 4, 8);
   const isError = Object.keys(errors).length > 0 ? true : false;
 

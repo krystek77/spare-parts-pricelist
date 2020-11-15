@@ -11,7 +11,10 @@ const isEmail = (email: string): boolean => {
 const checkLength = (str: string, min: number, max: number): boolean => {
   return min <= str.length && str.length <= max;
 };
-
+const isPhoneNumber = (phone: string): boolean => {
+  const regExp = /^\+{1}[0-9]{2}[0-9]{9}$/;
+  return phone.match(regExp) !== null ? true : false;
+};
 function emailValidation(email: string): boolean {
   let isValid: boolean = true;
   isValid = !isEmpty(email) && isValid;
@@ -108,4 +111,5 @@ export {
   stringToNumber,
   prepareSlug,
   getAuthUser,
+  isPhoneNumber,
 };
