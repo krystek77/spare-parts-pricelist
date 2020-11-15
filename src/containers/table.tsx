@@ -88,6 +88,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     btn='DESCRIPTION'
                     type='button'
                     title='Show description'
+                    disabled={item.description === '' ? true : false}
                   >
                     <MdDescription />
                   </Table.ControlButton>
@@ -95,6 +96,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     btn='COMMENT'
                     type='button'
                     title='Show comment'
+                    disabled={item.comments === '' ? true : false}
                   >
                     <FaCommentAlt />
                   </Table.ControlButton>

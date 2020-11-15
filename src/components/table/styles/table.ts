@@ -123,6 +123,11 @@ export const ControlButton = styled.button<{ btn?: string }>`
   cursor: pointer;
   transition: all 0.3s ease-in;
   outline: none;
+  &:disabled {
+    pointer-events: none;
+    background-color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme }) => theme.colors.medium};
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};

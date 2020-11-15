@@ -35,6 +35,7 @@ interface ITable {
   HeaderContentRowTable: React.FC;
   Controls: React.FC;
   ControlButton: React.FC<{
+    disabled?: boolean;
     id?: string;
     type: 'button';
     onClick?: () => void;
