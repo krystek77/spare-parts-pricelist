@@ -285,6 +285,11 @@ export const EditUserPage: React.FC<IUserPage> = () => {
           <ListItems.Title>LINKS</ListItems.Title>
           <ListItems.List>
             <ListItems.ListItem>
+              <ListItems.ListItemButtonLink to={ROUTES.USER}>
+                User
+              </ListItems.ListItemButtonLink>
+            </ListItems.ListItem>
+            <ListItems.ListItem>
               <ListItems.ListItemButtonLink to={ROUTES.USER_EDIT}>
                 Edit Profile
               </ListItems.ListItemButtonLink>
