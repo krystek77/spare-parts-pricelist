@@ -14,23 +14,7 @@ import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts, useSearch } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
-interface ISparePart {
-  sparePartID: string;
-  comments: string;
-  currency: string;
-  description: string;
-  from: string;
-  model: string;
-  name: string;
-  priceListID: string;
-  purchasePrice: number;
-  sellingPrice: number;
-  to: string;
-  userID: string;
-  slug: string;
-  added: string;
-  updated: string;
-}
+
 interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
   children,
