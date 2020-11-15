@@ -12,12 +12,10 @@ interface ITableContainer {
   message?: string;
   isLoading?: boolean;
   role?: string;
-  browse?: boolean;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete, message, isLoading, role, browse } = restProps;
-  // const { setSelectedSparePart } = useSelectedSparePartContext();
+  const { list, handleDelete, message, isLoading, role } = restProps;
 
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
@@ -82,55 +80,54 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                   )}
                 </Table.ContentColTable>
               </Table.RowTable>
-              {role === ROLES.ADMIN && (
-                <Table.Controls>
-                  <Table.ControlButton
-                    btn='DESCRIPTION'
-                    type='button'
-                    title='Show description'
-                    disabled={item.description === '' ? true : false}
-                  >
-                    <MdDescription />
-                  </Table.ControlButton>
-                  <Table.ControlButton
-                    btn='COMMENT'
-                    type='button'
-                    title='Show comment'
-                    disabled={item.comments === '' ? true : false}
-                  >
-                    <FaCommentAlt />
-                  </Table.ControlButton>
-                  {!browse && (
-                    <React.Fragment>
-                      <Table.ControlButtonDelete
-                        type='button'
-                        title='Delete'
-                        onClick={() => {
-                          handleDelete && handleDelete(item.sparePartID);
-                        }}
-                      >
-                        <FaTrashAlt />
-                      </Table.ControlButtonDelete>
-                      <Table.EditLink
-                        to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
-                        // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
-                        // to={{
-                        //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
-                        //   search: `?sparePartID=${item.sparePartID}`,
-                        // }}
-                        // to={{
-                        //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
-                        //   query: { sparePartID: item.sparePartID },
-                        // }}
-                        title='Edit'
-                        // onClick={() => setSelectedSparePart(item.sparePartID)}
-                      >
-                        <FaEdit />
-                      </Table.EditLink>
-                    </React.Fragment>
-                  )}
-                </Table.Controls>
-              )}
+
+              <Table.Controls>
+                <Table.ControlButton
+                  btn='DESCRIPTION'
+                  type='button'
+                  title='Show description'
+                  disabled={item.description === '' ? true : false}
+                >
+                  <MdDescription />
+                </Table.ControlButton>
+                <Table.ControlButton
+                  btn='COMMENT'
+                  type='button'
+                  title='Show comment'
+                  disabled={item.comments === '' ? true : false}
+                >
+                  <FaCommentAlt />
+                </Table.ControlButton>
+                {role === ROLES.ADMIN && (
+                  <React.Fragment>
+                    <Table.ControlButtonDelete
+                      type='button'
+                      title='Delete'
+                      onClick={() => {
+                        handleDelete && handleDelete(item.sparePartID);
+                      }}
+                    >
+                      <FaTrashAlt />
+                    </Table.ControlButtonDelete>
+                    <Table.EditLink
+                      to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
+                      // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
+                      // to={{
+                      //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                      //   search: `?sparePartID=${item.sparePartID}`,
+                      // }}
+                      // to={{
+                      //   pathname: `${ROUTES.EDIT_SPARE_PART}/${item.slug}`,
+                      //   query: { sparePartID: item.sparePartID },
+                      // }}
+                      title='Edit'
+                      // onClick={() => setSelectedSparePart(item.sparePartID)}
+                    >
+                      <FaEdit />
+                    </Table.EditLink>
+                  </React.Fragment>
+                )}
+              </Table.Controls>
             </Table.BodyTable>
           );
         })}
