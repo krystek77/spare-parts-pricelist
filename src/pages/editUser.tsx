@@ -47,66 +47,148 @@ export const EditUserPage: React.FC<IUserPage> = () => {
     if (!!file) {
       const storageRef = storage.ref(`assets/images/${file?.name}`);
       const name = storageRef.name;
-
       const uploadTask = storageRef.put(file);
-      uploadTask.on(
-        'state_changed',
-        null,
-        function (error) {
-          switch (error.code) {
-            case 'storage/unauthorized':
-              setMessage('You does not have permission to access the object');
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              break;
-            case 'storage/canceled':
-              setMessage('You canceled the upload');
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              break;
-            case 'storage/unknown':
-              setMessage('Unknow error occurred');
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              break;
-            default:
-              setMessage('Some error occurred');
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              break;
+
+      if (isUpdateEmail) {
+        console.log('Is update email too');
+        const user = auth.currentUser;
+        const credential = firebase.auth.EmailAuthProvider.credential(
+          currentEmail,
+          currentPassword
+        );
+        user
+          ?.reauthenticateWithCredential(credential)
+          .then((result) => {
+            return result.user?.updateEmail(newEmail);
+          })
+          .then(() => {
+            updatedUserData.email = newEmail;
+
+            uploadTask.on(
+              'state_changed',
+              null,
+              function (error) {
+                switch (error.code) {
+                  case 'storage/unauthorized':
+                    setMessage(
+                      'You does not have permission to access the object'
+                    );
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 500);
+                    break;
+                  case 'storage/canceled':
+                    setMessage('You canceled the upload');
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 500);
+                    break;
+                  case 'storage/unknown':
+                    setMessage('Unknow error occurred');
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 500);
+                    break;
+                  default:
+                    setMessage('Some error occurred');
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 500);
+                    break;
+                }
+              },
+              () => {
+                uploadTask.snapshot.ref
+                  .getDownloadURL()
+                  .then(function (downloadURL) {
+                    setMessage(`Upload file: ${name} completed successfully`);
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 500);
+                    // setAvatar(downloadURL);
+                    updatedUserData.avatar = downloadURL;
+                    return dataBase
+                      .collection('users')
+                      .doc(authUser.userID)
+                      .update(updatedUserData);
+                  })
+                  .then(() => {
+                    setMessage('User profile and account updated successfully');
+                    setTimeout(() => {
+                      setMessage('');
+                      history.push(ROUTES.USER);
+                    }, 500);
+                  })
+                  .catch((error) => {
+                    setMessage(error.message);
+                  });
+              }
+            );
+          })
+          .catch((error) => {
+            setMessage(error.message);
+          });
+      } else {
+        console.log('No is update email too');
+        uploadTask.on(
+          'state_changed',
+          null,
+          function (error) {
+            switch (error.code) {
+              case 'storage/unauthorized':
+                setMessage('You does not have permission to access the object');
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                break;
+              case 'storage/canceled':
+                setMessage('You canceled the upload');
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                break;
+              case 'storage/unknown':
+                setMessage('Unknow error occurred');
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                break;
+              default:
+                setMessage('Some error occurred');
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                break;
+            }
+          },
+          () => {
+            uploadTask.snapshot.ref
+              .getDownloadURL()
+              .then(function (downloadURL) {
+                setMessage(`Upload file: ${name} completed successfully`);
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                // setAvatar(downloadURL);
+                updatedUserData.avatar = downloadURL;
+                return dataBase
+                  .collection('users')
+                  .doc(authUser.userID)
+                  .update(updatedUserData);
+              })
+              .then(() => {
+                setMessage('User profile updated successfully');
+                setTimeout(() => {
+                  setMessage('');
+                }, 500);
+                history.push(ROUTES.USER);
+              })
+              .catch((error) => {
+                setMessage(error.message);
+              });
           }
-        },
-        () => {
-          uploadTask.snapshot.ref
-            .getDownloadURL()
-            .then(function (downloadURL) {
-              setMessage(`Upload file: ${name} completed successfully`);
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              // setAvatar(downloadURL);
-              updatedUserData.avatar = downloadURL;
-              return dataBase
-                .collection('users')
-                .doc(authUser.userID)
-                .update(updatedUserData);
-            })
-            .then(() => {
-              setMessage('User profile updated successfully');
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
-              history.push(ROUTES.USER);
-            })
-            .catch((error) => {
-              setMessage(error.message);
-            });
-        }
-      );
+        );
+      }
     } else {
       if (isUpdateEmail) {
         const user = auth.currentUser;
@@ -212,6 +294,11 @@ export const EditUserPage: React.FC<IUserPage> = () => {
               setCity('');
               setMobile('');
               setUploadedFile(null);
+              if (isUpdateEmail) {
+                setCurrentEmail('');
+                setCurrentPassword('');
+                setNewEmail('');
+              }
             }}
           >
             CLEAR
