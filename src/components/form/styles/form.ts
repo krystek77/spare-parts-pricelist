@@ -127,6 +127,7 @@ export const InputsGroup = styled.div`
   flex-grow: 1;
 `;
 export const RadioInput = styled.input``;
+export const CheckBoxInput = styled.input``;
 export const InputLabel = styled.label`
   font-size: 0.8rem;
   font-weight: 300;

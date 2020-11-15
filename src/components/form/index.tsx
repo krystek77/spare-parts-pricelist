@@ -18,6 +18,7 @@ import {
   Message,
   ClearButton,
   CustomButton,
+  CheckBoxInput,
 } from './styles/form';
 
 interface IForm {
@@ -56,9 +57,17 @@ interface IFormComposition {
   }>;
   TextSmall: React.FC;
   InputsGroup: React.FC;
+  CheckBoxInput: React.FC<{
+    type: 'checkbox';
+    id: string;
+    name: string;
+    checked: boolean;
+    onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+    onKeyDown?: (e: React.FormEvent<HTMLInputElement>) => void;
+  }>;
   RadioInput: React.FC<{
     type: 'radio';
-    value: string;
+    value?: string;
     name: string;
     checked: boolean;
     id: string;
@@ -132,6 +141,9 @@ Form.InputsGroup = function FormInputsGroup({ children }) {
 };
 Form.RadioInput = function FormRadioInput({ ...restProps }) {
   return <RadioInput {...restProps} />;
+};
+Form.CheckBoxInput = function FormCheckBoxInput({ ...restProps }) {
+  return <CheckBoxInput {...restProps} />;
 };
 Form.InputLabel = function FormInputLabel({ children, ...restProps }) {
   return <InputLabel {...restProps}>{children}</InputLabel>;

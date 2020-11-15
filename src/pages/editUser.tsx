@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { auth, dataBase, storage } from '../lib/firebase';
+import { auth, dataBase, storage, firebase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -9,7 +9,6 @@ import {
 import { Navigation, ListItems, ContentTitle, Form } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
-import { InputsGroup } from '../components/form/styles/form';
 
 interface IUserPage {}
 export const EditUserPage: React.FC<IUserPage> = () => {
@@ -21,8 +20,15 @@ export const EditUserPage: React.FC<IUserPage> = () => {
   const [city, setCity] = React.useState<string>(authUser.city);
   const [mobile, setMobile] = React.useState<string>(authUser.mobile);
   const [uploadedFile, setUploadedFile] = React.useState<FileList | null>(null);
-  const [avatar, setAvatar] = React.useState<string>(authUser.avatar);
+  const [avatar] = React.useState<string>(authUser.avatar);
   const [message, setMessage] = React.useState<string>('');
+
+  const [currentEmail, setCurrentEmail] = React.useState<string>(
+    authUser.email
+  );
+  const [newEmail, setNewEmail] = React.useState<string>('');
+  const [currentPassword, setCurrentPassword] = React.useState<string>('');
+  const [isUpdateEmail, setIsUpdateEmail] = React.useState<boolean>(false);
 
   const handleUpdateProfileUser = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -31,9 +37,11 @@ export const EditUserPage: React.FC<IUserPage> = () => {
       country,
       city,
       mobile,
+      email: currentEmail,
       avatar,
       lastUpdated: new Date().toISOString().slice(0, 10),
     };
+
     const file = uploadedFile && uploadedFile[0];
 
     if (!!file) {
@@ -80,7 +88,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
               setTimeout(() => {
                 setMessage('');
               }, 500);
-              setAvatar(downloadURL);
+              // setAvatar(downloadURL);
               updatedUserData.avatar = downloadURL;
               return dataBase
                 .collection('users')
@@ -96,30 +104,54 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             })
             .catch((error) => {
               setMessage(error.message);
-              setTimeout(() => {
-                setMessage('');
-              }, 500);
             });
         }
       );
     } else {
-      dataBase
-        .collection('users')
-        .doc(authUser.userID)
-        .update(updatedUserData)
-        .then(() => {
-          setMessage('User profile updated successfully');
-          setTimeout(() => {
-            setMessage('');
-            history.push(ROUTES.USER);
-          }, 500);
-        })
-        .catch((error) => {
-          setMessage(error.message);
-          setTimeout(() => {
-            setMessage('');
-          }, 500);
-        });
+      if (isUpdateEmail) {
+        const user = auth.currentUser;
+        const credential = firebase.auth.EmailAuthProvider.credential(
+          currentEmail,
+          currentPassword
+        );
+        user
+          ?.reauthenticateWithCredential(credential)
+          .then((result) => {
+            return result.user?.updateEmail(newEmail);
+          })
+          .then(() => {
+            updatedUserData.email = newEmail;
+            return dataBase
+              .collection('users')
+              .doc(authUser.userID)
+              .update(updatedUserData);
+          })
+          .then(() => {
+            setMessage('User profile and account updated successfully');
+            setTimeout(() => {
+              setMessage('');
+              history.push(ROUTES.USER);
+            }, 500);
+          })
+          .catch((error) => {
+            setMessage(error.message);
+          });
+      } else {
+        dataBase
+          .collection('users')
+          .doc(authUser.userID)
+          .update(updatedUserData)
+          .then(() => {
+            setMessage('User profile updated successfully');
+            setTimeout(() => {
+              setMessage('');
+              history.push(ROUTES.USER);
+            }, 500);
+          })
+          .catch((error) => {
+            setMessage(error.message);
+          });
+      }
     }
   };
   return (
@@ -185,7 +217,7 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             CLEAR
           </Form.ClearButton>
           <Form.BaseForm onSubmit={(e) => handleUpdateProfileUser(e)}>
-            <InputsGroup>
+            <Form.InputsGroup>
               <Form.InputLabel htmlFor={'nick'}>Nick:</Form.InputLabel>
               <Form.Input
                 type='text'
@@ -193,11 +225,17 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 name='nick'
                 value={nick}
                 placeholder='Your nick'
-                onChange={(e) => setNick(e.currentTarget.value)}
-                onKeyDown={(e) => setNick(e.currentTarget.value)}
+                onChange={(e) => {
+                  setNick(e.currentTarget.value);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setNick(e.currentTarget.value);
+                  setMessage('');
+                }}
               ></Form.Input>
-            </InputsGroup>
-            <InputsGroup>
+            </Form.InputsGroup>
+            <Form.InputsGroup>
               <Form.InputLabel htmlFor={'country'}>Country:</Form.InputLabel>
               <Form.Input
                 type='text'
@@ -205,11 +243,17 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 name='country'
                 value={country}
                 placeholder='Your country'
-                onChange={(e) => setCountry(e.currentTarget.value)}
-                onKeyDown={(e) => setCountry(e.currentTarget.value)}
+                onChange={(e) => {
+                  setCountry(e.currentTarget.value);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setCountry(e.currentTarget.value);
+                  setMessage('');
+                }}
               ></Form.Input>
-            </InputsGroup>
-            <InputsGroup>
+            </Form.InputsGroup>
+            <Form.InputsGroup>
               <Form.InputLabel htmlFor={'city'}>City:</Form.InputLabel>
               <Form.Input
                 type='text'
@@ -217,11 +261,17 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 name='city'
                 value={city}
                 placeholder='Your city'
-                onChange={(e) => setCity(e.currentTarget.value)}
-                onKeyDown={(e) => setCity(e.currentTarget.value)}
+                onChange={(e) => {
+                  setCity(e.currentTarget.value);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setCity(e.currentTarget.value);
+                  setMessage('');
+                }}
               ></Form.Input>
-            </InputsGroup>
-            <InputsGroup>
+            </Form.InputsGroup>
+            <Form.InputsGroup>
               <Form.InputLabel htmlFor={'mobile'}>Mobile:</Form.InputLabel>
               <Form.Input
                 type='text'
@@ -229,11 +279,17 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 name='mobile'
                 value={mobile}
                 placeholder='Your mobile'
-                onChange={(e) => setMobile(e.currentTarget.value)}
-                onKeyDown={(e) => setMobile(e.currentTarget.value)}
+                onChange={(e) => {
+                  setMobile(e.currentTarget.value);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setMobile(e.currentTarget.value);
+                  setMessage('');
+                }}
               ></Form.Input>
-            </InputsGroup>
-            <InputsGroup>
+            </Form.InputsGroup>
+            <Form.InputsGroup>
               <Form.InputLabel htmlFor={'avatar'}>Avatar:</Form.InputLabel>
               <Form.Input
                 type='file'
@@ -242,10 +298,100 @@ export const EditUserPage: React.FC<IUserPage> = () => {
                 // value={avatar}
                 placeholder='Your avatar'
                 accept='.png, .jpg, .jpeg,.webP'
-                onChange={(e) => setUploadedFile(e.currentTarget.files)}
-                onKeyDown={(e) => setUploadedFile(e.currentTarget.files)}
+                onChange={(e) => {
+                  setUploadedFile(e.currentTarget.files);
+                  setMessage('');
+                }}
+                onKeyDown={(e) => {
+                  setUploadedFile(e.currentTarget.files);
+                  setMessage('');
+                }}
               ></Form.Input>
-            </InputsGroup>
+            </Form.InputsGroup>
+            {/** CHECKBOX TO SET IF USER WANT TO UPDATE EMAIL ACCOUNT */}
+            <Form.InputsGroup>
+              <Form.CheckBoxInput
+                type='checkbox'
+                id='isUpdateEmail'
+                name='isUpdateEmail'
+                checked={isUpdateEmail}
+                onChange={(e) => {
+                  setIsUpdateEmail(!isUpdateEmail);
+                  setMessage('');
+                }}
+              />
+              <Form.InputLabel htmlFor={'isUpdateEmail'}>
+                Change your email account too
+              </Form.InputLabel>
+            </Form.InputsGroup>
+            {/** CHECKBOX TO SET IF USER WANT TO UPDATE EMAIL ACCOUNT */}
+            {/** IF USER WANT TO CHANGE EMAIL ACCOUNT TOO */}
+            {isUpdateEmail && (
+              <React.Fragment>
+                <Form.Break />
+                <Form.InputsGroup>
+                  <Form.InputLabel htmlFor={'currentEmail'}>
+                    Current email:
+                  </Form.InputLabel>
+                  <Form.Input
+                    type='text'
+                    id='currentEmail'
+                    name='currentEmail'
+                    value={currentEmail}
+                    placeholder='Current email'
+                    onChange={(e) => {
+                      setCurrentEmail(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                    onKeyDown={(e) => {
+                      setCurrentEmail(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                  ></Form.Input>
+                </Form.InputsGroup>
+                <Form.InputsGroup>
+                  <Form.InputLabel htmlFor={'newEmail'}>
+                    New email:
+                  </Form.InputLabel>
+                  <Form.Input
+                    type='text'
+                    id='newEmail'
+                    name='newEmail'
+                    value={newEmail}
+                    placeholder='New email'
+                    onChange={(e) => {
+                      setNewEmail(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                    onKeyDown={(e) => {
+                      setNewEmail(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                  ></Form.Input>
+                </Form.InputsGroup>
+                <Form.InputsGroup>
+                  <Form.InputLabel htmlFor={'currentPassword'}>
+                    Current password:
+                  </Form.InputLabel>
+                  <Form.Input
+                    type='text'
+                    id='currentPassword'
+                    name='currentPassword'
+                    value={currentPassword}
+                    placeholder='Current password'
+                    onChange={(e) => {
+                      setCurrentPassword(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                    onKeyDown={(e) => {
+                      setCurrentPassword(e.currentTarget.value);
+                      setMessage('');
+                    }}
+                  ></Form.Input>
+                </Form.InputsGroup>
+              </React.Fragment>
+            )}
+            {/** IF USER WANT TO CHANGE EMAIL ACCOUNT TOO */}
             <Form.Break />
             <Form.SubmitButton type='submit' disabled={false}>
               Edit
