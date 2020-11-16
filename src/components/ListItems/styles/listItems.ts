@@ -48,13 +48,14 @@ export const ListItemButton = styled.button<{ active?: boolean }>`
   color: ${({ theme }) => theme.colors.medium};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   background-color: ${({ theme }) => theme.colors.secondary_lighter};
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.green};
-  }
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
-  ${({ active, theme }) => active && `background-color:${theme.colors.primary}`}
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.green};
+  }
+  ${({ active, theme }) => active && `background-color:${theme.colors.green}`}
 `;
 
 export const ListItemIconButton = styled.button<{
