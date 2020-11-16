@@ -19,7 +19,12 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth

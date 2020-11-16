@@ -9,18 +9,33 @@ import {
   ButtonLink,
   SignoutButton,
   Avatar,
+  AriaLabeledBy,
 } from './styles/navigation';
 
 interface INavigation {}
 interface INavigationComposition {
   Container: React.FC<{ bgColor?: boolean }>;
   Panel: React.FC;
-  Logo: React.FC<{ to: string }>;
+  Logo: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
+    to: string;
+  }>;
   LogoIcon: React.FC<{ src: string; alt: string }>;
   LogoText: React.FC;
-  ButtonLink: React.FC<{ to: string }>;
-  SignoutButton: React.FC<{ type: 'button'; onClick: () => void }>;
+  ButtonLink: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
+    to: string;
+  }>;
+  SignoutButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
+    type: 'button';
+    onClick: () => void;
+  }>;
   Avatar: React.FC<{ src: string; alt: string }>;
+  AriaLabeledBy: React.FC<{ id?: string }>;
 }
 export const Navigation: React.FC<INavigation> & INavigationComposition = ({
   children,
@@ -63,4 +78,10 @@ Navigation.SignoutButton = function NavigationSignoutButton({
 };
 Navigation.Avatar = function NavigationAvatar({ ...restProps }) {
   return <Avatar {...restProps} />;
+};
+Navigation.AriaLabeledBy = function NavigationAriaLabeledBy({
+  children,
+  ...restProps
+}) {
+  return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };

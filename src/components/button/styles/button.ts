@@ -20,6 +20,9 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.light};
     color: ${({ theme }) => theme.colors.dark};
   }
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.green};
+  }
 `;
 export const AddButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};

@@ -43,6 +43,9 @@ export const Tab = styled.span`
     &.active {
       background-color: ${({ theme }) => theme.colors.primary};
     }
+    &:focus {
+      outline: auto;
+    }
   }
 `;
 export const PanelGroup = styled.div`

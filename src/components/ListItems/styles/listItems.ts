@@ -48,7 +48,9 @@ export const ListItemButton = styled.button<{ active?: boolean }>`
   color: ${({ theme }) => theme.colors.medium};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary_darker};
   background-color: ${({ theme }) => theme.colors.secondary_lighter};
-
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.green};
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
@@ -89,16 +91,27 @@ export const ListItemIconButton = styled.button<{
     background-color: ${({ theme }) => theme.colors.dark};
     cursor: auto;
   }
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.green};
+  }
 `;
 export const ListItemButtonLink = styled(ReactRouterLink)`
-  color: ${({ theme }) => theme.colors.secondary_lighter};
+  color: ${({ theme }) => theme.colors.light};
   margin-bottom: 0.2rem;
+  text-decoration: none;
   &:hover {
-    color: ${({ theme }) => theme.colors.medium};
+    color: ${({ theme }) => theme.colors.secondary_lighter};
+  }
+  &:focus {
+    outline: auto;
   }
 `;
 export const ListMessage = styled.div`
   color: ${({ theme }) => theme.colors.warnning};
   text-align: center;
   font-weight: 300;
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
 `;

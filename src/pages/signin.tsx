@@ -67,7 +67,13 @@ export const SigninPage: React.FC<ISigninPage> = () => {
             }}
           />
           <Form.Break />
-          <Form.SubmitButton type='submit' disabled={!validForm}>
+          <Form.AriaLabeledBy id='signIn'>Sign in</Form.AriaLabeledBy>
+          <Form.SubmitButton
+            aria-label='Sign in'
+            aria-labelledby='signIn'
+            type='submit'
+            disabled={!validForm}
+          >
             Sign in
           </Form.SubmitButton>
           <Form.Break />

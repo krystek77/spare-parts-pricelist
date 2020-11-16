@@ -39,6 +39,9 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary};
     border: 1px solid ${({ theme }) => theme.colors.secondary_lighter};
   }
+  &:focus {
+    outline: auto;
+  }
 `;
 export const Text = styled.h2`
   width: 100%;
@@ -49,4 +52,17 @@ export const Text = styled.h2`
 export const Break = styled.div`
   flex-basis: 100%;
   height: 0.5rem;
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
+`;
+export const Label = styled.label`
+  /* display: none;
+  visibility: hidden; */
+  color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: 1rem;
+  background-color: ${({ theme }) => theme.colors.light};
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.2rem;
 `;

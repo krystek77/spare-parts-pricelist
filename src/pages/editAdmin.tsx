@@ -262,7 +262,12 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth
@@ -337,7 +342,10 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
         {message && <Form.Message>{message}</Form.Message>}
         <Form>
           <Form.Title>Edit your profile</Form.Title>
+          <Form.AriaLabeledBy id='clearForm'>Clear form</Form.AriaLabeledBy>
           <Form.ClearButton
+            aria-label='Clear form'
+            aria-labelledby='clearForm'
             type='button'
             onClick={() => {
               setNick('');
@@ -531,7 +539,13 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
             )}
             {/** IF USER WANT TO CHANGE EMAIL ACCOUNT TOO */}
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!isValidForm}>
+            <Form.AriaLabeledBy id='editAdmin'>Edit admin</Form.AriaLabeledBy>
+            <Form.SubmitButton
+              aria-label='Edit admin'
+              aria-labelledby='editAdmin'
+              type='submit'
+              disabled={!isValidForm}
+            >
               Edit
             </Form.SubmitButton>
             <Form.Break />

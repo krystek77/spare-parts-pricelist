@@ -19,6 +19,7 @@ import {
   EditLink,
   BodyTable,
   Message,
+  AriaLabeledBy,
 } from './styles/table';
 interface ITable {
   BaseTable: React.FC;
@@ -35,6 +36,8 @@ interface ITable {
   HeaderContentRowTable: React.FC;
   Controls: React.FC;
   ControlButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     disabled?: boolean;
     id?: string;
     type: 'button';
@@ -44,12 +47,16 @@ interface ITable {
     btn?: string;
   }>;
   ControlButtonDelete: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     type: 'button';
     title?: string;
     onClick?: () => void;
     onKeyDown?: () => void;
   }>;
   EditLink: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     to:
       | string
       | { pathname: string; search: string }
@@ -58,6 +65,7 @@ interface ITable {
     onClick?: () => void;
   }>;
   Message: React.FC;
+  AriaLabeledBy: React.FC<{ id?: string }>;
 }
 const defaultValue = {
   isOpenDescription: false,
@@ -243,4 +251,7 @@ Table.HeaderContentRowTable = function TableHeaderContentRowTable({
 
 Table.Message = function TableMessage({ children, ...restProps }) {
   return <Message {...restProps}>{children}</Message>;
+};
+Table.AriaLabeledBy = function TableAriaLabeledBy({ children, ...restProps }) {
+  return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };

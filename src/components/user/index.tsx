@@ -11,22 +11,26 @@ import {
   ControlWrapper,
   DeleteButton,
   Message,
+  AriaLabeledBy,
 } from './styles/user';
 
 interface IUserProfileComposition {
   ImageWrapper: React.FC;
   Image: React.FC<{ src: string; alt: string; userList?: boolean }>;
   DataWrapper: React.FC;
-  Data: React.FC<{ role?: string }>;
-  DataLabel: React.FC;
-  DataValue: React.FC;
+  Data: React.FC<{ userRole?: string }>;
+  DataLabel: React.FC<{ userRole?: string }>;
+  DataValue: React.FC<{ userRole?: string }>;
   ControlWrapper: React.FC;
   DeleteButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     type: 'button';
     onClick: () => void;
     disabled?: boolean;
   }>;
   Message: React.FC;
+  AriaLabeledBy: React.FC<{ id?: string }>;
 }
 export const UserProfile: React.FC<{ userList?: boolean }> &
   IUserProfileComposition = ({ children, userList, ...restProps }) => {
@@ -81,4 +85,10 @@ UserProfile.DeleteButton = function UserProfileDeleteButton({
 };
 UserProfile.Message = function UserProfileMessage({ children, ...restProps }) {
   return <Message {...restProps}>{children}</Message>;
+};
+UserProfile.AriaLabeledBy = function UserProfileAriaLabeledBy({
+  children,
+  ...restProps
+}) {
+  return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };

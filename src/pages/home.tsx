@@ -16,7 +16,14 @@ export const HomePage: React.FC<IHomePage> = () => {
     <React.Fragment>
       <HeaderContainer bgImage>
         <NavigationContainer>
-          <Navigation.ButtonLink to={ROUTES.SIGNIN}>
+          <Navigation.AriaLabeledBy id='signIn'>
+            Sign in
+          </Navigation.AriaLabeledBy>
+          <Navigation.ButtonLink
+            aria-label='Sign in'
+            aria-labelledby='signIn'
+            to={ROUTES.SIGNIN}
+          >
             sign in
           </Navigation.ButtonLink>
         </NavigationContainer>
@@ -28,8 +35,24 @@ export const HomePage: React.FC<IHomePage> = () => {
             Add, delete, edit pricelist category and spare parts
           </Header.SubTitle>
           <Newsletter>
-            <Newsletter.Input type='text' placeholder='Enter your email' />
-            <Newsletter.Button type='button'>Subscribe</Newsletter.Button>
+            <Newsletter.Label htmlFor='emailForNewsletter'>
+              Enter email to send newsletter
+            </Newsletter.Label>
+            <Newsletter.Input
+              id='emailForNewsletter'
+              type='text'
+              placeholder='Enter your email'
+            />
+            <Newsletter.AriaLabeledBy id='newsletter'>
+              Subscribe to newsletter
+            </Newsletter.AriaLabeledBy>
+            <Newsletter.Button
+              aria-label='newsletter'
+              aria-labelledby='newsletter'
+              type='button'
+            >
+              Subscribe
+            </Newsletter.Button>
             <Newsletter.Break />
             <Newsletter.Text>
               We are starting to be up to date. Enter email and subscribe to

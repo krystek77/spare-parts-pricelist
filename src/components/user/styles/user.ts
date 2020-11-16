@@ -36,7 +36,7 @@ export const Image = styled.img<{ userList?: boolean }>`
   max-width: ${({ userList }) => userList && '150px'};
   max-height: ${({ userList }) => userList && 'auto'};
 `;
-export const Data = styled.div<{ role?: string }>`
+export const Data = styled.div<{ userRole?: string }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -45,33 +45,38 @@ export const Data = styled.div<{ role?: string }>`
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   background-color: #333333;
-  ${({ role, theme }) =>
-    role === ROLES.ADMIN
-      ? `border-bottom:1px solid ${theme.colors.secondary_darker};background-color: ${theme.colors.secondary_lighter};`
+  ${({ userRole, theme }) =>
+    userRole === ROLES.ADMIN
+      ? `border-bottom:1px solid ${theme.colors.secondary_darker};background-color: ${theme.colors.warnning};`
       : `border-bottom:none;background-color: #333333`};
   margin-bottom: 0.3rem;
   color: #b7b7b7;
   &:nth-child(2) {
     div:last-child {
       font-weight: 600;
-      color: ${({ theme }) => theme.colors.green};
+      color: ${({ theme }) => theme.colors.medium};
     }
   }
 `;
-export const DataLabel = styled.div`
+export const DataLabel = styled.div<{ userRole?: string }>`
   margin-right: 0.5rem;
   min-width: 100px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-weight: 300;
   font-size: 0.8rem;
+  ${({ userRole, theme }) =>
+    userRole === ROLES.ADMIN && `color: ${theme.colors.dark}`};
 `;
-export const DataValue = styled.div`
+export const DataValue = styled.div<{ userRole?: string }>`
   flex-grow: 1;
   font-weight: 300;
   font-size: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  ${({ userRole, theme }) =>
+    userRole === ROLES.ADMIN &&
+    `color: ${theme.colors.dark};font-weight:bold;`};
 `;
 export const ControlWrapper = styled.div`
   flex-basis: 100%;
@@ -95,6 +100,9 @@ export const DeleteButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary_darker};
   }
+  &:focus {
+    outline: auto;
+  }
 `;
 
 export const Message = styled.div`
@@ -103,4 +111,8 @@ export const Message = styled.div`
   font-weight: 300;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
 `;

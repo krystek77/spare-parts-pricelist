@@ -506,7 +506,13 @@ export const EditUserPage: React.FC<IUserPage> = () => {
             )}
             {/** IF USER WANT TO CHANGE EMAIL ACCOUNT TOO */}
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!isValidForm}>
+            <Form.AriaLabeledBy id='editUser'>Edit User</Form.AriaLabeledBy>
+            <Form.SubmitButton
+              aria-label='Edit user'
+              aria-labelledby='editUser'
+              type='submit'
+              disabled={!isValidForm}
+            >
               Edit
             </Form.SubmitButton>
             <Form.Break />

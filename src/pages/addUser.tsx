@@ -74,7 +74,12 @@ export const AddUser: React.FC<IAddUser> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth
@@ -150,9 +155,26 @@ export const AddUser: React.FC<IAddUser> = () => {
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>
         )}
         <Form size={'addUser'}>
+          <Form.AriaLabeledBy id='clearForm'>Clear form</Form.AriaLabeledBy>
+          <Form.ClearButton
+            aria-label='Clear form'
+            aria-labelledby='clearForm'
+            type='button'
+            onClick={() => {
+              setEmail('');
+              setPassword('');
+              setConfiremdPassword('');
+              setNick('');
+              setUserRole(ROLES.USER);
+            }}
+          >
+            CLEAR
+          </Form.ClearButton>
           <Form.Title>Add User</Form.Title>
           <Form.BaseForm onSubmit={handleAddUser}>
+            <Form.InputLabel htmlFor='email'>Email</Form.InputLabel>
             <Form.Input
+              id='email'
               type='text'
               name='email'
               placeholder='Email address'
@@ -162,7 +184,9 @@ export const AddUser: React.FC<IAddUser> = () => {
                 setEmail(e.currentTarget.value);
               }}
             />
+            <Form.InputLabel htmlFor='password'>Password</Form.InputLabel>
             <Form.Input
+              id='password'
               type='text'
               name='password'
               placeholder='Enter password'
@@ -172,7 +196,11 @@ export const AddUser: React.FC<IAddUser> = () => {
                 setPassword(e.currentTarget.value);
               }}
             />
+            <Form.InputLabel htmlFor='confirmed'>
+              Confirmed password
+            </Form.InputLabel>
             <Form.Input
+              id='confirmed'
               type='text'
               name='confiremdPassword'
               value={confiremdPassword}
@@ -182,9 +210,11 @@ export const AddUser: React.FC<IAddUser> = () => {
                 setConfiremdPassword(e.currentTarget.value);
               }}
             />
+            <Form.InputLabel htmlFor='nick'>Nick</Form.InputLabel>
             <Form.Input
+              id='nick'
               type='text'
-              name='name'
+              name='nick'
               placeholder='User nick'
               value={nick}
               onChange={(e) => {
@@ -233,7 +263,13 @@ export const AddUser: React.FC<IAddUser> = () => {
               </Form.InputLabel>
             </Form.InputsGroup>
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!validForm}>
+            <Form.AriaLabeledBy id='addUser'>Add User</Form.AriaLabeledBy>
+            <Form.SubmitButton
+              aria-label='Add user'
+              aria-labelledby='addUser'
+              type='submit'
+              disabled={!validForm}
+            >
               Add User
             </Form.SubmitButton>
             <Form.Break />

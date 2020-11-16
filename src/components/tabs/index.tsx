@@ -33,11 +33,11 @@ interface TabsComposition {
   Container: React.FC;
   TabGroup: React.FC<{ children: any }>;
   Tab: React.FC<{
-    id: string;
+    tab: string;
   }>;
   PanelGroup: React.FC;
   Panel: React.FC<{
-    id: string;
+    tab: string;
     children: React.ReactChild | React.ReactChildren;
   }>;
 }
@@ -60,8 +60,8 @@ Tabs.Tab = function TabsTab(props) {
     <Tab {...props}>
       <button
         type='button'
-        onClick={() => setActiveTab(props.id)}
-        className={activeTab === props.id ? 'active' : undefined}
+        onClick={() => setActiveTab(props.tab)}
+        className={activeTab === props.tab ? 'active' : undefined}
       >
         <h2>{props.children}</h2>
       </button>
@@ -76,7 +76,7 @@ Tabs.PanelGroup = function TabsPanelGroup(props) {
 };
 Tabs.Panel = function TabsPanel(props) {
   const { activeTab } = React.useContext<ITabsContext>(TabsContext);
-  return activeTab === props.id ? (
+  return activeTab === props.tab ? (
     <Panel {...props}>{props.children}</Panel>
   ) : null;
 };

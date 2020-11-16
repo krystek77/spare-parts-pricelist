@@ -19,6 +19,7 @@ import {
   ClearButton,
   CustomButton,
   CheckBoxInput,
+  AriaLabeledBy,
 } from './styles/form';
 
 interface IForm {
@@ -44,14 +45,23 @@ interface IFormComposition {
     onKeyDown?: (e: React.FormEvent<HTMLInputElement>) => void;
   }>;
   Break: React.FC;
-  SubmitButton: React.FC<{ type: 'submit'; disabled?: boolean }>;
+  SubmitButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
+    type: 'submit';
+    disabled?: boolean;
+  }>;
   CustomButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     btn?: string;
     type: 'submit' | 'button' | 'reset';
     disabled?: boolean;
     onClick?: () => void;
   }>;
   ClearButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     type: 'button';
     onClick?: () => void;
   }>;
@@ -76,6 +86,8 @@ interface IFormComposition {
   }>;
   InputLabel: React.FC<{ htmlFor?: string }>;
   IconButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     type: 'button';
     onClick?: () => void;
     onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
@@ -92,6 +104,7 @@ interface IFormComposition {
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   }>;
+  AriaLabeledBy: React.FC<{ id?: string }>;
 }
 export const Form: React.FC<IForm> & IFormComposition = ({
   children,
@@ -153,4 +166,7 @@ Form.IconButton = function FormIconButton({ children, ...restProps }) {
 };
 Form.TextAreaInput = function FormTextAreaInput({ ...restProps }) {
   return <TextAreaInput {...restProps} />;
+};
+Form.AriaLabeledBy = function FormAriaLabeledBy({ children, ...restProps }) {
+  return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };

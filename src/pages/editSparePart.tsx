@@ -93,7 +93,6 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
       spareParts.find((item) => item.sparePartID === match.params.sparePartID);
 
     if (updatedSparePart) {
-
       setName(updatedSparePart.name);
       setModel(updatedSparePart.model);
       setFrom(updatedSparePart.from);
@@ -184,7 +183,12 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth
@@ -252,7 +256,10 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         {/** EDIT FORM */}
         {message && <Form.Message>{message}</Form.Message>}
         <Form size={'editSparePart'}>
+          <Form.AriaLabeledBy id="clearForm'">Clear form</Form.AriaLabeledBy>
           <Form.ClearButton
+            aria-label='Clear form'
+            aria-labelledby='clearForm'
             type='button'
             onClick={() => {
               setMessage('');
@@ -477,7 +484,15 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
             )}
 
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!isValidForm}>
+            <Form.AriaLabeledBy id='editSparePart'>
+              Edit spare part
+            </Form.AriaLabeledBy>
+            <Form.SubmitButton
+              aria-label='Edit spare part'
+              aria-labelledby='editSparePart'
+              type='submit'
+              disabled={!isValidForm}
+            >
               Edit Spare Part
             </Form.SubmitButton>
             <Form.Break />

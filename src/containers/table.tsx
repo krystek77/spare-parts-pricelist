@@ -82,7 +82,12 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
               </Table.RowTable>
 
               <Table.Controls>
+                <Table.AriaLabeledBy id={`showDescription_${item.sparePartID}`}>
+                  Show description
+                </Table.AriaLabeledBy>
                 <Table.ControlButton
+                  aria-label='Show description'
+                  aria-labelledby={`showDescription_${item.sparePartID}`}
                   btn='DESCRIPTION'
                   type='button'
                   title='Show description'
@@ -90,7 +95,12 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 >
                   <MdDescription />
                 </Table.ControlButton>
+                <Table.AriaLabeledBy id={`showComment_${item.sparePartID}`}>
+                  Show comment
+                </Table.AriaLabeledBy>
                 <Table.ControlButton
+                  aria-label='Show comment'
+                  aria-labelledby={`showComment_${item.sparePartID}`}
                   btn='COMMENT'
                   type='button'
                   title='Show comment'
@@ -100,7 +110,14 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 </Table.ControlButton>
                 {role === ROLES.ADMIN && (
                   <React.Fragment>
+                    <Table.AriaLabeledBy
+                      id={`deleteSparePart_${item.sparePartID}`}
+                    >
+                      Delete spare part
+                    </Table.AriaLabeledBy>
                     <Table.ControlButtonDelete
+                      aria-label='Delete spare part'
+                      aria-labelledby={`deleteSparePart_${item.sparePartID}`}
                       type='button'
                       title='Delete'
                       onClick={() => {
@@ -109,7 +126,15 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                     >
                       <FaTrashAlt />
                     </Table.ControlButtonDelete>
+                    <Table.AriaLabeledBy
+                      id={`editSparePart_${item.sparePartID}`}
+                    >
+                      Edit spare part
+                    </Table.AriaLabeledBy>
+
                     <Table.EditLink
+                      aria-label='Edit spare part'
+                      aria-labelledby={`editSparePart_${item.sparePartID}`}
                       to={`${ROUTES.EDIT_SPARE_PART}/${item.sparePartID}`}
                       // to={`${ROUTES.EDIT_SPARE_PART}/${item.slug}?sparePartID=${item.sparePartID}`}
                       // to={{

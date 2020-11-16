@@ -39,6 +39,9 @@ export const LogoLink = styled(ReactRouterLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:focus {
+    outline: auto;
+  }
 `;
 export const ButtonLink = styled(ReactRouterLink)`
   border-radius: 0.2rem;
@@ -60,6 +63,9 @@ export const ButtonLink = styled(ReactRouterLink)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     border: 1px solid ${({ theme }) => theme.colors.secondary_lighter};
+  }
+  &:focus {
+    outline: auto;
   }
 `;
 
@@ -84,6 +90,9 @@ export const SignoutButton = styled.button`
     background-color: ${({ theme }) => theme.colors.secondary};
     border: 1px solid ${({ theme }) => theme.colors.secondary_lighter};
   }
+  &:focus {
+    outline: auto;
+  }
 `;
 export const LogoIcon = styled.img`
   width: 24px;
@@ -101,4 +110,8 @@ export const Avatar = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
 `;

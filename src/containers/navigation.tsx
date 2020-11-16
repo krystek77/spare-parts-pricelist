@@ -13,12 +13,20 @@ export const NavigationContainer: React.FC<INavigationContainer> = ({
   ...restProps
 }) => {
   const authUser = getAuthUser();
+  React.useEffect(() => {}, []);
   return (
     <>
       <Navigation.Container bgColor={bgColor}>
         <Navigation>
           <Navigation.Panel>
-            <Navigation.Logo to={ROUTES.HOME}>
+            <Navigation.AriaLabeledBy id='homePage'>
+              Home Page
+            </Navigation.AriaLabeledBy>
+            <Navigation.Logo
+              to={ROUTES.HOME}
+              aria-label='Home page'
+              aria-labelledby='homePage'
+            >
               <Navigation.LogoIcon src={logo} alt={'Application Logo'} />
               <Navigation.LogoText>Spare Parts</Navigation.LogoText>
             </Navigation.Logo>

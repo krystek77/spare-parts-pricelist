@@ -46,9 +46,11 @@ export const UserProfileContainer = ({ ...restProps }) => {
               {`${nick}`.toUpperCase()}
             </UserProfile.DataValue>
           </UserProfile.Data>
-          <UserProfile.Data role={role}>
-            <UserProfile.DataLabel>Role:</UserProfile.DataLabel>
-            <UserProfile.DataValue>{role}</UserProfile.DataValue>
+          <UserProfile.Data userRole={role}>
+            <UserProfile.DataLabel userRole={role}>Role:</UserProfile.DataLabel>
+            <UserProfile.DataValue userRole={role}>
+              {role}
+            </UserProfile.DataValue>
           </UserProfile.Data>
           {country && (
             <UserProfile.Data>
@@ -71,7 +73,12 @@ export const UserProfileContainer = ({ ...restProps }) => {
         </UserProfile.DataWrapper>
         {userList && (
           <UserProfile.ControlWrapper>
+            <UserProfile.AriaLabeledBy id={`delete_${userID}`}>
+              Delete user
+            </UserProfile.AriaLabeledBy>
             <UserProfile.DeleteButton
+              aria-label='Delete user'
+              aria-labelledby={`delete_${userID}`}
               type='button'
               onClick={() => handleDelete && handleDelete(userID)}
               disabled={role === ROLES.ADMIN}

@@ -127,7 +127,12 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth
@@ -201,7 +206,10 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
         {/** PAGE TITLE */}
         {message && <Form.Message>{message}</Form.Message>}
         <Form size={'addSparePart'}>
+          <Form.AriaLabeledBy id='clearForm'>Clear form</Form.AriaLabeledBy>
           <Form.ClearButton
+            aria-label='Clear form'
+            aria-labelledby='clearForm'
             type='button'
             onClick={() => {
               setMessage('');
@@ -241,7 +249,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
               />
             </Form.InputsGroup>
             <Form.InputsGroup>
-              <Form.InputLabel htmlFor='From'>Model</Form.InputLabel>
+              <Form.InputLabel htmlFor='model'>Model</Form.InputLabel>
               <Form.Input
                 type='text'
                 name='model'
@@ -281,7 +289,12 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             <Form.Break />
             <Form.InputsGroup>
               <Form.InputLabel>PriceList Category:</Form.InputLabel>
+              <Form.AriaLabeledBy id='chooseCategory'>
+                Choose category
+              </Form.AriaLabeledBy>
               <Form.IconButton
+                aria-label='Choose category'
+                aria-labelledby='chooseCategory'
                 type='button'
                 onClick={() => setShowPriceListsOverlay(!showPriceListsOverlay)}
                 onKeyDown={() =>
@@ -426,7 +439,15 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
             )}
 
             <Form.Break />
-            <Form.SubmitButton type='submit' disabled={!isValidForm}>
+            <Form.AriaLabeledBy id='addSparePart'>
+              Add spare part
+            </Form.AriaLabeledBy>
+            <Form.SubmitButton
+              aria-label='Add spare part'
+              aria-labelledby='addSparePart'
+              type='submit'
+              disabled={!isValidForm}
+            >
               Add Spare Parts
             </Form.SubmitButton>
             <Form.Break />

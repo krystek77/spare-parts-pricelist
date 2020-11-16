@@ -7,15 +7,18 @@ export const TabsContainer = () => {
     <Tabs.Container>
       <Tabs>
         <Tabs.TabGroup>
-          {dataTabs.map((item) => (
-            <Tabs.Tab key={item.id} id={item.id}>
-              {item.label}
-            </Tabs.Tab>
-          ))}
+          {dataTabs.map((item) => {
+            console.log(item.id);
+            return (
+              <Tabs.Tab key={item.id} tab={item.id}>
+                {item.label}
+              </Tabs.Tab>
+            );
+          })}
         </Tabs.TabGroup>
         <Tabs.PanelGroup>
           {dataTabs.map((item) => (
-            <Tabs.Panel key={item.id} id={item.id}>
+            <Tabs.Panel key={item.id} tab={item.id}>
               {item.text}
             </Tabs.Panel>
           ))}

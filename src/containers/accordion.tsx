@@ -24,8 +24,24 @@ export const AccordionContainer = () => {
             newsletter
           </Newsletter.Text>
           <Newsletter.Break />
-          <Newsletter.Input type='text' placeholder='Enter your email' />
-          <Newsletter.Button type='button'>Subscribe</Newsletter.Button>
+          <Newsletter.Label htmlFor='emailForNewsletterFooter'>
+            Enter email to send newsletter
+          </Newsletter.Label>
+          <Newsletter.Input
+            id='emailForNewsletterFooter'
+            type='text'
+            placeholder='Enter your email'
+          />
+          <Newsletter.AriaLabeledBy id='newsletterFooter'>
+            Subscribe to newsletter
+          </Newsletter.AriaLabeledBy>
+          <Newsletter.Button
+            aria-label='Newsletter'
+            aria-labelledby='newsletterFooter'
+            type='button'
+          >
+            Subscribe
+          </Newsletter.Button>
         </Newsletter>
       </Accordion>
     </Accordion.Container>

@@ -39,7 +39,7 @@ export const HeaderColTable = styled.span`
   text-align: center;
   width: 115px;
 `;
-export const RowTable = styled.li`
+export const RowTable = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -133,8 +133,11 @@ export const ControlButton = styled.button<{ btn?: string }>`
     background-color: ${({ theme }) => theme.colors.secondary_darker};
     color: ${({ theme }) => theme.colors.light};
   }
+  &:focus {
+    outline: auto;
+  }
 `;
-export const BodyTable = styled.div``;
+export const BodyTable = styled.li``;
 export const ControlButtonDelete = styled.button`
   background-color: ${({ theme }) => theme.colors.primary_darker};
   border: 1px solid ${({ theme }) => theme.colors.dark};
@@ -150,6 +153,9 @@ export const ControlButtonDelete = styled.button`
   outline: none;
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
+  }
+  &:focus {
+    outline: auto;
   }
 `;
 export const EditLink = styled(ReactRouterLink)`
@@ -169,6 +175,9 @@ export const EditLink = styled(ReactRouterLink)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary_darker};
   }
+  &:focus {
+    outline: auto;
+  }
 `;
 export const Message = styled.div`
   background-color: ${({ theme }) => theme.colors.warnning};
@@ -179,4 +188,8 @@ export const Message = styled.div`
   max-width: 320px;
   margin: 0 auto 0.5rem;
   text-align: center;
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
 `;

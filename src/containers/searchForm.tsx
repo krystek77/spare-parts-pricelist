@@ -13,6 +13,7 @@ export const SearchFormContainer: React.FC<ISearchFormContainer> = (props) => {
       <Form.Title>Search By Name</Form.Title>
       <Form.BaseForm>
         <Form.InputsGroup>
+          <Form.InputLabel htmlFor='search'>Search name:</Form.InputLabel>
           <Form.Input
             type='text'
             name='search'

@@ -10,6 +10,7 @@ import {
   Title,
   ListItemButtonLink,
   ListMessage,
+  AriaLabeledBy,
 } from './styles/listItems';
 
 interface IListItemsComposition {
@@ -19,10 +20,14 @@ interface IListItemsComposition {
     active?: boolean;
   }>;
   ListItemButtonLink: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     to: string;
     onClick?: () => void;
   }>;
   ListItemButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     type: 'button';
     active?: boolean;
     onClick?: () => void;
@@ -30,6 +35,8 @@ interface IListItemsComposition {
   }>;
   Title: React.FC;
   ListItemIconButton: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     isOwner?: boolean;
     disabled?: boolean;
     group?: boolean;
@@ -38,6 +45,7 @@ interface IListItemsComposition {
     onKeyDown?: () => void;
   }>;
   ListMessage: React.FC;
+  AriaLabeledBy: React.FC<{ id?: string }>;
 }
 export const ListItems: React.FC<{ dropDown?: boolean }> &
   IListItemsComposition = ({ dropDown, children }) => {
@@ -86,4 +94,10 @@ ListItems.ListMessage = function ListItemsListMessage({
   ...restProps
 }) {
   return <ListMessage {...restProps}>{children}</ListMessage>;
+};
+ListItems.AriaLabeledBy = function ListItemsAriaLabeledBy({
+  children,
+  ...restProps
+}) {
+  return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };

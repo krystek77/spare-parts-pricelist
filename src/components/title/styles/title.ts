@@ -19,5 +19,5 @@ export const SubTitle = styled.h4`
   margin-bottom: 0.5rem;
   text-transform: capitalize;
   font-family: 'Oswald';
-  color: ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.light};
 `;

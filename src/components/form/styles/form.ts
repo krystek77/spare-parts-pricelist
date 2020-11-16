@@ -77,6 +77,10 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.colors.light};
     font-weight: 200;
   }
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.dark};
+  }
 `;
 export const Break = styled.div`
   width: 100%;
@@ -216,4 +220,8 @@ export const CustomButton = styled.button<{ btn?: string }>`
     color: ${({ btn, theme }) =>
       (btn === 'ADD' || btn === 'CANCEL') && theme.colors.light};
   }
+`;
+export const AriaLabeledBy = styled.span<{ id?: string }>`
+  display: none;
+  visibility: hidden;
 `;

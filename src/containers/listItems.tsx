@@ -27,7 +27,12 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
           {list.map((item) => {
             return (
               <ListItems.ListItem key={item.priceListID}>
+                <ListItems.AriaLabeledBy id={item.priceListID}>
+                  {item.name}
+                </ListItems.AriaLabeledBy>
                 <ListItems.ListItemButton
+                  aria-label='Price list category'
+                  aria-labelledby={item.priceListID}
                   type='button'
                   onKeyDown={() => handler && handler(item.priceListID)}
                   active={active === item.priceListID}
@@ -39,17 +44,24 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
                   {item.name}
                 </ListItems.ListItemButton>
                 {!browse && (
-                  <ListItems.ListItemIconButton
-                    type='button'
-                    onClick={() =>
-                      handleDeletePriceList &&
-                      handleDeletePriceList(item.priceListID)
-                    }
-                    isOwner={authUser.userID === item.userID}
-                    disabled={authUser.userID !== item.userID}
-                  >
-                    <FaTrashAlt />
-                  </ListItems.ListItemIconButton>
+                  <React.Fragment>
+                    <ListItems.AriaLabeledBy id={`delete_${item.priceListID}`}>
+                      Delete {item.name}
+                    </ListItems.AriaLabeledBy>
+                    <ListItems.ListItemIconButton
+                      aria-label='Delete price list category'
+                      aria-labelledby={`delete_${item.priceListID}`}
+                      type='button'
+                      onClick={() =>
+                        handleDeletePriceList &&
+                        handleDeletePriceList(item.priceListID)
+                      }
+                      isOwner={authUser.userID === item.userID}
+                      disabled={authUser.userID !== item.userID}
+                    >
+                      <FaTrashAlt />
+                    </ListItems.ListItemIconButton>
+                  </React.Fragment>
                 )}
                 {children}
               </ListItems.ListItem>
@@ -58,8 +70,13 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
         </ListItems.List>
       )}
       <ListItems.ListButtonGroup>
+        <ListItems.AriaLabeledBy id='showAllSpareparts'>
+          Show all spare parts
+        </ListItems.AriaLabeledBy>
         <ListItems.ListItemIconButton
           group
+          aria-label='Show all spare parts'
+          aria-labelledby='showAllSpareparts'
           type='button'
           onClick={() => {
             handler && handler('');
