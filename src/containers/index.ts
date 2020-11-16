@@ -12,6 +12,7 @@ import { InfoContainer } from './info';
 import { AddPriceList } from './addPriceList';
 import { UserProfileContainer } from './user';
 import { SearchFormContainer } from './searchForm';
+import { TitlePageContainer } from './title';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -27,4 +28,5 @@ export {
   AddPriceList,
   UserProfileContainer,
   SearchFormContainer,
+  TitlePageContainer,
 };
