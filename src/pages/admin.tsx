@@ -9,8 +9,9 @@ import {
   InfoContainer,
   AddPriceList,
   SearchFormContainer,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle } from '../components';
+import { Navigation, ListItems } from '../components';
 import * as ROUTES from '../constants/routes';
 import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
@@ -224,10 +225,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <SearchFormContainer search={search} setSearch={setSearch} />
         {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title={namePriceList} />
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
         <TableContainer
