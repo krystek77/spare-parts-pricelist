@@ -249,7 +249,7 @@ export const AddUser: React.FC<IAddUser> = () => {
                 {ROLES.USER}
               </Form.InputLabel>
             </Form.InputsGroup>
-            <Form.InputsGroup>
+            {/* <Form.InputsGroup>
               <Form.RadioInput
                 type='radio'
                 id={ROLES.TESTER}
@@ -261,7 +261,7 @@ export const AddUser: React.FC<IAddUser> = () => {
               <Form.InputLabel htmlFor={ROLES.TESTER}>
                 {ROLES.TESTER}
               </Form.InputLabel>
-            </Form.InputsGroup>
+            </Form.InputsGroup> */}
             <Form.Break />
             <Form.AriaLabeledBy id='addUser'>Add User</Form.AriaLabeledBy>
             <Form.SubmitButton
