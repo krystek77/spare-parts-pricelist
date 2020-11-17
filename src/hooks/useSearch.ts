@@ -25,8 +25,9 @@ export const useSearch = (list: ISparePart[]) => {
   const [search, setSearch] = React.useState<string>('');
 
   React.useEffect(() => {
+    const regExp = new RegExp(search, 'i');
     const filtered = list.filter((item: ISparePart) => {
-      return item.name.match(search);
+      return item.name.match(regExp);
     });
     setFilteredSpareParts(filtered);
     return () => {};
