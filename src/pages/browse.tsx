@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth, dataBase } from '../lib/firebase';
+import { dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -9,6 +9,7 @@ import {
   InfoContainer,
   SearchFormContainer,
   TitlePageContainer,
+  SignOutContainer,
 } from '../containers';
 import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -76,27 +77,10 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {authUser.role === ROLES.USER && (
           <Navigation.ButtonLink to={ROUTES.USER}>USER</Navigation.ButtonLink>
         )}
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** PRICE LISTS */}

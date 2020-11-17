@@ -7,9 +7,10 @@ import {
   MenuContainer,
   NavigationContainer,
   SidebarContainer,
+  SignOutContainer,
   TitlePageContainer,
 } from '../containers';
-import { Navigation, Form } from '../components';
+import { Form } from '../components';
 import * as ROUTES from '../constants/routes';
 import { dataValidation, checkLength, ROLES } from '../helpers';
 import { EditSparePartPage } from '.';
@@ -76,28 +77,10 @@ export const AddUser: React.FC<IAddUser> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-                // history.push(ROUTES.HOME);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** MENU CONTAINER */}

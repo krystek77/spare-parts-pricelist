@@ -5,9 +5,10 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  SignOutContainer,
   TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, Form } from '../components';
+import { ListItems, Form } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 import {
@@ -261,27 +262,10 @@ export const EditUserPage: React.FC<IUserPage> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** LINKS */}

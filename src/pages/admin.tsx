@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth, dataBase } from '../lib/firebase';
+import { dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -11,8 +11,9 @@ import {
   SearchFormContainer,
   TitlePageContainer,
   MenuContainer,
+  SignOutContainer,
 } from '../containers';
-import { Navigation, ListItems } from '../components';
+import {  ListItems } from '../components';
 import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
 import {
   useSelectedPriceListsContextValue,
@@ -144,27 +145,10 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** MENU CONTAINER */}

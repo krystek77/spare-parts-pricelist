@@ -1,15 +1,15 @@
 import React from 'react';
 import { useAuth, useUsers } from '../hooks';
-import { auth, dataBase } from '../lib/firebase';
+import { dataBase } from '../lib/firebase';
 import {
   MainContainer,
   MenuContainer,
   NavigationContainer,
   SidebarContainer,
+  SignOutContainer,
   TitlePageContainer,
   UserProfileContainer,
 } from '../containers';
-import { Navigation } from '../components';
 import { useSelectedPriceListsContextValue } from '../context';
 
 export const BrowseUSersPage: React.FC = () => {
@@ -39,28 +39,10 @@ export const BrowseUSersPage: React.FC = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-                // history.push(ROUTES.HOME);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** MENU CONTAINER */}
@@ -70,7 +52,6 @@ export const BrowseUSersPage: React.FC = () => {
       <MainContainer>
         {/** PAGE TITLE */}
         <TitlePageContainer title='USER LIST' subTitle='All users' />
-
         {/** PAGE TITLE */}
         {/** USER LIST */}
         {users &&

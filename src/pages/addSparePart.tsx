@@ -6,7 +6,6 @@ import {
   useSelectedPriceListsContextValue,
   useExchangeRateContext,
 } from '../context';
-import { auth } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -14,8 +13,9 @@ import {
   PriceListsOverlay,
   TitlePageContainer,
   MenuContainer,
+  SignOutContainer,
 } from '../containers';
-import { Navigation, Form } from '../components';
+import { Form } from '../components';
 import {
   CURRENCY,
   stringToNumber,
@@ -128,28 +128,10 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
-        <Navigation.AriaLabeledBy id='signOut'>
-          Sign out
-        </Navigation.AriaLabeledBy>
-        <Navigation.SignoutButton
-          aria-label='Sign out'
-          aria-labelledby='signOut'
-          type='button'
-          onClick={() => {
-            auth
-              .signOut()
-              .then(() => {
-                localStorage.removeItem('authUser');
-                setAuthUser(initialValue);
-                // history.push(ROUTES.HOME);
-              })
-              .catch((error) => {
-                console.log('Sign out failed');
-              });
-          }}
-        >
-          sign out
-        </Navigation.SignoutButton>
+        <SignOutContainer
+          setAuthUser={setAuthUser}
+          initialValue={initialValue}
+        />
       </NavigationContainer>
       <SidebarContainer>
         {/** MENU CONTAINER */}
