@@ -8,7 +8,6 @@ export const TabsContainer = () => {
       <Tabs>
         <Tabs.TabGroup>
           {dataTabs.map((item) => {
-            console.log(item.id);
             return (
               <Tabs.Tab key={item.id} tab={item.id}>
                 {item.label}
