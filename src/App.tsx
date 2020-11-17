@@ -1,21 +1,35 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {
-  HomePage,
-  BrowsePage,
-  AdminPage,
-  SigninPage,
-  UserPage,
-  EditUserPage,
-  AddUser,
-  BrowseUSersPage,
-  AddSparePart,
-  EditSparePartPage,
-  EditAdminPage,
-  AdminProfilePage,
-  ResetPasswordPage,
-  NoMatchPage,
-} from './pages';
+import HomePage from './pages/home';
+import BrowsePage from './pages/browse';
+import AdminPage from './pages/admin';
+import SigninPage from './pages/signin';
+import EditUserPage from './pages/editUser';
+import EditAdminPage from './pages/editAdmin';
+import UserPage from './pages/user';
+import AddUser from './pages/addUser';
+import BrowseUSersPage from './pages/browseUsers';
+import AddSparePart from './pages/addSparePart';
+import EditSparePartPage from './pages/editSparePart';
+import AdminProfilePage from './pages/adminProfile';
+import ResetPasswordPage from './pages/resetPassword';
+import NoMatchPage from './pages/nomatch';
+// import {
+//   HomePage,
+//   BrowsePage,
+//   AdminPage,
+//   SigninPage,
+//   UserPage,
+//   EditUserPage,
+//   AddUser,
+//   BrowseUSersPage,
+//   AddSparePart,
+//   EditSparePartPage,
+//   EditAdminPage,
+//   AdminProfilePage,
+//   ResetPasswordPage,
+//   NoMatchPage,
+// } from './pages';
 import * as ROUTES from './constants/routes';
 import { useAuth } from './hooks';
 import { RedirectUser, ProtectedRoute, ROLES } from './helpers';

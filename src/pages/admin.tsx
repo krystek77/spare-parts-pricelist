@@ -191,3 +191,5 @@ export const AdminPage: React.FC<IAdminPage> = () => {
     </React.Fragment>
   );
 };
+
+export default AdminPage;

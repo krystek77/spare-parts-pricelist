@@ -10,7 +10,6 @@ import {
 } from '../containers';
 import { useAuth } from '../hooks';
 import { useSelectedPriceListsContextValue } from '../context';
-
 interface IAdminProfilePage {}
 export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
@@ -40,3 +39,5 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
     </React.Fragment>
   );
 };
+
+export default AdminProfilePage;

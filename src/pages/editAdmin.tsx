@@ -497,3 +497,5 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
     </React.Fragment>
   );
 };
+
+export default EditAdminPage;

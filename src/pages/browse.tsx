@@ -21,10 +21,7 @@ import {
 } from '../context';
 
 interface IBrowsePage {}
-export const BrowsePage: React.FC<IBrowsePage> = ({
-  children,
-  ...restProps
-}) => {
+export const BrowsePage: React.FC<IBrowsePage> = ({ children, ...restProps }) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const { course } = useExchangeRateContext();
   const {
@@ -116,3 +113,5 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
     </React.Fragment>
   );
 };
+
+export default BrowsePage;

@@ -186,3 +186,4 @@ export const ResetPasswordPage: React.FC<IResetPassword> = () => {
     </React.Fragment>
   );
 };
+export default ResetPasswordPage;

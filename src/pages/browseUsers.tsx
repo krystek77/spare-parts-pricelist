@@ -65,3 +65,5 @@ export const BrowseUSersPage: React.FC = () => {
     </React.Fragment>
   );
 };
+
+export default BrowseUSersPage;

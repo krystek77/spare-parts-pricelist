@@ -67,3 +67,5 @@ export const HomePage: React.FC<IHomePage> = () => {
     </React.Fragment>
   );
 };
+
+export default HomePage;

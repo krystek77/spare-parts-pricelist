@@ -226,3 +226,5 @@ export const AddUser: React.FC<IAddUser> = () => {
     </React.Fragment>
   );
 };
+
+export default AddUser;

@@ -395,3 +395,5 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     </React.Fragment>
   );
 };
+
+export default AddSparePart;

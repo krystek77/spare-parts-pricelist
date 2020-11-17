@@ -50,7 +50,7 @@ export const SigninPage: React.FC<ISigninPage> = () => {
             aria-label='Login email'
             aria-labelledby='loginEmail'
             type='text'
-            name='email'  
+            name='email'
             value={email}
             placeholder='Email address'
             // onChange:React.ChangeEventHandler<HTMLInputElement> =
@@ -94,3 +94,5 @@ export const SigninPage: React.FC<ISigninPage> = () => {
     </HeaderContainer>
   );
 };
+
+export default SigninPage;

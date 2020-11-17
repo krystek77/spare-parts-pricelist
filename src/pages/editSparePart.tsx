@@ -60,7 +60,7 @@ interface ISparePart {
   updated: string;
 }
 
-const EditPage: React.FC<IEditSparePartPage> = (props) => {
+export const EditPage: React.FC<IEditSparePartPage> = (props) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const {
     selectedPriceLists,
@@ -457,3 +457,4 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
 };
 
 export const EditSparePartPage = withRouter(EditPage);
+export default EditSparePartPage;

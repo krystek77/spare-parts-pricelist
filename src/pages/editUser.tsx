@@ -510,3 +510,5 @@ export const EditUserPage: React.FC<IUserPage> = () => {
     </React.Fragment>
   );
 };
+
+export default EditUserPage;

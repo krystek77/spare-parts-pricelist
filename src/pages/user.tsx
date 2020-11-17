@@ -7,9 +7,8 @@ import {
   UserProfileContainer,
   MenuUserContainer,
 } from '../containers';
-import {  ContentTitle } from '../components';
+import { ContentTitle } from '../components';
 import { useAuth } from '../hooks';
-
 
 interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
@@ -42,3 +41,5 @@ export const UserPage: React.FC<IUserPage> = () => {
     </React.Fragment>
   );
 };
+
+export default UserPage;
