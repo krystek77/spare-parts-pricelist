@@ -14,12 +14,16 @@ import {
 } from '../containers';
 import { Navigation, ListItems } from '../components';
 import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
-import { useSelectedPriceListsContextValue } from '../context';
+import {
+  useSelectedPriceListsContextValue,
+  useExchangeRateContext,
+} from '../context';
 import { ROLES } from '../helpers';
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
+  const { course } = useExchangeRateContext();
   /**
    * If I passed empty string, then I display all pricelists created by any admin
    * If I passed admin ID, then I displayed that pricelists for that admin
@@ -175,7 +179,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <AddPriceList />
         {/** ADD PRICE LIST */}
         {/** INFO */}
-        <InfoContainer />
+        <InfoContainer course={course} />
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>

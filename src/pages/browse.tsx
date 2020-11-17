@@ -14,7 +14,10 @@ import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts, useSearch } from '../hooks';
-import { useSelectedPriceListsContextValue } from '../context';
+import {
+  useSelectedPriceListsContextValue,
+  useExchangeRateContext,
+} from '../context';
 
 interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
@@ -22,6 +25,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
   ...restProps
 }) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
+  const { course } = useExchangeRateContext();
   const {
     selectedPriceLists,
     setSelectedPriceLists,
@@ -98,7 +102,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         />
         {/** PRICE LISTS */}
         {/** INFO */}
-        <InfoContainer />
+        <InfoContainer course={course} />
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>
