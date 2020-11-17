@@ -5,7 +5,6 @@ import {
   NavigationContainer,
   SidebarContainer,
   ListItemsContainer,
-  TableContainer,
   InfoContainer,
   SearchFormContainer,
   TitlePageContainer,
@@ -20,8 +19,13 @@ import {
   useExchangeRateContext,
 } from '../context';
 
+const TableContainer = React.lazy(() => import('../containers/table'));
+
 interface IBrowsePage {}
-export const BrowsePage: React.FC<IBrowsePage> = ({ children, ...restProps }) => {
+export const BrowsePage: React.FC<IBrowsePage> = ({
+  children,
+  ...restProps
+}) => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const { course } = useExchangeRateContext();
   const {

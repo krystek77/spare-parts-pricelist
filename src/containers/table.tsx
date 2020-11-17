@@ -162,3 +162,5 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
   ) : null;
   return content;
 };
+
+export default TableContainer;
