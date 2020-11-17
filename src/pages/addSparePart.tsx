@@ -12,8 +12,9 @@ import {
   NavigationContainer,
   SidebarContainer,
   PriceListsOverlay,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, Form, ContentTitle } from '../components';
+import { Navigation, ListItems, Form } from '../components';
 import * as ROUTES from '../constants/routes';
 import {
   CURRENCY,
@@ -199,10 +200,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       </SidebarContainer>
       <MainContainer>
         {/** PAGE TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>ADD SPARE PART</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>..//..</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title='Add spare part' subTitle='-//-' />
         {/** PAGE TITLE */}
         {message && <Form.Message>{message}</Form.Message>}
         <Form size={'addSparePart'}>

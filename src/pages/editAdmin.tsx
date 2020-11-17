@@ -5,8 +5,9 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle, Form } from '../components';
+import { Navigation, ListItems, Form } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 import {
@@ -333,10 +334,7 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
       </SidebarContainer>
       <MainContainer>
         {/** TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>EDIT PROFILE</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>{authUser.nick}</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title='EDIT PROFILE' subTitle={authUser.nick} />
         {/** TITLE */}
         {/** FORM TO EDIT USER */}
         {message && <Form.Message>{message}</Form.Message>}

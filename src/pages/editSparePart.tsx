@@ -9,8 +9,9 @@ import {
   MainContainer,
   InfoContainer,
   PriceListsOverlay,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle, Form } from '../components';
+import { Navigation, ListItems, Form } from '../components';
 import { useAuth, useSpareParts, usePriceLists } from '../hooks';
 import {
   useExchangeRateContext,
@@ -245,14 +246,12 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>
-        {/** CONTENT TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>EDIT SPARE PART</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>
-            ...{match.params.sparePartID} ...
-          </ContentTitle.SubTitle>
-        </ContentTitle>
-        {/**  CONTENT TITLE */}
+        {/** PAGE TITLE */}
+        <TitlePageContainer
+          title='EDIT SPARE PART'
+          subTitle={`...${match.params.sparePartID}...`}
+        />
+        {/**  PAGE TITLE */}
         {/** EDIT FORM */}
         {message && <Form.Message>{message}</Form.Message>}
         <Form size={'editSparePart'}>

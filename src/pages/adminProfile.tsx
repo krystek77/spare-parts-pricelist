@@ -5,8 +5,9 @@ import {
   NavigationContainer,
   SidebarContainer,
   UserProfileContainer,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle } from '../components';
+import { Navigation, ListItems } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 import { useSelectedPriceListsContextValue } from '../context';
@@ -90,10 +91,7 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
       </SidebarContainer>
       <MainContainer>
         {/** TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>USER PROFILE</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>{authUser.nick}</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title='USER PROFILE' subTitle={authUser.nick} />
         {/** TITLE */}
         {/** USER PROFILE */}
         <UserProfileContainer authUser={authUser} />

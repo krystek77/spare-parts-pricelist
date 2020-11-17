@@ -8,8 +8,9 @@ import {
   TableContainer,
   InfoContainer,
   SearchFormContainer,
+  TitlePageContainer,
 } from '../containers';
-import { Navigation, ContentTitle } from '../components';
+import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
 import { ROLES } from '../helpers';
 import { useAuth, usePriceLists, useSpareParts, useSearch } from '../hooks';
@@ -105,10 +106,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         <SearchFormContainer search={search} setSearch={setSearch} />
         {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>{namePriceList}</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title='PRICE LIST' subTitle={namePriceList} />
         {/**  CONTENT TITLE */}
 
         {/** DATA OF SPARE PARTS */}

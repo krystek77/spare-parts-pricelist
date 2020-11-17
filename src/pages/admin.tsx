@@ -225,7 +225,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <SearchFormContainer search={search} setSearch={setSearch} />
         {/** SEARCH BY NAME */}
         {/** CONTENT TITLE */}
-        <TitlePageContainer title={namePriceList} />
+        <TitlePageContainer title='Admin' subTitle={namePriceList} />
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
         <TableContainer

@@ -3,13 +3,14 @@ import { ContentTitle } from '../components';
 
 interface ITitlePageContainer {
   title?: string;
+  subTitle?: string;
 }
 export const TitlePageContainer: React.FC<ITitlePageContainer> = React.memo(
-  ({ title }) => {
+  ({ title, subTitle }) => {
     return (
       <ContentTitle>
-        <ContentTitle.BaseTitle>PRICE LIST</ContentTitle.BaseTitle>
-        <ContentTitle.SubTitle>{title}</ContentTitle.SubTitle>
+        <ContentTitle.BaseTitle>{title}</ContentTitle.BaseTitle>
+        <ContentTitle.SubTitle>{subTitle}</ContentTitle.SubTitle>
       </ContentTitle>
     );
   }

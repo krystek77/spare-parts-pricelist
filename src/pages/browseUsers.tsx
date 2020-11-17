@@ -5,9 +5,10 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
+  TitlePageContainer,
   UserProfileContainer,
 } from '../containers';
-import { Navigation, ListItems, ContentTitle } from '../components';
+import { Navigation, ListItems } from '../components';
 import * as ROUTES from '../constants/routes';
 
 export const BrowseUSersPage: React.FC = () => {
@@ -100,10 +101,8 @@ export const BrowseUSersPage: React.FC = () => {
       </SidebarContainer>
       <MainContainer>
         {/** PAGE TITLE */}
-        <ContentTitle>
-          <ContentTitle.BaseTitle>USER LIST</ContentTitle.BaseTitle>
-          <ContentTitle.SubTitle>All users</ContentTitle.SubTitle>
-        </ContentTitle>
+        <TitlePageContainer title='USER LIST' subTitle='All users' />
+
         {/** PAGE TITLE */}
         {/** USER LIST */}
         {users &&
