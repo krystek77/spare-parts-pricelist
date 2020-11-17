@@ -1,6 +1,6 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
-// import { auth, dataBase } from '../lib/firebase';
+import { useHistory } from 'react-router-dom';
+import { auth, firebase } from '../lib/firebase';
 import {
   MainContainer,
   MenuContainer,
@@ -11,7 +11,7 @@ import {
 } from '../containers';
 import { Form } from '../components';
 import { useAuth } from '../hooks';
-// import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../constants/routes';
 import {
   // checkLength,
   emailValidation,
@@ -22,7 +22,7 @@ import { useSelectedPriceListsContextValue } from '../context';
 interface IResetPassword {}
 export const ResetPasswordPage: React.FC<IResetPassword> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
-  // const history = useHistory();
+  const history = useHistory();
   const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
   const [message, setMessage] = React.useState<string>('');
   const [currentEmail, setCurrentEmail] = React.useState<string>(
@@ -40,6 +40,29 @@ export const ResetPasswordPage: React.FC<IResetPassword> = () => {
 
   const handleResetPassword = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const user = auth.currentUser;
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      currentEmail,
+      currentPassword
+    );
+    user
+      ?.reauthenticateWithCredential(credential)
+      .then((result) => {
+        return result.user?.updatePassword(newPassword);
+      })
+      .then(() => {
+        setMessage('Password updated successfully');
+        setTimeout(() => {
+          setMessage('');
+          history.push(ROUTES.ADMIN);
+        }, 500);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+        setTimeout(() => {
+          setMessage('');
+        }, 500);
+      });
   };
 
   return (
