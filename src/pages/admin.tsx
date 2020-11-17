@@ -5,7 +5,6 @@ import {
   NavigationContainer,
   SidebarContainer,
   ListItemsContainer,
-  TableContainer,
   InfoContainer,
   AddPriceList,
   SearchFormContainer,
@@ -20,6 +19,7 @@ import {
   useExchangeRateContext,
 } from '../context';
 import { ROLES } from '../helpers';
+const TableContainer = React.lazy(() => import('../containers/table'));
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {
