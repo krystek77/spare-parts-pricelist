@@ -14,8 +14,10 @@ interface IAuthUser {
 export const useUsers = () => {
   const [users, setUsers] = React.useState<IAuthUser[]>([]);
   const [error, setError] = React.useState<string>('');
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
+    setIsLoading(true);
     const unsubscribe = dataBase.collection('users').onSnapshot(
       (snapshot) => {
         const users: IAuthUser[] = snapshot.docs.map((doc) => {
@@ -32,6 +34,7 @@ export const useUsers = () => {
           };
         });
         setUsers(users);
+        setIsLoading(false);
       },
       (error) => {
         setError(error.message);
@@ -41,5 +44,5 @@ export const useUsers = () => {
       unsubscribe();
     };
   }, []);
-  return { users, error };
+  return { users, error, isLoading };
 };

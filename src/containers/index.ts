@@ -15,6 +15,7 @@ import { SearchFormContainer } from './searchForm';
 import { TitlePageContainer } from './title';
 import { MenuContainer } from './menu';
 import { SignOutContainer } from './signout';
+import { UsersListContainer } from './usersList';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -33,4 +34,5 @@ export {
   TitlePageContainer,
   MenuContainer,
   SignOutContainer,
+  UsersListContainer,
 };

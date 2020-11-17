@@ -8,14 +8,14 @@ import {
   SidebarContainer,
   SignOutContainer,
   TitlePageContainer,
-  UserProfileContainer,
+  UsersListContainer,
 } from '../containers';
 import { useSelectedPriceListsContextValue } from '../context';
 
 export const BrowseUSersPage: React.FC = () => {
   const { setAuthUser, initialValue } = useAuth();
   const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
-  const { users } = useUsers();
+  const { users, isLoading } = useUsers();
   const [message, setMessage] = React.useState('');
 
   const handleDeleteUser = (userID: string) => {
@@ -53,19 +53,14 @@ export const BrowseUSersPage: React.FC = () => {
         {/** PAGE TITLE */}
         <TitlePageContainer title='USER LIST' subTitle='All users' />
         {/** PAGE TITLE */}
-        {/** USER LIST */}
-        {users &&
-          users.length > 0 &&
-          users.map((item) => (
-            <UserProfileContainer
-              key={item.userID}
-              authUser={item}
-              userList
-              handleDelete={handleDeleteUser}
-              message={message}
-            />
-          ))}
-        {/** USER LIST */}
+        {/** USERS LIST */}
+        <UsersListContainer
+          users={users}
+          isLoading={isLoading}
+          handleDeleteUser={handleDeleteUser}
+          message={message}
+        />
+        {/** USERS LIST */}
       </MainContainer>
     </React.Fragment>
   );
