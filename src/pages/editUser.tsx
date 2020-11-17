@@ -261,7 +261,12 @@ export const EditUserPage: React.FC<IUserPage> = () => {
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth

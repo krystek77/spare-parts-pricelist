@@ -76,7 +76,12 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {authUser.role === ROLES.USER && (
           <Navigation.ButtonLink to={ROUTES.USER}>USER</Navigation.ButtonLink>
         )}
+        <Navigation.AriaLabeledBy id='signOut'>
+          Sign out
+        </Navigation.AriaLabeledBy>
         <Navigation.SignoutButton
+          aria-label='Sign out'
+          aria-labelledby='signOut'
           type='button'
           onClick={() => {
             auth
