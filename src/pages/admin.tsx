@@ -13,7 +13,7 @@ import {
   MenuContainer,
   SignOutContainer,
 } from '../containers';
-import {  ListItems } from '../components';
+import { ListItems } from '../components';
 import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
 import {
   useSelectedPriceListsContextValue,
