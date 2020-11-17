@@ -195,7 +195,7 @@ const EditPage: React.FC<IEditSparePartPage> = (props) => {
         {/** MENU CONTAINER */}
         <MenuContainer setSelectedPriceLists={setSelectedPriceLists} />
         {/** MENU CONTAINER */}
-        <InfoContainer />
+        <InfoContainer course={course} />
         {/** INFO */}
       </SidebarContainer>
       <MainContainer>
