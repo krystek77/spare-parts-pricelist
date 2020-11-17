@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { auth, dataBase, storage, firebase } from '../lib/firebase';
 import {
   MainContainer,
+  MenuContainer,
   NavigationContainer,
   SidebarContainer,
   TitlePageContainer,
 } from '../containers';
-import { Navigation, ListItems, Form } from '../components';
+import { Navigation, Form } from '../components';
 import { useAuth } from '../hooks';
 import * as ROUTES from '../constants/routes';
 import {
@@ -286,51 +287,9 @@ export const EditAdminPage: React.FC<IUserPage> = () => {
         </Navigation.SignoutButton>
       </NavigationContainer>
       <SidebarContainer>
-        {/** LINKS */}
-        <ListItems>
-          <ListItems.Title>LINKS</ListItems.Title>
-          <ListItems.List>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.ADMIN_PROFILE}>
-                Profile
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.ADD_USER}>
-                Add User
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.EDIT_ADMIN}>
-                Edit Profile
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
-                Browse Users
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
-                Add Spare Part
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink
-                to={ROUTES.BROWSE}
-                onClick={() => setSelectedPriceLists('')}
-              >
-                Browese PriceLists
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-            <ListItems.ListItem>
-              <ListItems.ListItemButtonLink to={ROUTES.ADMIN}>
-                Admin
-              </ListItems.ListItemButtonLink>
-            </ListItems.ListItem>
-          </ListItems.List>
-        </ListItems>
-        {/** LINKS */}
+        {/** MENU CONTAINER */}
+        <MenuContainer setSelectedPriceLists={setSelectedPriceLists} />
+        {/** MENU CONTAINER */}
       </SidebarContainer>
       <MainContainer>
         {/** TITLE */}
