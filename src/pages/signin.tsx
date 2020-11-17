@@ -45,9 +45,12 @@ export const SigninPage: React.FC<ISigninPage> = () => {
           <Form.ErrorServer>{errors.server}</Form.ErrorServer>
         )}
         <Form.BaseForm onSubmit={handleSignin}>
+          <Form.AriaLabeledBy id='loginEmail'>Login email</Form.AriaLabeledBy>
           <Form.Input
+            aria-label='Login email'
+            aria-labelledby='loginEmail'
             type='text'
-            name='email'
+            name='email'  
             value={email}
             placeholder='Email address'
             // onChange:React.ChangeEventHandler<HTMLInputElement> =
@@ -56,7 +59,12 @@ export const SigninPage: React.FC<ISigninPage> = () => {
               setEmail(e.currentTarget.value);
             }}
           />
+          <Form.AriaLabeledBy id='loginPassword'>
+            Login password
+          </Form.AriaLabeledBy>
           <Form.Input
+            aria-label='Login password'
+            aria-labelledby='loginPassword'
             type='text'
             placeholder='Password'
             value={password}

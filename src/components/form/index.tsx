@@ -35,6 +35,8 @@ interface IFormComposition {
   ErrorServer: React.FC;
   Message: React.FC;
   Input: React.FC<{
+    ['aria-label']?: string;
+    ['aria-labelledby']?: string;
     accept?: string;
     type: string;
     name: string;
