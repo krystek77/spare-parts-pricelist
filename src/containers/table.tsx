@@ -12,10 +12,11 @@ interface ITableContainer {
   message?: string;
   isLoading?: boolean;
   role?: string;
+  browse?: boolean;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete, message, isLoading, role } = restProps;
+  const { list, handleDelete, message, isLoading, role, browse } = restProps;
 
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
@@ -108,7 +109,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                 >
                   <FaCommentAlt />
                 </Table.ControlButton>
-                {role === ROLES.ADMIN && (
+                {role === ROLES.ADMIN && !browse ? (
                   <React.Fragment>
                     <Table.AriaLabeledBy
                       id={`deleteSparePart_${item.sparePartID}`}
@@ -151,7 +152,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       <FaEdit />
                     </Table.EditLink>
                   </React.Fragment>
-                )}
+                ) : null}
               </Table.Controls>
             </Table.BodyTable>
           );
