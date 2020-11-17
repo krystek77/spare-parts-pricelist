@@ -13,6 +13,7 @@ import {
   EditSparePartPage,
   EditAdminPage,
   AdminProfilePage,
+  ResetPasswordPage,
   NoMatchPage,
 } from './pages';
 import * as ROUTES from './constants/routes';
@@ -119,6 +120,13 @@ export function App() {
           path={ROUTES.BROWSE}
         >
           <BrowsePage />
+        </ProtectedRoute>
+        <ProtectedRoute
+          authUser={authUser}
+          role={authUser.role === ROLES.ADMIN ? ROLES.ADMIN : ROLES.USER}
+          path={ROUTES.RESET_PASSWORD}
+        >
+          <ResetPasswordPage />
         </ProtectedRoute>
         {/* <Route path={ROUTES.BROWSE}>
           <BrowsePage />

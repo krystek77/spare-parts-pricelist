@@ -27,6 +27,11 @@ export const MenuContainer: React.FC<IMenuContainer> = React.memo(
             </ListItems.ListItemButtonLink>
           </ListItems.ListItem>
           <ListItems.ListItem>
+            <ListItems.ListItemButtonLink to={ROUTES.RESET_PASSWORD}>
+              Reset Password
+            </ListItems.ListItemButtonLink>
+          </ListItems.ListItem>
+          <ListItems.ListItem>
             <ListItems.ListItemButtonLink to={ROUTES.BROWSE_USERS}>
               Browse Users
             </ListItems.ListItemButtonLink>

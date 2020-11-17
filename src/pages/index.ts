@@ -11,6 +11,7 @@ import { EditUserPage } from './editUser';
 import { BrowseUSersPage } from './browseUsers';
 import { EditAdminPage } from './editAdmin';
 import { AdminProfilePage } from './adminProfile';
+import { ResetPasswordPage } from './resetPassword';
 export {
   HomePage,
   BrowsePage,
@@ -24,5 +25,6 @@ export {
   EditSparePartPage,
   EditAdminPage,
   AdminProfilePage,
+  ResetPasswordPage,
   NoMatchPage,
 };
