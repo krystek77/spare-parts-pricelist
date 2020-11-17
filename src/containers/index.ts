@@ -16,6 +16,7 @@ import { TitlePageContainer } from './title';
 import { MenuContainer } from './menu';
 import { SignOutContainer } from './signout';
 import { UsersListContainer } from './usersList';
+import { MenuUserContainer } from './menuUser';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -35,4 +36,5 @@ export {
   MenuContainer,
   SignOutContainer,
   UsersListContainer,
+  MenuUserContainer,
 };

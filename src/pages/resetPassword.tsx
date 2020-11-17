@@ -4,6 +4,7 @@ import { auth, firebase } from '../lib/firebase';
 import {
   MainContainer,
   MenuContainer,
+  MenuUserContainer,
   NavigationContainer,
   SidebarContainer,
   SignOutContainer,
@@ -16,6 +17,7 @@ import {
   // checkLength,
   emailValidation,
   passwordValidation,
+  ROLES,
 } from '../helpers';
 import { useSelectedPriceListsContextValue } from '../context';
 
@@ -75,7 +77,10 @@ export const ResetPasswordPage: React.FC<IResetPassword> = () => {
       </NavigationContainer>
       <SidebarContainer>
         {/** MENU CONTAINER */}
-        <MenuContainer setSelectedPriceLists={setSelectedPriceLists} />
+        {authUser.role === ROLES.ADMIN && (
+          <MenuContainer setSelectedPriceLists={setSelectedPriceLists} />
+        )}
+        {authUser.role === ROLES.USER && <MenuUserContainer />}
         {/** MENU CONTAINER */}
       </SidebarContainer>
       <MainContainer>
