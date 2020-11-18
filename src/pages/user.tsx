@@ -1,4 +1,5 @@
 import React from 'react';
+import { auth, dataBase } from '../lib/firebase';
 import {
   MainContainer,
   NavigationContainer,
@@ -14,7 +15,24 @@ interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const handleDeleteUser = () => {
-    console.log('DELETE USER');
+    const user = auth.currentUser;
+
+    dataBase
+      .collection('users')
+      .doc(authUser.userID)
+      .delete()
+      .then(() => {
+        // console.log('User details deleted now.');
+        if (user) {
+          return user.delete();
+        }
+      })
+      .then(() => {
+        // console.log('User account deleted successfully');
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <React.Fragment>
