@@ -1,0 +1,77 @@
+{
+  "users": {
+    "uid1": {
+      "added": "2020-11-15",
+      "avatar": "https://firebasestorage...",
+      "city": "Poland",
+      "country": "Kielce",
+      "email": "krys@email.pl",
+      "lastUpdated": "2020-11-18",
+      "mobile": "+48600123456",
+      "nick": "krys",
+      "role": "admin",
+      "userID": "uid1"
+    },
+    "uid2": {
+      "added": "",
+      "avatar": "",
+      "city": "",
+      "country": "",
+      "email": "",
+      "lastUpdated": "",
+      "mobile": "",
+      "nick": "",
+      "role": "user",
+      "userID": "uid2"
+    }
+  },
+  "spare-parts": {
+    "sparePartID1": {
+      "added": "2020-11-15",
+      "comments": "",
+      "currency": "EUR | ZŁ",
+      "description": "",
+      "from": "",
+      "to": "",
+      "name": "",
+      "priceListID": "",
+      "purchase-price": "",
+      "selling-price": "",
+      "slug": "",
+      "updated": "",
+      "userID": "uid1"
+    },
+    "sparePartID2": {
+      "added": "2020-11-15",
+      "comments": "",
+      "currency": "EUR | ZŁ",
+      "description": "",
+      "from": "",
+      "to": "",
+      "name": "",
+      "priceListID": "",
+      "purchase-price": "",
+      "selling-price": "",
+      "slug": "",
+      "updated": "",
+      "userID": "uid1"
+    }
+  },
+  "pricelists": {
+    "priceListID1": {
+      "added": "2020-11-15",
+      "name": "Suszarki",
+      "userID": "uid1"
+    },
+    "priceListID2": {
+      "added": "2020-09-15",
+      "name": "Pralnice",
+      "userID": "uid2"
+    },
+    "priceListID3": {
+      "added": "2020-11-18",
+      "name": "Regały",
+      "userID": "uid1"
+    }
+  }
+}
