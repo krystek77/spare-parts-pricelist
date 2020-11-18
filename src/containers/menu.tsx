@@ -59,3 +59,4 @@ export const MenuContainer: React.FC<IMenuContainer> = React.memo(
     );
   }
 );
+export default MenuContainer;

@@ -26,3 +26,5 @@ ContentTitle.SubTitle = function ContentTitleBaseTitle({
 }) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
 };
+
+export default ContentTitle;

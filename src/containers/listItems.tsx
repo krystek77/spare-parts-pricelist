@@ -93,3 +93,4 @@ export const ListItemsContainer: React.FC<IListItemsContainer> = ({
     </ListItems>
   );
 };
+export default ListItemsContainer;

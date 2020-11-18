@@ -4,11 +4,9 @@ import {
   MainContainer,
   NavigationContainer,
   SidebarContainer,
-  ListItemsContainer,
   InfoContainer,
   AddPriceList,
   SearchFormContainer,
-  TitlePageContainer,
   MenuContainer,
   SignOutContainer,
 } from '../containers';
@@ -20,6 +18,8 @@ import {
 } from '../context';
 import { ROLES } from '../helpers';
 const TableContainer = React.lazy(() => import('../containers/table'));
+const TitlePageContainer = React.lazy(() => import('../containers/title'));
+const ListItemsContainer = React.lazy(() => import('../containers/listItems'));
 
 interface IAdminPage {}
 export const AdminPage: React.FC<IAdminPage> = () => {

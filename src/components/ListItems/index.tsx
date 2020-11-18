@@ -101,3 +101,4 @@ ListItems.AriaLabeledBy = function ListItemsAriaLabeledBy({
 }) {
   return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
 };
+export default ListItems;

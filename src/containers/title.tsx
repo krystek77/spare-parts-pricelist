@@ -15,3 +15,4 @@ export const TitlePageContainer: React.FC<ITitlePageContainer> = React.memo(
     );
   }
 );
+export default TitlePageContainer;
