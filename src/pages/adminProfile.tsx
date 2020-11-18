@@ -15,6 +15,15 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const { setSelectedPriceLists } = useSelectedPriceListsContextValue();
 
+  /**
+   * TODO:
+   * 1. Delete admin
+   * - delete all spare parts belong to current admin
+   * - delete all pricelists belong to current admin
+   * - delete admin details and than
+   * - delete admin account
+   */
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>

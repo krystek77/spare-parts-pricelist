@@ -12,6 +12,10 @@ import * as ROUTES from '../constants/routes';
 interface IHomePage {}
 
 export const HomePage: React.FC<IHomePage> = () => {
+  /**
+   * TODO:
+   * 1. handle newsletter
+   */
   return (
     <React.Fragment>
       <HeaderContainer bgImage>
