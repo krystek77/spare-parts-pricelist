@@ -17,11 +17,11 @@ interface IUser {
 interface IUsersListContainer {
   users: IUser[];
   isLoading: boolean;
-  handleDeleteUser: (item: string) => void;
+  handleDeleteOtherUser?: (item: string) => void;
   message: string;
 }
 export const UsersListContainer: React.FC<IUsersListContainer> = (props) => {
-  const { users, isLoading, handleDeleteUser, message } = props;
+  const { users, isLoading, handleDeleteOtherUser, message } = props;
 
   const content = isLoading ? (
     <Spinner>Loading users list ...</Spinner>
@@ -32,7 +32,7 @@ export const UsersListContainer: React.FC<IUsersListContainer> = (props) => {
           key={item.userID}
           authUser={item}
           userList
-          handleDelete={handleDeleteUser}
+          handleDeleteOtherUser={handleDeleteOtherUser}
           message={message}
         />
       ))}

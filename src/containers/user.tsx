@@ -17,7 +17,8 @@ export const UserProfileContainer = ({ ...restProps }) => {
       userID,
     },
     userList,
-    handleDelete,
+    // handleDeleteOtherUser,
+    handleDeleteUser,
     message,
   } = restProps;
   return (
@@ -71,7 +72,7 @@ export const UserProfileContainer = ({ ...restProps }) => {
             </UserProfile.Data>
           )}
         </UserProfile.DataWrapper>
-        {userList && (
+        {!userList && (
           <UserProfile.ControlWrapper>
             <UserProfile.AriaLabeledBy id={`delete_${userID}`}>
               Delete user
@@ -80,7 +81,7 @@ export const UserProfileContainer = ({ ...restProps }) => {
               aria-label='Delete user'
               aria-labelledby={`delete_${userID}`}
               type='button'
-              onClick={() => handleDelete && handleDelete(userID)}
+              onClick={() => handleDeleteUser && handleDeleteUser()}
               disabled={role === ROLES.ADMIN}
             >
               <FaTrashAlt />

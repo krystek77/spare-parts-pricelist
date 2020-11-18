@@ -18,7 +18,8 @@ export const BrowseUSersPage: React.FC = () => {
   const { users, isLoading } = useUsers();
   const [message, setMessage] = React.useState('');
 
-  const handleDeleteUser = (userID: string) => {
+  const handleDeleteOtherUser = (userID: string) => {
+    console.log('DELETE OTHER USER');
     dataBase
       .collection('users')
       .doc(userID)
@@ -57,7 +58,7 @@ export const BrowseUSersPage: React.FC = () => {
         <UsersListContainer
           users={users}
           isLoading={isLoading}
-          handleDeleteUser={handleDeleteUser}
+          handleDeleteOtherUser={handleDeleteOtherUser}
           message={message}
         />
         {/** USERS LIST */}

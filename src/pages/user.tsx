@@ -13,7 +13,9 @@ import { useAuth } from '../hooks';
 interface IUserPage {}
 export const UserPage: React.FC<IUserPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
-
+  const handleDeleteUser = () => {
+    console.log('DELETE USER');
+  };
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -35,7 +37,10 @@ export const UserPage: React.FC<IUserPage> = () => {
         </ContentTitle>
         {/** TITLE */}
         {/** USER PROFILE */}
-        <UserProfileContainer authUser={authUser} />
+        <UserProfileContainer
+          authUser={authUser}
+          handleDeleteUser={handleDeleteUser}
+        />
         {/** USER PROFILE */}
       </MainContainer>
     </React.Fragment>
