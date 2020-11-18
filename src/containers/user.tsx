@@ -39,7 +39,11 @@ export const UserProfileContainer = ({ ...restProps }) => {
           </UserProfile.Data>
           <UserProfile.Data>
             <UserProfile.DataLabel>Email:</UserProfile.DataLabel>
-            <UserProfile.DataValue>{email}</UserProfile.DataValue>
+            <UserProfile.DataValue>
+              <UserProfile.EmailLink href={`mailto:${email}`}>
+                {email}
+              </UserProfile.EmailLink>
+            </UserProfile.DataValue>
           </UserProfile.Data>
           <UserProfile.Data>
             <UserProfile.DataLabel>Name:</UserProfile.DataLabel>

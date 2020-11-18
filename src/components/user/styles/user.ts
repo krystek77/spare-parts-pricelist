@@ -116,3 +116,10 @@ export const AriaLabeledBy = styled.span<{ id?: string }>`
   display: none;
   visibility: hidden;
 `;
+export const EmailLink = styled.a`
+  color: ${({ theme }) => theme.colors.medium};
+  text-decoration: none;
+  &:hover {
+    color: ${({ theme }) => theme.colors.light};
+  }
+`;

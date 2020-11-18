@@ -11,6 +11,7 @@ import {
   ControlWrapper,
   DeleteButton,
   Message,
+  EmailLink,
   AriaLabeledBy,
 } from './styles/user';
 
@@ -31,6 +32,7 @@ interface IUserProfileComposition {
   }>;
   Message: React.FC;
   AriaLabeledBy: React.FC<{ id?: string }>;
+  EmailLink: React.FC<{ href: string }>;
 }
 export const UserProfile: React.FC<{ userList?: boolean }> &
   IUserProfileComposition = ({ children, userList, ...restProps }) => {
@@ -91,4 +93,10 @@ UserProfile.AriaLabeledBy = function UserProfileAriaLabeledBy({
   ...restProps
 }) {
   return <AriaLabeledBy {...restProps}>{children}</AriaLabeledBy>;
+};
+UserProfile.EmailLink = function UserProfileEmailLink({
+  children,
+  ...restProps
+}) {
+  return <EmailLink {...restProps}>{children}</EmailLink>;
 };
