@@ -220,6 +220,12 @@ export const CustomButton = styled.button<{ btn?: string }>`
     color: ${({ btn, theme }) =>
       (btn === 'ADD' || btn === 'CANCEL') && theme.colors.light};
   }
+  :disabled {
+    background-color: ${({ theme }) => theme.colors.dark};
+    color: ${({ theme }) => theme.colors.light};
+    border-color: ${({ theme }) => theme.colors.gray};
+    pointer-events: none;
+  }
 `;
 export const AriaLabeledBy = styled.span<{ id?: string }>`
   display: none;

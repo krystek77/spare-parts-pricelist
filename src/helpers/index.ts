@@ -15,6 +15,7 @@ import {
   prepareSlug,
   getAuthUser,
   isPhoneNumber,
+  isPriceListName,
 } from './func';
 import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
@@ -40,4 +41,5 @@ export {
   prepareSlug,
   getAuthUser,
   isPhoneNumber,
+  isPriceListName,
 };

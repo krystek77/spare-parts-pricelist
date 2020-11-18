@@ -1,7 +1,7 @@
 import React from 'react';
 import { dataBase } from '../lib/firebase';
 import { Form, CustomButton } from '../components';
-import { getAuthUser } from '../helpers';
+import { getAuthUser, isPriceListName } from '../helpers';
 
 interface IAddPriceList {
   showAddPriceList?: boolean;
@@ -70,6 +70,7 @@ export const AddPriceList: React.FC<IAddPriceList> = React.memo(
       //     setMessage(error.message);
       //   });
     };
+    const isValidForm = isPriceListName(priceListName);
 
     return (
       <React.Fragment>
@@ -84,14 +85,18 @@ export const AddPriceList: React.FC<IAddPriceList> = React.memo(
                   id='priceListName'
                   name='priceListName'
                   value={priceListName}
-                  placeholder='Enter name of pricelist'
+                  placeholder='Enter name of pricelist - Prasownice nieckowe'
                   onChange={(e) => setPriceListName(e.currentTarget.value)}
                   onKeyDown={(e) => setPriceListName(e.currentTarget.value)}
                 />
                 <Form.InputsGroup></Form.InputsGroup>
                 <Form.Break />
                 <Form.InputsGroup>
-                  <Form.CustomButton type='submit' btn={'ADD'}>
+                  <Form.CustomButton
+                    type='submit'
+                    btn={'ADD'}
+                    disabled={!isValidForm}
+                  >
                     +ADD
                   </Form.CustomButton>
                   <Form.CustomButton

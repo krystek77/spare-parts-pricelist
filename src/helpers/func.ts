@@ -58,6 +58,10 @@ const isSparePartName = (name: string): boolean => {
   const regExp = /^[a-zA-Z0-9ąćęłńóśźż\s]{5,}/;
   return !!name.match(regExp) ? true : false;
 };
+const isPriceListName = (name: string): boolean => {
+  const regExp = /^[A-Z]{1}[a-ząćęłńóśźż\s]{4,}$/;
+  return !!name.match(regExp) ? true : false;
+};
 const isModel = (model: string): boolean => {
   const regExp = /^[A-Z]{1,}[0-9]*-[0-9]+/;
   return !!model.match(regExp) ? true : false;
@@ -112,4 +116,5 @@ export {
   prepareSlug,
   getAuthUser,
   isPhoneNumber,
+  isPriceListName,
 };
