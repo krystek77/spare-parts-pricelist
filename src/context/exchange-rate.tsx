@@ -1,7 +1,7 @@
 import React from 'react';
 
 const URL_API_EURO =
-  'http://api.nbp.pl/api/exchangerates/rates/C/EUR?format=JSON';
+  'https://api.nbp.pl/api/exchangerates/rates/C/EUR?format=JSON';
 
 interface IExchangeRateContext {
   course: number | null;
