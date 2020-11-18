@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth, dataBase } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
+// import * as ROUTES from '../constants/routes';
 
 interface IAuthUser {
   role: string;
@@ -68,7 +68,7 @@ export const useAuth = () => {
       } else {
         localStorage.removeItem('authUser');
         setAuthUser(initialValue);
-        history.push(ROUTES.HOME);
+        // history.push(ROUTES.HOME);
       }
     });
     return () => {
