@@ -26,21 +26,49 @@ export const AddPriceList: React.FC<IAddPriceList> = React.memo(
         userID: authUser.userID,
         added: new Date().toISOString().slice(0, 10),
       };
-
+      /**
+       * TODO: Add pricelist if it does not exist
+       */
       dataBase
         .collection('pricelists')
-        .add(newPriceList)
+        .where('name', '==', priceListName)
+        .get()
+        .then((result) => {
+          if (result.size === 0)
+            return dataBase.collection('pricelists').add(newPriceList);
+          throw new Error(
+            `You can not to add the ${priceListName} pricelist because it exists`
+          );
+        })
         .then(() => {
           setTimeout(() => {
             setMessage('');
           }, 1000);
-          setMessage('Price list added');
+          setMessage(`The ${priceListName} added successfully`);
           setPriceListName('');
           setShow(false);
         })
         .catch((error) => {
           setMessage(error.message);
+          setTimeout(() => {
+            setMessage('');
+            setShow(false);
+          }, 1000);
         });
+      // dataBase
+      //   .collection('pricelists')
+      //   .add(newPriceList)
+      //   .then(() => {
+      //     setTimeout(() => {
+      //       setMessage('');
+      //     }, 1000);
+      //     setMessage('Price list added');
+      //     setPriceListName('');
+      //     setShow(false);
+      //   })
+      //   .catch((error) => {
+      //     setMessage(error.message);
+      //   });
     };
 
     return (
