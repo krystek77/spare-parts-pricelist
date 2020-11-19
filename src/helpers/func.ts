@@ -84,7 +84,7 @@ const isYear = (year: string): boolean => {
   return !!year.match(regExp) ? true : false;
 };
 const isPrice = (price: string) => {
-  const regExp = /^([0-9]+\.?[0-9]{2}$)/;
+  const regExp = /^([0-9]+\.?[0-9]{0,2}$)/;
   return !!price.match(regExp) ? true : false;
 };
 
