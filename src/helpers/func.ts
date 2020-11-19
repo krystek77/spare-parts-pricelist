@@ -80,7 +80,7 @@ const isModel = (model: string): boolean => {
   return !!model.match(regExp) ? true : false;
 };
 const isYear = (year: string): boolean => {
-  const regExp = /^([0-9]{4}$)/;
+  const regExp = /^(([0-9]{4}$) || (^[-]{1}$))/;
   return !!year.match(regExp) ? true : false;
 };
 const isPrice = (price: string) => {
