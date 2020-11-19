@@ -18,12 +18,15 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
   /**
    * TODO:
    * 1. Delete admin
-   * - delete all spare parts belong to current admin
+   * - find all pricelists belong to current admin
+   * - delete all spareparts  belong to these priceLists
    * - delete all pricelists belong to current admin
    * - delete admin details and than
    * - delete admin account
    */
-
+  const handleDeleteAdmin = () => {
+    console.log('DELETE ADMIN');
+  };
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -42,7 +45,10 @@ export const AdminProfilePage: React.FC<IAdminProfilePage> = () => {
         <TitlePageContainer title='USER PROFILE' subTitle={authUser.nick} />
         {/** TITLE */}
         {/** USER PROFILE */}
-        <UserProfileContainer authUser={authUser} />
+        <UserProfileContainer
+          authUser={authUser}
+          handleDeleteAdmin={handleDeleteAdmin}
+        />
         {/** USER PROFILE */}
       </MainContainer>
     </React.Fragment>
