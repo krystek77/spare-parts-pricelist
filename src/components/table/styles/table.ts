@@ -10,7 +10,7 @@ export const Inner = styled.div`
 export const BaseTable = styled.ul`
   list-style-type: none;
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   margin-top: 0;
   background-color: ${({ theme }) => theme.colors.secondary_lighter};
 `;
