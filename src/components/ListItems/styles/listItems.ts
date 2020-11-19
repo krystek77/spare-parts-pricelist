@@ -98,7 +98,7 @@ export const ListItemIconButton = styled.button<{
 export const ListItemButtonLink = styled(ReactRouterLink)`
   color: ${({ theme }) => theme.colors.light};
   margin-bottom: 0.2rem;
-  text-decoration: none;
+  /* text-decoration: none; */
   &:hover {
     color: ${({ theme }) => theme.colors.secondary_lighter};
   }
