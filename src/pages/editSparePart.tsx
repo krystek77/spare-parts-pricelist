@@ -103,9 +103,9 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
       setPurchasePrice(
         updatedSparePart.purchasePrice === 0
           ? '0.00'
-          : updatedSparePart.purchasePrice.toString()
+          : updatedSparePart.purchasePrice.toFixed(2)
       );
-      setSellingPrice(updatedSparePart.sellingPrice.toString());
+      setSellingPrice(updatedSparePart.sellingPrice.toFixed(2));
       setDescription(updatedSparePart.description);
       setComment(updatedSparePart.comments);
       setCurrency(updatedSparePart.currency);
@@ -133,18 +133,8 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
     isYear(from) &&
     isYear(to) &&
     selectedPriceLists &&
-    isPrice(purchasePrice);
-
-  if (sellingPrice !== '') {
-    isValidForm =
-      isSparePartName(name) &&
-      isModel(model) &&
-      isYear(from) &&
-      isYear(to) &&
-      selectedPriceLists &&
-      isPrice(purchasePrice) &&
-      isPrice(sellingPrice);
-  }
+    isPrice(purchasePrice) &&
+    isPrice(sellingPrice);
 
   const handleEditSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -160,9 +150,7 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
         priceListID: selectedPriceLists,
         'purchase-price': stringToNumber(purchasePrice),
         'selling-price':
-          currency === CURRENCY.PL
-            ? stringToNumber(sellingPrice)
-            : calculatePrice(purchasePrice, course),
+          currency === CURRENCY.PL ? stringToNumber(sellingPrice) : 0,
         updated: new Date().toISOString().slice(0, 10),
       };
 
