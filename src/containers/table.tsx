@@ -2,7 +2,7 @@ import React from 'react';
 // import { useSelectedSparePartContext } from '../context';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
-import { Table, Spinner } from '../components';
+import { Table, Spinner, ListItems } from '../components';
 import {
   ROLES,
   calculateSellingPriceFromEuro,
@@ -179,8 +179,22 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
           );
         })}
       </Table.BaseTable>
+      {role === ROLES.ADMIN && !browse ? (
+        <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
+          Add spare part
+        </ListItems.ListItemButtonLink>
+      ) : null}
     </Table>
-  ) : null;
+  ) : (
+    <React.Fragment>
+      <Spinner>You did not any spare parts to that pricelist</Spinner>
+      {role === ROLES.ADMIN && !browse ? (
+        <ListItems.ListItemButtonLink to={ROUTES.ADD_SPARE_PART}>
+          Add spare part now
+        </ListItems.ListItemButtonLink>
+      ) : null}
+    </React.Fragment>
+  );
   return content;
 };
 
