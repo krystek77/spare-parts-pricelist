@@ -68,7 +68,6 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
       });
   };
   const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
-
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -110,6 +109,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           message={message}
           isLoading={isLoading}
           role={authUser.role}
+          course={course}
           browse
         />
         {/** DATA OF SPARE PARTS */}

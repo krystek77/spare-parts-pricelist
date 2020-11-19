@@ -2,10 +2,7 @@ import React from 'react';
 import { dataBase } from '../lib/firebase';
 import { FaClipboardList, FaPlus } from 'react-icons/fa';
 import { useAuth, usePriceLists } from '../hooks';
-import {
-  useSelectedPriceListsContextValue,
-  useExchangeRateContext,
-} from '../context';
+import { useSelectedPriceListsContextValue } from '../context';
 import {
   MainContainer,
   NavigationContainer,
@@ -19,7 +16,6 @@ import { Form } from '../components';
 import {
   CURRENCY,
   stringToNumber,
-  calculatePrice,
   isSparePartName,
   isModel,
   isPrice,
@@ -52,7 +48,6 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
     selectedPriceLists,
     setSelectedPriceLists,
   } = useSelectedPriceListsContextValue();
-  const { course } = useExchangeRateContext(); //returns null until it downloads
 
   const selectedPriceList = priceLists.find(
     (item) => item.priceListID === selectedPriceLists
@@ -84,45 +79,41 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
   const handleAddSpareParts = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!!course) {
-      const newSparePart = {
-        comments: comment,
-        currency: currency,
-        description: description,
-        name: name,
-        model: model,
-        from: from,
-        to: to,
-        priceListID: selectedPriceLists,
-        'purchase-price': stringToNumber(purchasePrice),
-        'selling-price':
-          currency === CURRENCY.PL
-            ? stringToNumber(sellingPrice)
-            : calculatePrice(purchasePrice, course),
-        userID: authUser.userID,
-        added: new Date().toISOString().slice(0, 10),
-        slug: prepareSlug(name, model),
-      };
+    const newSparePart = {
+      comments: comment,
+      currency: currency,
+      description: description,
+      name: name,
+      model: model,
+      from: from,
+      to: to,
+      priceListID: selectedPriceLists,
+      'purchase-price': stringToNumber(purchasePrice),
+      'selling-price':
+        currency === CURRENCY.PL ? stringToNumber(sellingPrice) : 0,
+      userID: authUser.userID,
+      added: new Date().toISOString().slice(0, 10),
+      slug: prepareSlug(name, model),
+    };
 
-      dataBase
-        .collection('spare-parts')
-        .add(newSparePart)
-        .then(() => {
-          setMessage('Spare part added successfully');
-          setName('');
-          setModel('');
-          setFrom('');
-          setTo('');
-          setCurrency(CURRENCY.PL);
-          setPurchasePrice('');
-          setSellingPrice('');
-          setDescription('');
-          setComment('');
-          setAddComment(false);
-          setAddDescription(false);
-        })
-        .catch((error) => setMessage(error.message));
-    }
+    dataBase
+      .collection('spare-parts')
+      .add(newSparePart)
+      .then(() => {
+        setMessage('Spare part added successfully');
+        setName('');
+        setModel('');
+        setFrom('');
+        setTo('');
+        setCurrency(CURRENCY.PL);
+        setPurchasePrice('');
+        setSellingPrice('');
+        setDescription('');
+        setComment('');
+        setAddComment(false);
+        setAddDescription(false);
+      })
+      .catch((error) => setMessage(error.message));
   };
 
   return (

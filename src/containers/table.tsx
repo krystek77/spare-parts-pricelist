@@ -3,7 +3,12 @@ import React from 'react';
 import { FaTrashAlt, FaEdit, FaCommentAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import { Table, Spinner } from '../components';
-import { ROLES } from '../helpers';
+import {
+  ROLES,
+  calculateSellingPriceFromEuro,
+  CURRENCY,
+  roundToDecimals,
+} from '../helpers';
 import * as ROUTES from '../constants/routes';
 
 interface ITableContainer {
@@ -13,10 +18,19 @@ interface ITableContainer {
   isLoading?: boolean;
   role?: string;
   browse?: boolean;
+  course: number | null;
 }
 
 export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
-  const { list, handleDelete, message, isLoading, role, browse } = restProps;
+  const {
+    list,
+    handleDelete,
+    message,
+    isLoading,
+    role,
+    browse,
+    course,
+  } = restProps;
 
   const content = isLoading ? (
     <Spinner>Loading data ...</Spinner>
@@ -37,6 +51,13 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
           </Table.HeaderContentRowTable>
         </Table.HeaderRowTable>
         {list.map((item, index) => {
+          // console.log('Purchase Price:', item.purchasePrice.toFixed(2));
+          // console.log('Selling Price', item.sellingPrice.toFixed(2));
+          // console.log('Course', course);
+          const calculatedSellingPrice =
+            item.currency === CURRENCY.EUR && item.sellingPrice === 0
+              ? calculateSellingPriceFromEuro(item.purchasePrice, course)
+              : item.sellingPrice;
           return (
             <Table.BodyTable key={item.sparePartID}>
               <Table.RowTable>
@@ -63,10 +84,10 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                         : `${item.purchasePrice.toFixed(2)} ${item.currency}`}
                     </Table.HeaderContentFieldColTable>
                     <Table.HeaderContentFieldColTable>
-                      {`${item.sellingPrice.toFixed(2)} zł`}
+                      {`${calculatedSellingPrice} zł`}
                     </Table.HeaderContentFieldColTable>
                     <Table.HeaderContentFieldColTable>
-                      {`${(item.sellingPrice * 1.23).toFixed(2)} zł`}
+                      {`${roundToDecimals(calculatedSellingPrice * 1.23)} zł`}
                     </Table.HeaderContentFieldColTable>
                   </Table.HeaderContentColTable>
                   {item.description && (

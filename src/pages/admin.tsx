@@ -141,7 +141,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   };
 
   const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
-
+  
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -185,6 +185,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           handleDelete={handleDeleteSparePart}
           role={ROLES.ADMIN}
           message={message}
+          course={course}
         />
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
