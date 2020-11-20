@@ -87,7 +87,9 @@ export const TableContainer: React.FC<ITableContainer> = ({ ...restProps }) => {
                       {`${calculatedSellingPrice} zł`}
                     </Table.HeaderContentFieldColTable>
                     <Table.HeaderContentFieldColTable>
-                      {`${roundToDecimals(calculatedSellingPrice * 1.23)} zł`}
+                      {`${roundToDecimals(
+                        calculatedSellingPrice * 1.23
+                      ).toFixed(2)} zł`}
                     </Table.HeaderContentFieldColTable>
                   </Table.HeaderContentColTable>
                   {item.description && (
