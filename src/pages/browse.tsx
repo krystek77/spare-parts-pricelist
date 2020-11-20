@@ -19,8 +19,10 @@ import {
   useExchangeRateContext,
 } from '../context';
 
-const TableContainer = React.lazy(() => import('../containers/table'));
-
+// const TableContainer = React.lazy(() => import('../containers/table'));
+const ResponsiveTableContainer = React.lazy(
+  () => import('../containers/responsiveTable')
+);
 interface IBrowsePage {}
 export const BrowsePage: React.FC<IBrowsePage> = ({
   children,
@@ -103,7 +105,7 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {/**  CONTENT TITLE */}
 
         {/** DATA OF SPARE PARTS */}
-        <TableContainer
+        <ResponsiveTableContainer
           list={filteredSpareParts}
           handleDelete={handleDeleteSparePart}
           message={message}
@@ -112,6 +114,15 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
           course={course}
           browse
         />
+        {/* <TableContainer
+          list={filteredSpareParts}
+          handleDelete={handleDeleteSparePart}
+          message={message}
+          isLoading={isLoading}
+          role={authUser.role}
+          course={course}
+          browse
+        /> */}
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>

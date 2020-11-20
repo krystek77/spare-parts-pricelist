@@ -17,7 +17,9 @@ import {
   useExchangeRateContext,
 } from '../context';
 import { ROLES } from '../helpers';
-const TableContainer = React.lazy(() => import('../containers/table'));
+const ResponsiveTableContainer = React.lazy(
+  () => import('../containers/responsiveTable')
+);
 const TitlePageContainer = React.lazy(() => import('../containers/title'));
 const ListItemsContainer = React.lazy(() => import('../containers/listItems'));
 
@@ -141,7 +143,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   };
 
   const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
-  
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -179,7 +181,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <TitlePageContainer title='Admin' subTitle={namePriceList} />
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
-        <TableContainer
+        <ResponsiveTableContainer
           list={filteredSpareParts}
           isLoading={isLoading}
           handleDelete={handleDeleteSparePart}
@@ -187,6 +189,14 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           message={message}
           course={course}
         />
+        {/* <TableContainer
+          list={filteredSpareParts}
+          isLoading={isLoading}
+          handleDelete={handleDeleteSparePart}
+          role={ROLES.ADMIN}
+          message={message}
+          course={course}
+        /> */}
         {/** DATA OF SPARE PARTS */}
       </MainContainer>
     </React.Fragment>

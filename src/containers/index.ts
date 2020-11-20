@@ -17,6 +17,7 @@ import { MenuContainer } from './menu';
 import { SignOutContainer } from './signout';
 import { UsersListContainer } from './usersList';
 import { MenuUserContainer } from './menuUser';
+import { ResponsiveTableContainer } from './responsiveTable';
 export {
   NavigationContainer,
   JumbotronContainer,
@@ -37,4 +38,5 @@ export {
   SignOutContainer,
   UsersListContainer,
   MenuUserContainer,
+  ResponsiveTableContainer,
 };
