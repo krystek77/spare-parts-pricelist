@@ -14,6 +14,7 @@ import { ContentTitle } from './title';
 import { Info } from './info';
 import { Spinner } from './spinner';
 import { UserProfile } from './user';
+import { ResponsiveTable } from './responsiveTable';
 export {
   Jumbotron,
   Tabs,
@@ -31,4 +32,5 @@ export {
   Info,
   Spinner,
   UserProfile,
+  ResponsiveTable,
 };

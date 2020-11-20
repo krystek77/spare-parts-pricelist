@@ -8,6 +8,7 @@ const theme = {
     warnning: '#dfc614',
     green: '#008e6e',
     gray: '#393838',
+    gray_lighter: '#424242',
     primary_darker: '#8e0500',
     primary: '#cc0800',
     primary_lighter: '#d63933',

@@ -9,6 +9,7 @@ import {
   SearchFormContainer,
   TitlePageContainer,
   SignOutContainer,
+  ResponsiveTableContainer,
 } from '../containers';
 import { Navigation } from '../components';
 import * as ROUTES from '../constants/routes';
@@ -103,6 +104,15 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         {/**  CONTENT TITLE */}
 
         {/** DATA OF SPARE PARTS */}
+        <ResponsiveTableContainer
+          list={filteredSpareParts}
+          handleDelete={handleDeleteSparePart}
+          message={message}
+          isLoading={isLoading}
+          role={authUser.role}
+          course={course}
+          browse
+        />
         <TableContainer
           list={filteredSpareParts}
           handleDelete={handleDeleteSparePart}

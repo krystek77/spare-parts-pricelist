@@ -9,6 +9,7 @@ import {
   SearchFormContainer,
   MenuContainer,
   SignOutContainer,
+  ResponsiveTableContainer,
 } from '../containers';
 import { ListItems } from '../components';
 import { useAuth, usePriceLists, useSearch, useSpareParts } from '../hooks';
@@ -141,7 +142,7 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   };
 
   const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
-  
+
   return (
     <React.Fragment>
       <NavigationContainer bgColor>
@@ -179,6 +180,14 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         <TitlePageContainer title='Admin' subTitle={namePriceList} />
         {/**  CONTENT TITLE */}
         {/** DATA OF SPARE PARTS */}
+        <ResponsiveTableContainer
+          list={filteredSpareParts}
+          isLoading={isLoading}
+          handleDelete={handleDeleteSparePart}
+          role={ROLES.ADMIN}
+          message={message}
+          course={course}
+        />
         <TableContainer
           list={filteredSpareParts}
           isLoading={isLoading}
