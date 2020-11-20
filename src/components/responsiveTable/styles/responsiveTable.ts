@@ -20,7 +20,7 @@ export const DataItem = styled.li`
       visibility: visible;
       display: block;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
       background-color: ${({ theme }) => theme.colors.secondary_darker};

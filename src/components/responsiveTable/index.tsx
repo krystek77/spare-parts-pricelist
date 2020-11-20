@@ -32,7 +32,6 @@ interface IResponsiveTableContext {
 const ResponsiveTableContext = React.createContext<IResponsiveTableContext>(
   defaultValue
 );
-
 const ResponsiveTableContextProvider: React.FC = ({ children }) => {
   const [isOpenDescription, setIsOpenDescription] = React.useState<boolean>(
     false
