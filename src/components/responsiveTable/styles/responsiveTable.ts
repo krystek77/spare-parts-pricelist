@@ -61,7 +61,7 @@ export const DataItem = styled.li`
           display: none;
         }
         div {
-          /* color: red; */
+          color: red;
           width: 40px;
           text-align: center;
         }
