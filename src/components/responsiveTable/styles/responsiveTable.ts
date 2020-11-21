@@ -222,14 +222,16 @@ export const DataItemDescription = styled.p`
   /* border-bottom: 1px solid ${({ theme }) => theme.colors.secondary}; */
   @media (min-width: 960px) {
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.dark};
+    background-color: ${({ theme }) => theme.colors.medium};
+    color: ${({ theme }) => theme.colors.dark};
   }
 `;
 export const DataItemComment = styled.p`
   padding: 0.5rem;
   @media (min-width: 960px) {
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.dark};
+    background-color: ${({ theme }) => theme.colors.medium};
+    color: ${({ theme }) => theme.colors.dark};
   }
 `;
 export const Message = styled.div`
