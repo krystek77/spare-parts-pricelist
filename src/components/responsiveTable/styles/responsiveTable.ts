@@ -106,9 +106,9 @@ export const DataItemInner = styled.div`
   }
   &:nth-child(3) {
     div {
-      color: ${({ theme }) => theme.colors.green};
-      font-weight: 400;
-      font-size: 1.3rem;
+      color: ${({ theme }) => theme.colors.light};
+      font-weight: 600;
+      font-size: 1rem;
     }
   }
   &:nth-child(7) {
