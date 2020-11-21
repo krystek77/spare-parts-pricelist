@@ -1,15 +1,14 @@
 import { createGlobalStyle } from 'styled-components/macro';
 import 'normalize.css';
 import WebFont from 'webfontloader';
-WebFont.load({
-  google: {
-    families: [
-      'Oswald Web:200,300,400,500,600,700',
-      'Open sans Web:300,400,600,700,800',
-      'sans-serif',
-    ],
-  },
-});
+
+if (typeof window !== 'undefined') {
+  WebFont.load({
+    google: {
+      families: ['Oswald', 'Open sans', 'sans-serif'],
+    },
+  });
+}
 export const GlobalStyles = createGlobalStyle`
 
 *,*::before,*::after {
