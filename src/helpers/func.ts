@@ -112,6 +112,16 @@ const getAuthUser = (): IAuthUser => {
   return authUser ? JSON.parse(authUser) : initialValue;
 };
 
+const resetMessage = (
+  func: Function,
+  time: number
+): ReturnType<typeof setTimeout> => {
+  const id = setTimeout(() => {
+    func('');
+  }, time);
+  return id;
+};
+
 export {
   isEmail,
   isEmpty,
@@ -131,4 +141,5 @@ export {
   isPhoneNumber,
   isPriceListName,
   calculateSellingPriceFromEuro,
+  resetMessage,
 };

@@ -17,6 +17,7 @@ import {
   isPhoneNumber,
   isPriceListName,
   calculateSellingPriceFromEuro,
+  resetMessage,
 } from './func';
 import { ROLES, CURRENCY } from './enum';
 import { RedirectUser, ProtectedRoute } from './routes';
@@ -44,4 +45,5 @@ export {
   isPhoneNumber,
   isPriceListName,
   calculateSellingPriceFromEuro,
+  resetMessage,
 };
