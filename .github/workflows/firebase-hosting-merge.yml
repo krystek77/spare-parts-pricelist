@@ -29,6 +29,8 @@ jobs:
           expires: 30d
           projectId: spare-parts-pricelist
           channelId: live
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
 # name: Deploy to Firebase Hosting on merge
 # 'on':
 #   push:
