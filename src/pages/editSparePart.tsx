@@ -78,9 +78,10 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
   const [description, setDescription] = React.useState<string>('');
   const [comment, setComment] = React.useState<string>('');
   const [currency, setCurrency] = React.useState<string>(CURRENCY.PL);
-  const [showPriceListsOverlay, setShowPriceListsOverlay] = React.useState<
-    boolean
-  >(false);
+  const [
+    showPriceListsOverlay,
+    setShowPriceListsOverlay,
+  ] = React.useState<boolean>(false);
   const [addDescription, setAddDescription] = React.useState<boolean>(false);
   const [addComment, setAddComment] = React.useState<boolean>(false);
   const [message, setMessage] = React.useState<string>('');
@@ -154,20 +155,55 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
         updated: new Date().toISOString().slice(0, 10),
       };
 
-      dataBase
+      /**
+       * Use transaction
+       */
+
+      const refToSparePart = dataBase
         .collection('spare-parts')
-        .doc(match.params.sparePartID)
-        .update(updatedSparePart)
+        .doc(match.params.sparePartID);
+      dataBase
+        .runTransaction((transaction) => {
+          return transaction.get(refToSparePart).then((doc) => {
+            if (!doc.exists) {
+              throw new Error(
+                'Spare parts, you want to update, does not exists'
+              );
+            }
+            transaction.update(refToSparePart, updatedSparePart);
+          });
+        })
         .then(() => {
-          setMessage('The spare part was updated successfully');
+          console.log(
+            'Transaction successfully commited. The spare part has been updated'
+          );
+          setMessage(
+            'Transaction successfully commited. The spare part has been updated'
+          );
           setTimeout(() => {
             setMessage('');
             history.push(ROUTES.ADMIN);
           }, 1000);
         })
         .catch((error) => {
+          console.log(error.message);
           setMessage(error.message);
         });
+
+      // dataBase
+      //   .collection('spare-parts')
+      //   .doc(match.params.sparePartID)
+      //   .update(updatedSparePart)
+      //   .then(() => {
+      //     setMessage('The spare part was updated successfully');
+      //     setTimeout(() => {
+      //       setMessage('');
+      //       history.push(ROUTES.ADMIN);
+      //     }, 1000);
+      //   })
+      //   .catch((error) => {
+      //     setMessage(error.message);
+      //   });
     }
   };
 
