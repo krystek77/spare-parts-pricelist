@@ -96,6 +96,7 @@ export const AddSparePart: React.FC<IAddSparePart> = () => {
       slug: prepareSlug(name, model),
     };
 
+    
     dataBase
       .collection('spare-parts')
       .add(newSparePart)

@@ -120,16 +120,32 @@ export const AdminPage: React.FC<IAdminPage> = () => {
   };
 
   const handleDeleteSparePart = (sparePartID: string) => {
+    /**
+     * Use transaction
+     */
+    const refToSparePart = dataBase.collection('spare-parts').doc(sparePartID);
     dataBase
-      .collection('spare-parts')
-      .doc(sparePartID)
-      .delete()
+      .runTransaction((transaction) => {
+        return transaction.get(refToSparePart).then((doc) => {
+          if (!doc.exists) {
+            return new Error(
+              'Spare parts, you want to delete, does not exists'
+            );
+          }
+          transaction.delete(refToSparePart);
+        });
+      })
       .then(() => {
+        console.log(
+          'Transaction successfully commited. The spare part has been deleted'
+        );
+        setMessage(
+          'Transaction successfully commited. The spare part has been deleted'
+        );
         const newSpareParts = spareParts.filter(
           (item) => item.sparePartID !== sparePartID
         );
         setSpareParts(newSpareParts);
-        setMessage('Spare part deleted successfully');
         setTimeout(() => {
           setMessage('');
         }, 1000);
@@ -140,6 +156,27 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           setMessage('');
         }, 1000);
       });
+
+    // dataBase
+    //   .collection('spare-parts')
+    //   .doc(sparePartID)
+    //   .delete()
+    //   .then(() => {
+    //     const newSpareParts = spareParts.filter(
+    //       (item) => item.sparePartID !== sparePartID
+    //     );
+    //     setSpareParts(newSpareParts);
+    //     setMessage('Spare part deleted successfully');
+    //     setTimeout(() => {
+    //       setMessage('');
+    //     }, 1000);
+    //   })
+    //   .catch((error) => {
+    //     setMessage(error.message);
+    //     setTimeout(() => {
+    //       setMessage('');
+    //     }, 1000);
+    //   });
   };
 
   const { filteredSpareParts, search, setSearch } = useSearch(spareParts);
