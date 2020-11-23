@@ -55,53 +55,58 @@ export const AdminPage: React.FC<IAdminPage> = () => {
      * A specific price list can only be deleted by the user who created it.
      * If other user added spare part to it than it was deleted.
      */
+    /**
+     * Use transaction to delete pricelist
+     */
+
     const authUserID = authUser.userID;
+
+    const refToPriceList = dataBase.collection('pricelists').doc(priceListID);
+
     dataBase
-      .collection('pricelists')
-      .doc(priceListID)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const userID = doc.data()?.userID;
-          if (userID === authUserID) {
-            return (
-              dataBase
+      .runTransaction((transaction) => {
+        return transaction
+          .get(refToPriceList)
+          .then((doc) => {
+            if (!doc.exists) {
+              throw new Error('The pricelist does not exists');
+            }
+            const userID = doc.data()?.userID;
+            if (userID === authUserID) {
+              return dataBase
                 .collection('spare-parts')
                 .where('priceListID', '==', priceListID)
-                // .where('userID', '==', authUserID)
-                .get()
-            );
-          } else {
-            throw new Error(
-              'You cannot delete this price list because you have not created it.'
-            );
-          }
-        } else {
-          throw new Error('Price list does not exist!');
-        }
-      })
-      .then((result) => {
-        const size = result?.size;
+                .get();
+            } else {
+              throw new Error(
+                'You cannot delete this price list because you have not created it.'
+              );
+            }
+          })
+          .then((result) => {
+            const size = result?.size;
 
-        if (size === 0) {
-          setMessagePriceList(
-            'All spare parts from this price list have been deleted'
-          );
-          setTimeout(() => {
-            setMessagePriceList('');
-          }, 500);
-          return;
-        }
-        const batch = dataBase.batch();
-        result?.docs.forEach((doc) => {
-          batch.delete(doc.ref);
-        });
-        return batch.commit();
+            if (size === 0) {
+              setMessagePriceList(
+                'All spare parts from this price list have been deleted'
+              );
+              setTimeout(() => {
+                setMessagePriceList('');
+              }, 500);
+              return;
+            }
+            const batch = dataBase.batch();
+            result?.docs.forEach((doc) => {
+              batch.delete(doc.ref);
+            });
+            return batch.commit();
+          })
+          .then(() => {
+            transaction.delete(refToPriceList);
+          });
       })
       .then(() => {
-        return dataBase.collection('pricelists').doc(priceListID).delete();
-      })
-      .then(() => {
+        // console.log('DELETED');
         setMessagePriceList('The price list deleted successfully');
         setTimeout(() => {
           setMessagePriceList('');
@@ -117,6 +122,68 @@ export const AdminPage: React.FC<IAdminPage> = () => {
           setMessagePriceList('');
         }, 500);
       });
+
+    //   dataBase
+    //     .collection('pricelists')
+    //     .doc(priceListID)
+    //     .get()
+    //     .then((doc) => {
+    //       if (doc.exists) {
+    //         const userID = doc.data()?.userID;
+    //         if (userID === authUserID) {
+    //           return (
+    //             dataBase
+    //               .collection('spare-parts')
+    //               .where('priceListID', '==', priceListID)
+    //               // .where('userID', '==', authUserID)
+    //               .get()
+    //           );
+    //         } else {
+    //           throw new Error(
+    //             'You cannot delete this price list because you have not created it.'
+    //           );
+    //         }
+    //       } else {
+    //         throw new Error('Price list does not exist!');
+    //       }
+    //     })
+    //     .then((result) => {
+    //       const size = result?.size;
+
+    //       if (size === 0) {
+    //         setMessagePriceList(
+    //           'All spare parts from this price list have been deleted'
+    //         );
+    //         setTimeout(() => {
+    //           setMessagePriceList('');
+    //         }, 500);
+    //         return;
+    //       }
+    //       const batch = dataBase.batch();
+    //       result?.docs.forEach((doc) => {
+    //         batch.delete(doc.ref);
+    //       });
+    //       return batch.commit();
+    //     })
+    //     .then(() => {
+    //       return dataBase.collection('pricelists').doc(priceListID).delete();
+    //     })
+    //     .then(() => {
+    //       setMessagePriceList('The price list deleted successfully');
+    //       setTimeout(() => {
+    //         setMessagePriceList('');
+    //       }, 500);
+    //       const restSpareParts = spareParts.filter(
+    //         (item) => item.priceListID !== priceListID
+    //       );
+    //       setSpareParts(restSpareParts);
+    //     })
+    //     .catch((error) => {
+    //       setMessagePriceList(error.message);
+    //       setTimeout(() => {
+    //         setMessagePriceList('');
+    //       }, 500);
+    //     });
   };
 
   const handleDeleteSparePart = (sparePartID: string) => {
