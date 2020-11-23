@@ -32,7 +32,7 @@ export const UserPage: React.FC<IUserPage> = () => {
         });
       })
       .then(() => {
-        console.log('User details and account deleted successfully');
+        // console.log('User details and account deleted successfully');
       })
       .catch((error) => {
         console.log(error.message);
