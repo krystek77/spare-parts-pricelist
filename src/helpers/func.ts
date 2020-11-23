@@ -68,7 +68,7 @@ const calculateSellingPriceFromEuro = (
 };
 
 const isSparePartName = (name: string): boolean => {
-  const regExp = /^[a-zA-Z0-9ąćęłńóśźż\s]{5,}/;
+  const regExp = /^[a-zA-Z0-9ąćęłńóśźżŚŹŻĆ\s]{5,}/;
   return !!name.match(regExp) ? true : false;
 };
 const isPriceListName = (name: string): boolean => {
