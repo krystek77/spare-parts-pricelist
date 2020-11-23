@@ -16,23 +16,44 @@ export const UserPage: React.FC<IUserPage> = () => {
   const { authUser, setAuthUser, initialValue } = useAuth();
   const handleDeleteUser = () => {
     const user = auth.currentUser;
+    /**
+     * Use transaction
+     */
 
+    const refToUser = dataBase.collection('users').doc(authUser.userID);
     dataBase
-      .collection('users')
-      .doc(authUser.userID)
-      .delete()
-      .then(() => {
-        // console.log('User details deleted now.');
-        if (user) {
-          return user.delete();
-        }
+      .runTransaction((transaction) => {
+        return transaction.get(refToUser).then((doc) => {
+          if (!doc.exists) {
+            return new Error('User does not exists');
+          }
+          transaction.delete(refToUser);
+          user?.delete();
+        });
       })
       .then(() => {
-        // console.log('User account deleted successfully');
+        console.log('User details and account deleted successfully');
       })
       .catch((error) => {
         console.log(error.message);
       });
+
+    // dataBase
+    //   .collection('users')
+    //   .doc(authUser.userID)
+    //   .delete()
+    //   .then(() => {
+    //     // console.log('User details deleted now.');
+    //     if (user) {
+    //       return user.delete();
+    //     }
+    //   })
+    //   .then(() => {
+    //     // console.log('User account deleted successfully');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
   };
   return (
     <React.Fragment>
