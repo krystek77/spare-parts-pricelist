@@ -174,9 +174,6 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
           });
         })
         .then(() => {
-          console.log(
-            'Transaction successfully commited. The spare part has been updated'
-          );
           setMessage(
             'Transaction successfully commited. The spare part has been updated'
           );
@@ -186,7 +183,6 @@ export const EditPage: React.FC<IEditSparePartPage> = (props) => {
           }, 1000);
         })
         .catch((error) => {
-          console.log(error.message);
           setMessage(error.message);
         });
 
