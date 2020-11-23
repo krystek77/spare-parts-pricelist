@@ -77,7 +77,7 @@ const isPriceListName = (name: string): boolean => {
 };
 const isModel = (model: string): boolean => {
   // const regExp = /^[A-Z]{1,}[0-9]*-[0-9]+/;
-  const regExp = /^[a-zA-Z0-9ąćęłńóśźżŚŹŻĆ\s]{5,}/;
+  const regExp = /^[a-zA-Z0-9ąćęłńóśźżŚŹŻĆ,-.\s]{5,}/;
   return !!model.match(regExp) ? true : false;
 };
 const isYear = (year: string): boolean => {
