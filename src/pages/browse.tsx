@@ -64,9 +64,6 @@ export const BrowsePage: React.FC<IBrowsePage> = ({
         });
       })
       .then(() => {
-        console.log(
-          'Transaction successfully commited. The spare part has been deleted'
-        );
         setMessage(
           'Transaction successfully commited. The spare part has been deleted'
         );

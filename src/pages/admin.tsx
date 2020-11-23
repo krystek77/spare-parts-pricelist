@@ -136,9 +136,6 @@ export const AdminPage: React.FC<IAdminPage> = () => {
         });
       })
       .then(() => {
-        console.log(
-          'Transaction successfully commited. The spare part has been deleted'
-        );
         setMessage(
           'Transaction successfully commited. The spare part has been deleted'
         );
